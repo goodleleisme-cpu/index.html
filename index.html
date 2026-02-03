@@ -17,7 +17,8 @@
             --ios-gray: #8E8E93;
             --ios-teal: #40C8E0; 
             --bg-light: #F2F2F7;
-            --glass: rgba(255, 255, 255, 0.75);
+            /* 稍微调高一点点不透明度，保证文字清晰 */
+            --glass: rgba(255, 255, 255, 0.85);
             --border: rgba(0, 0, 0, 0.05);
             --text-main: #1C1C1E;
             --text-sub: #8E8E93;
@@ -91,7 +92,21 @@
         .period-btn { flex: 1; border: none; background: transparent; color: rgba(255,255,255,0.7); padding: 7px; font-size: 11px; font-weight: 700; border-radius: 9px; cursor: pointer; }
         .period-btn.active { background: #FFF; color: #000; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .stat-card { background: var(--glass); border-radius: 24px; border: 0.5px solid var(--border); padding: 24px 12px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.2s; }
+        
+        /* Stat Card 基础样式：恢复清晰的白色磨砂 */
+        .stat-card { 
+            background: var(--glass); /* 确保背景足够不透明 */
+            border-radius: 24px; 
+            border: 0.5px solid var(--border); 
+            padding: 24px 12px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            transition: 0.2s; 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+        }
         
         .stat-icon-btn { 
             width: 56px; height: 56px; border-radius: 16px; 
@@ -99,7 +114,21 @@
             display: flex; align-items: center; justify-content: center; 
             margin-bottom: 12px; cursor: pointer; transition: 0.2s;
         }
-        .stat-icon-btn:active { transform: scale(0.9); background: rgba(0,0,0,0.08); }
+
+        /* 媒体/音乐卡片定制样式 - 只改变图标和文字颜色，保持背景清晰 */
+        /* 媒体：蓝色 */
+        .stat-card.media-theme .stat-icon-btn {
+            background: rgba(0, 122, 255, 0.12); /* 淡淡的蓝底 */
+            color: var(--ios-blue); /* 蓝色图标 */
+        }
+        
+        /* 音乐：红色 */
+        .stat-card.music-theme .stat-icon-btn {
+            background: rgba(255, 59, 48, 0.12); /* 淡淡的红底 */
+            color: var(--ios-red); /* 红色图标 */
+        }
+
+        .stat-icon-btn:active { transform: scale(0.9); }
 
         .stat-label { font-size: 10px; font-weight: 800; color: var(--text-sub); margin-bottom: 2px; }
         .stat-value { font-size: 20px; font-weight: 800; color: var(--ios-gray); letter-spacing: -0.5px; } 
@@ -278,7 +307,8 @@
                 <button class="period-btn" onclick="setPeriod('year', this)">年度</button>
             </div>
             <div class="work-grid">
-                <div class="stat-card">
+                <!-- 增加颜色类名：media-theme (蓝) -->
+                <div class="stat-card media-theme">
                     <div class="stat-icon-btn" onclick="openHistory('v')">
                         <i data-lucide="tv" width="28"></i>
                     </div>
@@ -286,7 +316,8 @@
                     <div class="stat-value" id="val-v">0</div>
                     <div class="stat-ctrl" id="ctrl-v"></div>
                 </div>
-                <div class="stat-card">
+                <!-- 增加颜色类名：music-theme (红) -->
+                <div class="stat-card music-theme">
                     <div class="stat-icon-btn" onclick="openHistory('m')">
                         <i data-lucide="disc" width="28"></i>
                     </div>
