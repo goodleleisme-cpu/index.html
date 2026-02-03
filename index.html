@@ -15,7 +15,7 @@
             --ios-orange: #FF9500;
             --ios-green: #34C759;
             --ios-gray: #8E8E93;
-            --ios-teal: #40C8E0; /* 新增：清爽的青色 */
+            --ios-teal: #40C8E0; 
             --bg-light: #F2F2F7;
             --glass: rgba(255, 255, 255, 0.75);
             --border: rgba(0, 0, 0, 0.05);
@@ -82,6 +82,11 @@
         .motto-cn { font-size: 16px; font-weight: 700; color: #FFF; margin-bottom: 4px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .motto-en { font-size: 10px; color: rgba(255,255,255,0.7); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2; }
         
+        /* WORK 页面：校正到 8vh */
+        #page-work {
+            padding-top: 8vh;
+        }
+
         .period-selector { display: flex; gap: 4px; background: rgba(255,255,255,0.15); padding: 3px; border-radius: 12px; margin: 15px 0; border: 0.5px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
         .period-btn { flex: 1; border: none; background: transparent; color: rgba(255,255,255,0.7); padding: 7px; font-size: 11px; font-weight: 700; border-radius: 9px; cursor: pointer; }
         .period-btn.active { background: #FFF; color: #000; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
@@ -123,7 +128,6 @@
             position: relative; 
         }
         
-        /* 1. 时间标签：暖金色 */
         .f-meal-tag { 
             font-size: 12px; 
             font-weight: 800; 
@@ -151,7 +155,6 @@
         
         .f-meal-meta { margin-top: 10px; display: flex; flex-direction: row; justify-content: center; gap: 12px; border-top: 0.5px solid rgba(0,0,0,0.03); padding-top: 8px; }
         
-        /* 饮品补剂颜色：全部统一为蓝色 */
         .f-meta-item { font-size: 12px; color: var(--ios-blue); font-weight: 600; display: flex; align-items: center; gap: 6px; }
         .f-meta-item.blue { color: var(--ios-blue); }
         
@@ -160,7 +163,34 @@
         .f-procure-box.full { grid-column: span 2; }
         .f-procure-title { font-size: 10px; font-weight: 800; color: var(--text-sub); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
         .f-ing-tag { font-size: 10px; color: #000; background: #FFF; padding: 3px 8px; border-radius: 6px; margin: 2px; display: inline-block; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-        .f-sync-btn { width: 100%; background: #000; color: #FFF; border: none; padding: 14px; border-radius: 14px; font-size: 14px; font-weight: 700; margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        
+        /* 食谱更新按钮：根据用户反馈调整
+           - 颜色统一：使用实色背景 #E5E5EA (iOS标准灰色)
+           - 非透明感：不使用 rgba，使用十六进制实色
+           - 字体黑色：color: #000
+        */
+        .f-sync-btn { 
+            width: 100%; 
+            background: #E5E5EA; /* 统一灰色实色，不要透明 */
+            color: #000; /* 黑色字体 */
+            border: none; 
+            padding: 14px; 
+            border-radius: 14px; 
+            font-size: 14px; 
+            font-weight: 700; 
+            margin-top: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .f-sync-btn:active {
+            background: #D1D1D6; /* 点击时的深度灰色 */
+            transform: scale(0.98);
+        }
         
         .f-dock { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 6px; border-radius: 100px; display: flex; gap: 5px; border: 0.5px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100; }
         .f-dock-btn { padding: 10px 22px; border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--text-sub); display: flex; align-items: center; gap: 8px; transition: 0.2s; cursor: pointer; }
@@ -175,6 +205,11 @@
         .sub-head { padding: 60px 24px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
         .sub-layer h2 { text-align: center; color: #FFF; font-weight: 800; font-size: 20px; margin: 0; letter-spacing: 3px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .sub-layer .close-btn { color: #FFF; position: absolute; right: 24px; top: 62px; font-weight: 700; cursor: pointer; text-shadow: 0 1px 5px rgba(0,0,0,0.3); }
+
+        /* 身心修养子页面内容：校正到 19vh */
+        .sub-layer.health-center .sub-head {
+            padding-top: 19vh;
+        }
 
         /* 详情页背景 */
         .sub-layer.vision-future { 
@@ -215,6 +250,11 @@
         .history-list { flex: 1; overflow-y: auto; }
         .history-item { padding: 12px 0; border-bottom: 0.5px solid #EEE; display: flex; justify-content: space-between; font-weight: 600; }
         .history-item span:first-child { color: var(--ios-gray); }
+
+        /* FUTURE 页面：校正到 4vh */
+        #page-future {
+            padding-top: 4vh;
+        }
     </style>
 </head>
 <body>
@@ -321,23 +361,19 @@
             </div>
         </div>
 
-        <!-- === 未来页面 (Apple Art Style Update) === -->
+        <!-- === 未来页面 === -->
         <div id="page-future" class="page">
             <div style="display: flex; flex-direction: column; gap: 40px; padding-top: 10px;">
-                <!-- 3. 愿景目标: Apple Compass Style -->
                 <div class="f-card" style="min-height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(0,122,255,0.05)); cursor: pointer;" onclick="openSub('vision-future')">
-                    <!-- Icon Container: Transparent + Colored Icon -->
                     <div style="background: rgba(0,122,255,0.15); width: 88px; height: 88px; border-radius: 26px; display: flex; align-items: center; justify-content: center; color: var(--ios-blue); margin-bottom: 18px; backdrop-filter: blur(10px);">
-                        <i data-lucide="compass" width="48" stroke-width="1.5"></i>
+                        <i data-lucide="star" width="48" stroke-width="1.5"></i>
                     </div>
                     <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #000; letter-spacing: 2px;">愿景目标</h3>
                 </div>
                 
-                <!-- 3. 身心修养: Apple Health/Mindfulness Style (Teal) -->
                 <div class="f-card" style="min-height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(64,200,224,0.05)); cursor: pointer;" onclick="openSub('health')">
-                    <!-- Icon Container: Transparent + Colored Icon -->
                     <div style="background: rgba(64,200,224,0.15); width: 88px; height: 88px; border-radius: 26px; display: flex; align-items: center; justify-content: center; color: var(--ios-teal); margin-bottom: 18px; backdrop-filter: blur(10px);">
-                        <i data-lucide="activity" width="48" stroke-width="1.5"></i>
+                        <i data-lucide="heart" width="48" stroke-width="1.5"></i>
                     </div>
                     <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #000; letter-spacing: 2px;">身心修养</h3>
                 </div>
@@ -346,7 +382,6 @@
     </div>
 </div>
 
-<!-- 弹层部分 -->
 <div id="sub-layer-2026" class="sub-layer sub-layer-2026">
     <div class="sub-head">
         <h2 style="margin:0; font-size:19px; font-weight:800; color:#FFF;">2026目标</h2>
@@ -478,7 +513,6 @@
         renderWork();
     }
 
-    // --- 导航与弹层逻辑 ---
     function switchNav(p, el) {
         document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
         el.classList.add('active');
@@ -491,7 +525,6 @@
         lucide.createIcons();
     }
 
-    // 修复 switchLife 未定义错误
     function switchLife(type, el) {
         document.querySelectorAll('.f-dock-btn').forEach(b => b.classList.remove('active'));
         el.classList.add('active');
@@ -524,7 +557,6 @@
 
     function closeHistory() { document.getElementById('history-overlay').classList.remove('active'); }
 
-    // --- 备忘与健康逻辑 ---
     function renderMemoList(type) {
         const list = type === '2026' ? saved2026 : savedFuture;
         const listId = type === '2026' ? 'memo-list-2026' : 'memo-list-future';
@@ -572,7 +604,6 @@
         }
     }
 
-    // --- 生活食谱数据库 ---
     const DB = [
         { d: 1, label: "DAY 1", m: { n: "牛腱燕麦面", c: "燕麦面40g", i: ["卤牛腱80g", "鸡蛋1个", "菠菜120g", "香菇80g"], d: "美式", s: ["维生素包", "鱼油"] }, l: { n: "黑椒牛里脊意面", c: "全麦意面70g", i: ["牛里脊180g", "西兰花150g", "彩椒100g", "洋葱50g"], d: "温水", s: ["黑巧", "护肝片"] }, n: { n: "牛里脊(无碳)", c: "无", i: ["牛里脊120g", "西兰花120g", "彩椒80g"], d: "温水" } },
         { d: 2, label: "DAY 2", m: { n: "奶酪煎蛋吐司", c: "全麦吐司40g", i: ["煎蛋2个", "低脂奶酪30g", "番茄120g", "生菜80g"], d: "奶茶咖啡", s: ["维生素包"] }, l: { n: "蒜香虾仁荞麦面", c: "荞麦面70g", i: ["虾仁200g", "西葫芦120g", "蘑菇150g", "洋葱50g"], d: "温水", s: ["牡蛎", "叶黄素"] }, n: { n: "蒜香虾仁(无碳)", c: "无", i: ["虾仁130g", "西葫芦100g", "蘑菇120g"], d: "温水" } },
@@ -585,7 +616,7 @@
         { d: 9, label: "DAY 9", m: { n: "豆腐鸡蛋燕麦面", c: "燕麦40g", i: ["鸡蛋1个", "嫩豆腐120g", "菠菜150g", "香菇80g"], d: "美式", s: ["维生素包", "鱼油"] }, l: { n: "黑椒虾仁荞麦面", c: "荞麦面70g", i: ["虾仁220g", "蘑菇150g", "西葫芦120g", "洋葱50g"], d: "温水", s: ["黑巧", "护肝片"] }, n: { n: "黑椒虾仁(无碳)", c: "无", i: ["虾仁140g", "蘑菇120g", "西葫芦100g"], d: "温水" } },
         { d: 10, label: "DAY 10", m: { n: "草莓燕麦能量碗", c: "燕麦40g", i: ["酸奶150g", "草莓80g", "坚果碎15g", "菠菜80g"], d: "美式", s: ["维生素包"] }, l: { n: "照烧三文鱼糙米饭", c: "糙米饭100g", i: ["三文鱼180g", "西兰花150g", "胡萝卜100g", "洋葱50g"], d: "温水", s: ["牡蛎", "叶黄素"] }, n: { n: "照烧三文鱼(无碳)", c: "无", i: ["三文鱼120g", "西兰花120g", "胡萝卜80g"], d: "温水" } },
         { d: 11, label: "DAY 11", m: { n: "牛油果蛋吐司", c: "吐司40g", i: ["煎蛋2个", "牛油果40g", "番茄120g", "生菜80g"], d: "温水", s: ["维生素包", "鱼油"] }, l: { n: "番茄炖牛腱米饭", c: "米饭100g", i: ["牛腱200g", "卷心菜150g", "土豆80g", "洋葱60g"], d: "温水", s: ["黑巧", "护肝片"] }, n: { n: "番茄炖牛腱(无碳)", c: "无", i: ["牛腱130g", "卷心菜120g", "洋葱50g"], d: "温水" } },
-        { d: 12, label: "DAY 12", m: { n: "红薯鸡胸鸡蛋餐", c: "红薯100g", i: ["鸡蛋2个", "鸡胸100g", "青菜150g", "木耳60g"], d: "温水", s: ["维生素包"] }, l: { n: "蒜香虾仁玉米粒", c: "玉米粒80g", i: ["虾仁220g", "芦笋150g", "蘑菇120g", "洋葱50g"], d: "温水", s: ["牡蛎", "叶黄素"] }, n: { n: "蒜香虾仁(无碳)", c: "无", i: ["虾仁140g", "芦笋120g", "蘑菇100g"], d: "温水" } },
+        { d: 12, label: "DAY 12", m: { n: "红薯鸡胸鸡蛋餐", c: "红薯100g", i: ["鸡蛋2个", "鸡胸100g", "青菜150g", "木耳60g"], d: "温水", s: ["牡蛎", "叶黄素"] }, l: { n: "蒜香虾仁玉米粒", c: "玉米粒80g", i: ["虾仁220g", "芦笋150g", "蘑菇120g", "洋葱50g"], d: "温水", s: ["牡蛎", "叶黄素"] }, n: { n: "蒜香虾仁(无碳)", c: "无", i: ["虾仁140g", "芦笋120g", "蘑菇100g"], d: "温水" } },
         { d: 13, label: "DAY 13", m: { n: "鸡胸燕麦奇亚籽", c: "燕麦40g", i: ["鸡胸120g", "香蕉80g", "奇亚籽10g", "菠菜60g"], d: "温水", s: ["维生素包", "鱼油"] }, l: { n: "清炖牛腩藜麦饭", c: "藜麦70g", i: ["牛腩220g", "白萝卜150g", "胡萝卜100g", "洋葱60g"], d: "温水", s: ["黑巧", "护肝片"] }, n: { n: "清炖牛腩(无碳)", c: "无", i: ["牛腩140g", "白萝卜120g", "洋葱50g"], d: "温水" } },
         { d: 14, label: "DAY 14", m: { n: "奶酪煎蛋吐司", c: "吐司40g", i: ["煎蛋1个", "低脂奶酪30g", "番茄120g", "生菜80g"], d: "美式", s: ["维生素包"] }, l: { n: "孜然鸡腿红薯餐", c: "红薯120g", i: ["去皮鸡腿200g", "青椒120g", "洋葱60g", "西葫芦120g"], d: "温水", s: ["牡蛎", "叶黄素"] }, n: { n: "孜然鸡腿(无碳)", c: "无", i: ["去皮鸡腿130g", "青椒100g", "西葫芦100g"], d: "温水" } }
     ];
