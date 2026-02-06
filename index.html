@@ -9,7 +9,7 @@
     
     <title>Xl</title>
 
-    <!-- === 核心修复：自动生成 iOS 专用 PNG 图标脚本 === -->
+    <!-- === 核心修复：自动生成 iOS 专用 PNG 图标脚本 (保持不变) === -->
     <script>
         (function() {
             // 1. 创建一个画布
@@ -93,16 +93,15 @@
             color: var(--text-main);
             height: 100vh; overflow: hidden;
             
-            /* --- 背景设置双重保险 --- */
-            /* 1. 纯色兜底：防止图片挂掉时一片白 */
-            background-color: #87CEEB;
+            /* --- 背景修改：低调奢华度假风 --- */
+            /* 1. 纯色兜底：深蓝，匹配图片色调 */
+            background-color: #0f172a;
             
-            /* 2. 渐变兜底：如果图没出来，至少有一个蓝天到沙滩的渐变色 */
-            background-image: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+            /* 2. 渐变兜底：深邃的夜色渐变 */
+            background-image: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
 
-            /* 3. 图片覆盖：经典的城市海滩垂直俯瞰（Gold Coast），最强烈的城市+度假对比 */
-            /* 使用了多个 url 尝试，这里放最经典的那张 */
-            background-image: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=2000&auto=format&fit=crop');
+            /* 3. 图片覆盖：暮色下的静谧度假海滩（无人物，不刺眼，适合白色文字） */
+            background-image: url('https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6?q=80&w=2000&auto=format&fit=crop');
             
             background-size: cover; 
             background-position: center;
