@@ -34,8 +34,8 @@
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
             background-color: var(--bg-light); color: var(--text-main);
             height: 100vh; overflow: hidden;
-            /* 全局背景 */
-            background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&auto=format&fit=crop');
+            /* 全局背景：纽约中央公园暮色 - 复刻参考图的蓝金渐变与城市灯火 */
+            background-image: url('https://images.unsplash.com/photo-1518235506717-e1ed3306a89b?q=80&w=2000&auto=format&fit=crop');
             background-size: cover; background-position: center;
         }
 
@@ -388,34 +388,27 @@
             </div>
         </div>
 
-        <!-- === 未来页面 (Illustration Icon Update V3: Small Animals) === -->
+        <!-- === 未来页面 (Illustration Icon Update V3: Star & Heart) === -->
         <div id="page-future" class="page">
             <div style="display: flex; flex-direction: column; gap: 40px; padding-top: 10px;">
-                <!-- 愿景目标: Soaring Bird illustration -->
+                <!-- 愿景目标: Star/Sparkle illustration (Design-forward) -->
                 <div class="f-card" style="min-height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(0,122,255,0.05)); cursor: pointer;" onclick="openSub('vision-future')">
                     <div style="background: rgba(0,122,255,0.15); width: 88px; height: 88px; border-radius: 26px; display: flex; align-items: center; justify-content: center; color: var(--ios-blue); margin-bottom: 18px; backdrop-filter: blur(10px);">
-                        <!-- 插画风格: 展翅高飞的小鸟/雄鹰 -->
+                        <!-- 插画风格: 极星/光芒 (象征指引) -->
                         <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- 翅膀 -->
-                            <path d="M50 45C30 35 15 40 10 55C15 50 35 48 50 55" fill="url(#paint_bird_wing)" fill-opacity="0.8"/>
-                            <path d="M50 45C70 35 85 40 90 55C85 50 65 48 50 55" fill="url(#paint_bird_wing)" fill-opacity="0.8"/>
-                            <!-- 身体 -->
-                            <path d="M45 55C45 55 48 75 50 75C52 75 55 55 55 55L50 45L45 55Z" fill="url(#paint_bird_body)"/>
-                            <!-- 太阳背景感 -->
-                            <circle cx="50" cy="30" r="8" fill="url(#paint_bird_sun)" fill-opacity="0.4"/>
+                            <!-- 主星芒 -->
+                            <path d="M50 15C50 15 58 42 85 50C58 58 50 85 50 85C50 85 42 58 15 50C42 42 50 15 50 15Z" fill="url(#paint_star_main)"/>
+                            <!-- 中心光晕 -->
+                            <circle cx="50" cy="50" r="10" fill="white" fill-opacity="0.3" filter="blur(2px)"/>
+                            <circle cx="50" cy="50" r="4" fill="white"/>
+                            <!-- 卫星星芒 -->
+                            <path d="M78 22C78 22 80 28 86 30C80 32 78 38 78 38C78 38 76 32 70 30C76 28 78 22 78 22Z" fill="#5AC8FA" fill-opacity="0.8"/>
                             
                             <defs>
-                                <linearGradient id="paint_bird_wing" x1="10" y1="40" x2="90" y2="55" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="paint_star_main" x1="50" y1="15" x2="50" y2="85" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#5AC8FA"/>
-                                    <stop offset="1" stop-color="#007AFF"/>
-                                </linearGradient>
-                                <linearGradient id="paint_bird_body" x1="50" y1="45" x2="50" y2="75" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#007AFF"/>
-                                    <stop offset="1" stop-color="#0040DD"/>
-                                </linearGradient>
-                                <linearGradient id="paint_bird_sun" x1="50" y1="22" x2="50" y2="38" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#FFD60A"/>
-                                    <stop offset="1" stop-color="#FF9F0A"/>
+                                    <stop offset="0.5" stop-color="#007AFF"/>
+                                    <stop offset="1" stop-color="#5856D6"/>
                                 </linearGradient>
                             </defs>
                         </svg>
@@ -423,34 +416,30 @@
                     <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #000; letter-spacing: 2px;">愿景目标</h3>
                 </div>
                 
-                <!-- 身心修养: Resting Cat illustration -->
+                <!-- 身心修养: Abstract Heart illustration (Design-forward) -->
                 <div class="f-card" style="min-height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(64,200,224,0.05)); cursor: pointer;" onclick="openSub('health')">
                     <div style="background: rgba(64,200,224,0.15); width: 88px; height: 88px; border-radius: 26px; display: flex; align-items: center; justify-content: center; color: var(--ios-teal); margin-bottom: 18px; backdrop-filter: blur(10px);">
-                         <!-- 插画风格: 卷成一团小憩的猫咪 -->
+                         <!-- 插画风格: 流体之心 (象征生命力) -->
                         <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- 猫咪身体 -->
-                            <path d="M20 60C20 45 35 30 55 30C75 30 85 45 85 60C85 75 70 85 50 85C30 85 20 75 20 60Z" fill="url(#paint_cat_body)"/>
-                            <!-- 猫耳朵 -->
-                            <path d="M35 35L30 20L45 32" fill="url(#paint_cat_ear)"/>
-                            <path d="M75 35L80 20L65 32" fill="url(#paint_cat_ear)"/>
-                            <!-- 尾巴 -->
-                            <path d="M85 60C95 60 95 80 80 80" stroke="url(#paint_cat_tail)" stroke-width="6" stroke-linecap="round" stroke-opacity="0.6"/>
-                            <!-- 闭着的眼睛 -->
-                            <path d="M40 55C40 55 45 52 50 55" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5"/>
-                            <path d="M60 55C60 55 65 52 70 55" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5"/>
+                            <!-- 有机流体心形 -->
+                            <path d="M50 35C45 15 15 15 15 45C15 65 35 75 50 85C65 75 85 65 85 45C85 15 55 15 50 35Z" fill="url(#paint_heart_fluid)" fill-opacity="0.2"/>
+                            
+                            <!-- 核心线条 -->
+                            <path d="M50 80C35 70 20 60 20 45C20 28 35 25 45 35" stroke="url(#paint_heart_line)" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M50 80C65 70 80 60 80 45C80 28 65 25 55 35" stroke="url(#paint_heart_line)" stroke-width="6" stroke-linecap="round"/>
+                            
+                            <!-- 悬浮气泡 -->
+                            <circle cx="75" cy="25" r="4" fill="#30D158" fill-opacity="0.6"/>
+                            <circle cx="25" cy="75" r="3" fill="#40C8E0" fill-opacity="0.6"/>
                             
                             <defs>
-                                <linearGradient id="paint_cat_body" x1="50" y1="30" x2="50" y2="85" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#30D158"/>
-                                    <stop offset="1" stop-color="#30B0C7"/>
-                                </linearGradient>
-                                <linearGradient id="paint_cat_ear" x1="30" y1="20" x2="45" y2="35" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#30D158"/>
-                                    <stop offset="1" stop-color="#28A845"/>
-                                </linearGradient>
-                                <linearGradient id="paint_cat_tail" x1="80" y1="60" x2="95" y2="80" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="paint_heart_fluid" x1="50" y1="20" x2="50" y2="85" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#30D158"/>
                                     <stop offset="1" stop-color="#40C8E0"/>
+                                </linearGradient>
+                                <linearGradient id="paint_heart_line" x1="20" y1="30" x2="80" y2="70" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#34C759"/>
+                                    <stop offset="1" stop-color="#30B0C7"/>
                                 </linearGradient>
                             </defs>
                         </svg>
