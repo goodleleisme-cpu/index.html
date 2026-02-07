@@ -5,64 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- 强制设置添加到主屏幕的标题为 Xl -->
     <meta name="apple-mobile-web-app-title" content="Xl">
     
+    <!-- 1. 网页标题 -->
     <title>Xl</title>
 
-    <!-- === 核心修复：自动生成 iOS 专用 PNG 图标脚本 (保持不变) === -->
-    <script>
-        (function() {
-            // 1. 创建一个画布
-            var canvas = document.createElement('canvas');
-            canvas.width = 180;  // iOS 图标标准尺寸
-            canvas.height = 180;
-            var ctx = canvas.getContext('2d');
-
-            // 2. 绘制深邃星空背景 (深蓝到黑色的渐变)
-            var gradient = ctx.createLinearGradient(0, 0, 0, 180);
-            gradient.addColorStop(0, "#0f2027"); 
-            gradient.addColorStop(0.5, "#203a43");
-            gradient.addColorStop(1, "#2c5364");
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, 180, 180);
-
-            // 3. 绘制散落的星星 (纯净星空，无球体)
-            function drawStar(x, y, r, opacity) {
-                ctx.beginPath();
-                ctx.arc(x, y, r, 0, 2 * Math.PI);
-                ctx.fillStyle = 'rgba(255, 255, 255, ' + opacity + ')';
-                ctx.fill();
-            }
-
-            // 随机撒点星星
-            var stars = [
-                [30, 40, 1.5, 0.9], [150, 20, 2, 0.8], [80, 80, 1, 0.6],
-                [120, 140, 2.5, 0.9], [40, 160, 1.5, 0.7], [160, 100, 1, 0.5],
-                [90, 30, 1.5, 0.8], [20, 100, 2, 0.6], [100, 100, 1, 0.4],
-                [60, 10, 2, 0.9], [170, 170, 1.5, 0.8], [10, 10, 1, 0.5],
-                [130, 60, 1.8, 0.8], [50, 120, 1.2, 0.7], [110, 10, 1.5, 0.6]
-            ];
-
-            stars.forEach(function(s) {
-                drawStar(s[0], s[1], s[2], s[3]);
-            });
-
-            // 4. 生成 PNG 数据 (iOS 只认这个)
-            var iconUrl = canvas.toDataURL('image/png');
-
-            // 5. 动态插入标签
-            var linkIcon = document.createElement('link');
-            linkIcon.rel = 'icon';
-            linkIcon.href = iconUrl;
-            document.head.appendChild(linkIcon);
-
-            var linkApple = document.createElement('link');
-            linkApple.rel = 'apple-touch-icon';
-            linkApple.href = iconUrl;
-            document.head.appendChild(linkApple);
-        })();
-    </script>
-    <!-- ============================================== -->
+    <!-- 2. 纯星空感图标 (无球体版) -->
+    <!-- 这是一个内嵌的 SVG 图标：深蓝渐变底色 + 散落的星星 -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23001f3f;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23000000;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23bg)'/%3E%3C!-- 随机分布的星星 --%3E%3Ccircle cx='20' cy='20' r='1.5' fill='white' opacity='0.9'/%3E%3Ccircle cx='85' cy='15' r='2' fill='white' opacity='0.7'/%3E%3Ccircle cx='10' cy='80' r='1.5' fill='white' opacity='0.6'/%3E%3Ccircle cx='90' cy='85' r='1.5' fill='white' opacity='0.8'/%3E%3Ccircle cx='30' cy='60' r='1' fill='white' opacity='0.5'/%3E%3Ccircle cx='60' cy='90' r='1.8' fill='white' opacity='0.9'/%3E%3Ccircle cx='50' cy='10' r='1' fill='white' opacity='0.6'/%3E%3Ccircle cx='75' cy='40' r='1.2' fill='white' opacity='0.4'/%3E%3Ccircle cx='40' cy='80' r='1' fill='white' opacity='0.5'/%3E%3Ccircle cx='15' cy='45' r='1' fill='white' opacity='0.7'/%3E%3Ccircle cx='65' cy='25' r='1.5' fill='white' opacity='0.8'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23001f3f;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23000000;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23bg)'/%3E%3C!-- 随机分布的星星 --%3E%3Ccircle cx='20' cy='20' r='1.5' fill='white' opacity='0.9'/%3E%3Ccircle cx='85' cy='15' r='2' fill='white' opacity='0.7'/%3E%3Ccircle cx='10' cy='80' r='1.5' fill='white' opacity='0.6'/%3E%3Ccircle cx='90' cy='85' r='1.5' fill='white' opacity='0.8'/%3E%3Ccircle cx='30' cy='60' r='1' fill='white' opacity='0.5'/%3E%3Ccircle cx='60' cy='90' r='1.8' fill='white' opacity='0.9'/%3E%3Ccircle cx='50' cy='10' r='1' fill='white' opacity='0.6'/%3E%3Ccircle cx='75' cy='40' r='1.2' fill='white' opacity='0.4'/%3E%3Ccircle cx='40' cy='80' r='1' fill='white' opacity='0.5'/%3E%3Ccircle cx='15' cy='45' r='1' fill='white' opacity='0.7'/%3E%3Ccircle cx='65' cy='25' r='1.5' fill='white' opacity='0.8'/%3E%3C/svg%3E">
 
     <!-- 引入图标库 -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -93,15 +45,15 @@
             color: var(--text-main);
             height: 100vh; overflow: hidden;
             
-            /* --- 背景修改：低调奢华度假风 --- */
-            /* 1. 纯色兜底：深蓝，匹配图片色调 */
-            background-color: #0f172a;
+            /* --- 背景修改：风景感极强的城市高空俯瞰 --- */
+            /* 1. 纯色兜底 */
+            background-color: #dbeafe;
             
-            /* 2. 渐变兜底：深邃的夜色渐变 */
-            background-image: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            /* 2. 渐变兜底：模拟城市清晨或午后的清透感 */
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(0,0,0,0.1));
 
-            /* 3. 图片覆盖：暮色下的静谧度假海滩（无人物，不刺眼，适合白色文字） */
-            background-image: url('https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6?q=80&w=2000&auto=format&fit=crop');
+            /* 3. 图片覆盖：精选的城市风景俯瞰图，视野开阔，色彩通透 */
+            background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&auto=format&fit=crop');
             
             background-size: cover; 
             background-position: center;
@@ -368,8 +320,10 @@
         <!-- === 工作页面 === -->
         <div id="page-work" class="page active">
             <div class="work-motto">
-                <div class="motto-cn">一旦觉得自己聪明 我将开始变得愚蠢</div>
-                <div class="motto-en">Once I think I am smart I will start to become foolish</div>
+                <!-- 修改后的中文文案 -->
+                <div class="motto-cn">一旦觉得自己聪明 你将开始变得愚蠢</div>
+                <!-- 修改后的英文文案 -->
+                <div class="motto-en">Once you think you are smart you will start to become foolish</div>
             </div>
             <div class="period-selector">
                 <button class="period-btn active" id="btn-week" onclick="setPeriod('week', this)">每周</button>
