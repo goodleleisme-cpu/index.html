@@ -9,7 +9,7 @@
     
     <title>Xl</title>
 
-    <!-- === 修正：灰色调高清星空图标 (图2：纯灰黑系+光晕星星) === -->
+    <!-- === 修正：黎明破晓蓝星空图标 (明显蓝调，拒绝死黑，模拟天亮前的自然感) === -->
     <script>
         (function() {
             // 1. 创建高清画布
@@ -18,10 +18,12 @@
             canvas.height = 180;
             var ctx = canvas.getContext('2d');
 
-            // 2. 绘制灰色调夜空 (完全去除蓝色，仅黑灰渐变)
+            // 2. 绘制“黎明破晓前的自然蓝” (User specified: Natural dawn blue, distinct from black)
             var gradient = ctx.createLinearGradient(0, 0, 0, 180);
-            gradient.addColorStop(0, "#121212");   // 顶部：炭黑
-            gradient.addColorStop(1, "#3a3a3c");   // 底部：高级灰 (iOS灰色系)
+            // 顶部：深邃的夜蓝 (Deep Night Blue) - 明显泛蓝，非黑
+            gradient.addColorStop(0, "#14213d");   
+            // 底部：破晓时的灰蓝 (Dawn Steel Blue) - 通透感
+            gradient.addColorStop(1, "#4a6fa5");   
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, 180, 180);
 
