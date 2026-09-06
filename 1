@@ -1,0 +1,546 @@
+import React, { useState, useEffect } from 'react';
+import { Plus, Wallet, TrendingDown, TrendingUp, Target, Car, Home, Plane, Award, Download, Upload, Edit2, X, Check, PieChart, Eye, EyeOff, Crown } from 'lucide-react';
+
+// 全局定义 tailwind 变量，防止沙盒环境在解析配置时抛出 ReferenceError
+var tailwind = (typeof window !== 'undefined' && window.tailwind) ? window.tailwind : { config: {} };
+if (typeof window !== 'undefined') {
+  window.tailwind = tailwind;
+}
+
+// 初始默认数据
+const initialData = {
+  titles: {
+    netWorth: '净资产总额',
+    incomes: '收入',
+    expenses: '支出与负债',
+    assets: '资产分布',
+    budgets: '资金进度',
+    goals: '心愿单',
+    milestones: '人生里程碑'
+  },
+  settings: {
+    hideNetWorth: false
+  },
+  incomes: [
+    { id: 'i1', name: '主业收入', amount: 30 },
+  ],
+  expenses: [
+    { id: 'e1', name: '生活', amount: 90 }, 
+    { id: 'e2', name: '还债', amount: 5016, target: 127121 }, // target: 总负债, amount: 已还
+    { id: 'e3', name: '事业', amount: 0 },
+    { id: 'e4', name: '投资', amount: 1 },
+  ],
+  assets: [
+    { id: 'a1', name: '储蓄余额', amount: 1 },
+    { id: 'a2', name: '债券', amount: 0 },
+    { id: 'a3', name: '指数', amount: 0 },
+    { id: 'a4', name: '股票', amount: 0 },
+    { id: 'a5', name: '货币基金', amount: 0 },
+    { id: 'a6', name: '黄金', amount: 0 },
+  ],
+  budgets: [
+    { id: 'b1', name: '生存', target: 42000, current: 3500 },
+    { id: 'b2', name: '负债', target: 12622, current: 1200, done: true },
+    { id: 'b3', name: '事业运营', target: 6000, current: 500 },
+    { id: 'b4', name: '财务投资', target: 6000, current: 500 },
+    { id: 'b5', name: '其他', target: 24622, current: 5700 },
+  ],
+  goals: [
+    { id: 'g1', name: '领克03', desc: '轿跑', target: 150000, done: true, icon: 'Car' },
+    { id: 'g2', name: '特斯拉', desc: 'SUV', target: 300000, done: false, icon: 'Car' },
+    { id: 'g3', name: '父母换房子', desc: '房产', target: 500000, done: false, icon: 'Home' },
+    { id: 'g4', name: '家庭定期游玩', desc: '旅行', target: 150000, done: false, icon: 'Plane' },
+    { id: 'g5', name: '安静的私人住房', desc: '房产', target: 2000000, done: false, icon: 'Home' },
+    { id: 'g6', name: '移居海外', desc: '生活', target: 0, done: false, icon: 'Plane' },
+  ],
+  milestones: [
+    { id: 'm1', name: '第一个50万', target: 500000, achieved: false },
+    { id: 'm2', name: '第一个100万', target: 1000000, achieved: false },
+    { id: 'm3', name: '第一个1000万', target: 10000000, achieved: false },
+    { id: 'm4', name: '第一个1个亿', target: 100000000, achieved: false },
+  ]
+};
+
+export default function App() {
+  const [data, setData] = useState(initialData);
+  const [isEditing, setIsEditing] = useState(null); 
+  const [isAdding, setIsAdding] = useState(null); 
+
+  useEffect(() => {
+    const saved = localStorage.getItem('xinle_finance_data_v7');
+    if (saved) {
+      try { 
+        const parsed = JSON.parse(saved);
+        setData({ ...initialData, ...parsed, titles: { ...initialData.titles, ...parsed.titles }, settings: { ...initialData.settings, ...parsed.settings } }); 
+      } catch (e) { console.error('Load error'); }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('xinle_finance_data_v7', JSON.stringify(data));
+  }, [data]);
+
+  // ==========================================
+  // 核心财务逻辑：净资产 = 资产 - 剩余负债
+  // ==========================================
+  const totalAssets = data.assets.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+  
+  const totalDebts = data.expenses.reduce((sum, item) => {
+      if (item.target !== undefined && item.target > 0) {
+          return sum + Math.max(0, item.target - (item.amount || 0)); 
+      }
+      return sum;
+  }, 0);
+  
+  const computedNetWorth = totalAssets - totalDebts;
+  
+  const computedIncome = data.incomes.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+  const computedExpense = data.expenses.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+  const computedBalance = computedIncome - computedExpense; 
+
+  const handleExport = () => {
+    const dataStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Finance_Backup_${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+  };
+
+  const handleImport = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const parsed = JSON.parse(event.target.result);
+        setData({ ...initialData, ...parsed });
+        alert('导入成功');
+      } catch (err) {
+        alert('文件格式错误');
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  // --- 更新与添加逻辑 ---
+  const updateItem = (category, updatedItem) => {
+    if (category === 'title') {
+       setData(prev => ({ ...prev, titles: { ...prev.titles, [updatedItem.key]: updatedItem.label } }));
+       setIsEditing(null); return;
+    }
+    if (category === 'settings') {
+       setData(prev => ({ ...prev, settings: { ...prev.settings, ...updatedItem } }));
+       return;
+    }
+    setData(prev => ({
+      ...prev,
+      [category]: prev[category].map(item => item.id === updatedItem.id ? updatedItem : item)
+    }));
+    setIsEditing(null);
+  };
+
+  const addItem = (category, newItem) => {
+    newItem.id = Date.now().toString();
+    setData(prev => ({ ...prev, [category]: [...prev[category], newItem] }));
+    setIsAdding(null);
+  };
+
+  const deleteItem = (category, id) => {
+    setData(prev => ({ ...prev, [category]: prev[category].filter(item => item.id !== id) }));
+    setIsEditing(null);
+  };
+
+  const renderIcon = (iconName) => {
+    const props = { size: 18, strokeWidth: 1.5, className: "text-[#86868B]" };
+    switch(iconName) {
+      case 'Car': return <Car {...props} />;
+      case 'Home': return <Home {...props} />;
+      case 'Plane': return <Plane {...props} />;
+      case 'Award': return <Award {...props} />;
+      case 'Crown': return <Crown {...props} className="text-[#FFD60A]" />;
+      default: return <Target {...props} />;
+    }
+  };
+
+  const SectionHeader = ({ titleKey, icon, onAdd }) => (
+    <div className="flex justify-between items-center mb-6 group">
+      <div className="flex items-center gap-2">
+        {icon}
+        <h3 className="text-sm font-semibold text-[#F5F5F7] tracking-wide">{data.titles[titleKey]}</h3>
+        <button onClick={(e) => { e.stopPropagation(); setIsEditing({ type: 'title', key: titleKey, label: data.titles[titleKey] }); }} className="opacity-0 group-hover:opacity-100 p-1 rounded-md text-[#86868B] hover:text-[#F5F5F7] transition-all">
+          <Edit2 size={12}/>
+        </button>
+      </div>
+      <button onClick={(e) => { e.stopPropagation(); onAdd(); }} className="p-1.5 bg-[#1C1C1E] rounded-full text-[#86868B] hover:text-[#F5F5F7] transition-colors"><Plus size={16} strokeWidth={2}/></button>
+    </div>
+  );
+
+  // --- 极简苹果风弹窗组件 ---
+  const Modal = ({ title, item, category, onSave, onClose, isNew }) => {
+    if (category === 'title') {
+      const [label, setLabel] = useState(item.label || '');
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-md" onClick={onClose}></div>
+          <div className="relative bg-[#1C1C1E] border border-[#2C2C2E] rounded-[32px] w-full max-w-sm p-6 shadow-2xl transform transition-all">
+            <h3 className="text-xl font-semibold text-[#F5F5F7] mb-6 tracking-tight">重命名板块</h3>
+            <input 
+              type="text" value={label} onChange={(e) => setLabel(e.target.value)} placeholder="输入新名称"
+              className="w-full bg-[#000000] border border-[#2C2C2E] rounded-2xl px-4 py-3.5 text-[#F5F5F7] focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/50 transition-all"
+            />
+            <div className="mt-8 flex gap-3">
+              <button onClick={() => onSave({ key: item.key, label })} className="flex-1 px-5 py-3.5 rounded-2xl bg-[#0A84FF] text-white font-medium hover:bg-[#007AFF] active:scale-[0.98] transition-all">保存</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const initialExpenseMode = (category === 'expenses' && item && item.target !== undefined) ? 'debt' : 'normal';
+    const [expenseMode, setExpenseMode] = useState(initialExpenseMode);
+    const [formData, setFormData] = useState(item || {});
+
+    const handleChange = (e) => {
+      const { name, value, type, checked } = e.target;
+      setFormData(prev => ({
+        ...prev,
+        [name]: type === 'checkbox' ? checked : (type === 'number' ? Number(value) : value)
+      }));
+    };
+
+    const handleModeSwitch = (mode) => {
+      setExpenseMode(mode);
+      if (mode === 'normal') {
+        const newData = { ...formData }; delete newData.target; setFormData(newData);
+      } else {
+        setFormData({ ...formData, target: '' }); 
+      }
+    };
+
+    const getLabel = (key) => {
+      if (category === 'expenses') {
+        if (expenseMode === 'debt') return key === 'name' ? '负债名称' : key === 'amount' ? '累计已还金额 (¥)' : '固定总额 (¥)';
+        return key === 'name' ? '支出名称' : '支出金额 (¥)';
+      }
+      if (category === 'incomes') return key === 'name' ? '收入来源' : '收入金额 (¥)';
+      if (category === 'assets') return key === 'name' ? '资产名称' : '资产金额 (¥)';
+      if (category === 'budgets') return key === 'name' ? '项目名称' : key === 'current' ? '当前进度 (¥)' : '目标总额 (¥)';
+      if (category === 'goals') return key === 'name' ? '心愿名称' : key === 'target' ? '目标金额 (¥)' : '备注描述';
+      if (category === 'milestones') return key === 'name' ? '里程碑名称' : key === 'target' ? '需达成的净资产金额 (¥)' : key;
+      return key;
+    };
+
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-md" onClick={onClose}></div>
+        <div className="relative bg-[#1C1C1E] border border-[#2C2C2E] rounded-[32px] w-full max-w-sm p-6 shadow-2xl transform transition-all">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-xl font-semibold text-[#F5F5F7] tracking-tight">{title}</h3>
+            <button onClick={onClose} className="p-2 bg-[#2C2C2E]/50 hover:bg-[#2C2C2E] rounded-full text-[#86868B] hover:text-[#F5F5F7] transition-colors"><X size={18} strokeWidth={2} /></button>
+          </div>
+          
+          {category === 'expenses' && (
+            <div className="flex p-1 bg-[#000000] rounded-xl mb-6 border border-[#2C2C2E]/50">
+              <button onClick={() => handleModeSwitch('normal')} className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${expenseMode === 'normal' ? 'bg-[#2C2C2E] text-white shadow-sm' : 'text-[#86868B] hover:text-white'}`}>日常支出</button>
+              <button onClick={() => handleModeSwitch('debt')} className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${expenseMode === 'debt' ? 'bg-[#2C2C2E] text-white shadow-sm' : 'text-[#86868B] hover:text-white'}`}>负债还款</button>
+            </div>
+          )}
+
+          <div className="space-y-4">
+            {Object.keys(formData).map(key => {
+              if (['id', 'icon', 'type', 'balance'].includes(key)) return null; 
+              if (category === 'expenses' && expenseMode === 'normal' && key === 'target') return null;
+
+              return (
+                <div key={key}>
+                  <label className="block text-xs font-medium text-[#86868B] mb-1.5 ml-1">{getLabel(key)}</label>
+                  {typeof formData[key] === 'boolean' ? (
+                    <label className="flex items-center cursor-pointer gap-3 p-3 bg-[#000000] border border-[#2C2C2E] rounded-2xl group">
+                       <input type="checkbox" name={key} checked={formData[key]} onChange={handleChange} className="w-5 h-5 accent-[#FFD60A] rounded bg-[#1C1C1E] border-[#2C2C2E]" />
+                       <span className="text-[#F5F5F7] text-sm group-hover:text-[#FFD60A] transition-colors">
+                          {category === 'milestones' ? '🎉 标记为已达成此里程碑！' : '标记为已完成'}
+                       </span>
+                    </label>
+                  ) : (
+                    <input 
+                      type={typeof formData[key] === 'number' ? 'number' : 'text'}
+                      name={key}
+                      value={formData[key]}
+                      onChange={handleChange}
+                      placeholder={`输入${getLabel(key).replace(' (¥)', '')}`}
+                      className="w-full bg-[#000000] border border-[#2C2C2E] rounded-2xl px-4 py-3.5 text-[#F5F5F7] text-base focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/50 transition-all placeholder:text-[#48484A]"
+                    />
+                  )}
+                </div>
+              );
+            })}
+
+            {category === 'expenses' && expenseMode === 'debt' && formData.target !== undefined && formData.target > 0 && (
+              <div className="mt-2 p-4 bg-[#0A84FF]/10 rounded-2xl border border-[#0A84FF]/20">
+                <div className="text-xs text-[#0A84FF]/70 mb-1">系统计算：剩余未还</div>
+                <div className="text-xl text-[#0A84FF] font-semibold tracking-tight">¥{(Number(formData.target || 0) - Number(formData.amount || 0)).toLocaleString()}</div>
+              </div>
+            )}
+            
+            {category === 'milestones' && formData.target > 0 && (
+              <div className="mt-2 p-4 bg-[#FFD60A]/10 rounded-2xl border border-[#FFD60A]/20">
+                <div className="text-xs text-[#FFD60A]/70 mb-1">当前净资产进度</div>
+                <div className="text-xl text-[#FFD60A] font-semibold tracking-tight">
+                  {Math.min(100, Math.floor((computedNetWorth / formData.target) * 100))}%
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-8 flex gap-3">
+            {!isNew && category && typeof category === 'string' && (
+              <button onClick={() => deleteItem(category, formData.id)} className="px-5 py-3.5 rounded-2xl bg-[#FF453A]/10 text-[#FF453A] font-medium hover:bg-[#FF453A]/20 transition-colors">删除</button>
+            )}
+            <button onClick={() => onSave(formData)} className={`flex-1 px-5 py-3.5 rounded-2xl text-white font-medium active:scale-[0.98] transition-all ${category === 'milestones' && formData.achieved ? 'bg-[#FFD60A] text-black hover:bg-[#E5C009]' : 'bg-[#0A84FF] hover:bg-[#007AFF]'}`}>
+              {category === 'milestones' && formData.achieved ? '保存荣耀时刻' : '保存'}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-[#000000] text-[#F5F5F7] font-sans p-4 md:p-8 selection:bg-[#0A84FF]/30 pb-20">
+      
+      {/* 极简顶栏（已去除了 Financials 标题） */}
+      <header className="max-w-6xl mx-auto flex justify-end items-center mb-6">
+        <div className="flex gap-2">
+          <button onClick={handleExport} className="flex items-center justify-center w-10 h-10 bg-[#1C1C1E] hover:bg-[#2C2C2E] border border-[#2C2C2E] rounded-full text-[#F5F5F7] transition-all" title="备份数据"><Download size={16} strokeWidth={2} /></button>
+          <label className="flex items-center justify-center w-10 h-10 bg-[#1C1C1E] hover:bg-[#2C2C2E] border border-[#2C2C2E] rounded-full text-[#F5F5F7] cursor-pointer transition-all" title="恢复数据">
+            <Upload size={16} strokeWidth={2} />
+            <input type="file" accept=".json" onChange={handleImport} className="hidden" />
+          </label>
+        </div>
+      </header>
+
+      <main className="max-w-6xl mx-auto space-y-6">
+        
+        {/* 顶部净资产大盘 (背景保持“从容自在”自然意境，金额根据正负自动呈现红色/绿色) */}
+        <div className="relative bg-gradient-to-b from-[#161B26] via-[#111115] to-[#111112] border border-[#2C2C2E] rounded-[32px] p-10 overflow-hidden flex flex-col items-center justify-center min-h-[220px] group shadow-2xl">
+          
+          {/* “从容自在”意境背景柔光与晕染光环 */}
+          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-[#0A84FF]/20 via-[#30B0C7]/15 to-[#FFD60A]/10 opacity-60 blur-3xl pointer-events-none transition-all duration-700 group-hover:opacity-80 group-hover:scale-105"></div>
+          <div className="absolute bottom-0 right-10 w-64 h-64 bg-[#0A84FF]/10 rounded-full blur-2xl pointer-events-none"></div>
+
+          <div className="flex items-center gap-3 mb-4 z-10">
+            <h2 className="text-sm font-semibold text-[#86868B] uppercase tracking-widest">{data.titles.netWorth}</h2>
+            <button onClick={() => setIsEditing({ type: 'title', key: 'netWorth', label: data.titles.netWorth })} className="text-[#86868B] hover:text-[#F5F5F7] transition-colors" title="修改标题名称"><Edit2 size={12}/></button>
+            <button onClick={() => updateItem('settings', { hideNetWorth: !data.settings.hideNetWorth })} className="text-[#86868B] hover:text-[#F5F5F7] transition-colors" title="隐藏金额">
+              {data.settings.hideNetWorth ? <EyeOff size={14}/> : <Eye size={14}/>}
+            </button>
+          </div>
+
+          <div className="text-7xl md:text-8xl font-thin tracking-tighter z-10 transition-all flex flex-col items-center">
+            {data.settings.hideNetWorth ? (
+              <span className="text-[#F5F5F7]">****</span>
+            ) : (
+              <div className={`flex items-baseline ${computedNetWorth >= 0 ? 'text-[#32D74B]' : 'text-[#FF453A]'}`}>
+                <span className="text-4xl mr-2 font-light opacity-80">¥</span>
+                {computedNetWorth.toLocaleString()}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 结余概览条 */}
+        <div className="flex justify-between items-center bg-[#111112] border border-[#2C2C2E] rounded-2xl p-5 px-6">
+           <span className="text-[#86868B] font-medium text-sm flex items-center gap-2"><Wallet size={16}/> 本月流水结余</span>
+           <span className={`text-xl font-semibold ${computedBalance >= 0 ? 'text-[#32D74B]' : 'text-[#FF453A]'}`}>¥{computedBalance.toLocaleString()}</span>
+        </div>
+
+        {/* 核心三列数据区 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* 左侧：收入 */}
+          <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 flex flex-col">
+            <SectionHeader titleKey="incomes" icon={<TrendingUp size={16} className="text-[#32D74B]"/>} onAdd={() => setIsAdding('incomes')} />
+            <div className="space-y-3 flex-1">
+              {data.incomes.map(item => (
+                <div key={item.id} onClick={() => setIsEditing({ type: 'incomes', item })} className="flex justify-between items-center p-4 bg-[#1C1C1E] border border-[#2C2C2E]/50 rounded-2xl cursor-pointer hover:bg-[#2C2C2E] transition-colors">
+                  <span className="text-[#F5F5F7] font-medium">{item.name}</span>
+                  <span className="text-[#F5F5F7] font-medium tracking-tight">¥{item.amount.toLocaleString()}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 pt-5 border-t border-[#2C2C2E]/50 flex justify-between items-center">
+              <span className="text-[#86868B] text-xs font-medium uppercase tracking-wider">总计收入</span>
+              <span className="text-[#32D74B] font-semibold tracking-tight">¥{computedIncome.toLocaleString()}</span>
+            </div>
+          </div>
+
+          {/* 中间：支出与负债 */}
+          <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 flex flex-col">
+            <SectionHeader titleKey="expenses" icon={<TrendingDown size={16} className="text-[#FF453A]"/>} onAdd={() => setIsAdding('expenses')} />
+            <div className="space-y-3 flex-1">
+              {data.expenses.map(item => (
+                <div key={item.id} onClick={() => setIsEditing({ type: 'expenses', item })} className="flex justify-between items-center p-4 bg-[#1C1C1E] border border-[#2C2C2E]/50 rounded-2xl cursor-pointer hover:bg-[#2C2C2E] transition-colors">
+                  <span className="text-[#F5F5F7] font-medium">{item.name}</span>
+                  <div className="text-right">
+                    <div className="text-[#F5F5F7] font-medium tracking-tight">¥{item.amount.toLocaleString()}</div>
+                    {item.target !== undefined && item.target > 0 && (
+                      <div className="text-[11px] font-medium text-[#86868B] mt-0.5">剩 ¥{(item.target - item.amount).toLocaleString()}</div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 pt-5 border-t border-[#2C2C2E]/50 flex justify-between items-center">
+              <span className="text-[#86868B] text-xs font-medium uppercase tracking-wider">总剩余负债</span>
+              <span className="text-[#FF453A] font-semibold tracking-tight">¥{totalDebts.toLocaleString()}</span>
+            </div>
+          </div>
+
+          {/* 右侧：资产分布 */}
+          <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 flex flex-col">
+            <SectionHeader titleKey="assets" icon={<PieChart size={16} className="text-[#0A84FF]"/>} onAdd={() => setIsAdding('assets')} />
+            <div className="space-y-3 flex-1">
+              {data.assets.map(item => (
+                <div key={item.id} onClick={() => setIsEditing({ type: 'assets', item })} className="flex justify-between items-center p-4 bg-[#1C1C1E] border border-[#2C2C2E]/50 rounded-2xl cursor-pointer hover:bg-[#2C2C2E] transition-colors">
+                  <span className="text-[#F5F5F7] font-medium">{item.name}</span>
+                  <span className="text-[#86868B] font-medium tracking-tight">{item.amount > 0 ? `¥${item.amount.toLocaleString()}` : '-'}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 pt-5 border-t border-[#2C2C2E]/50 flex justify-between items-center">
+              <span className="text-[#86868B] text-xs font-medium uppercase tracking-wider">总计资产</span>
+              <span className="text-[#0A84FF] font-semibold tracking-tight">¥{totalAssets.toLocaleString()}</span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* 底部两列：资金进度 & 心愿单 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+          
+          <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7">
+             <SectionHeader titleKey="budgets" icon={<Target size={16} className="text-[#BF5AF2]"/>} onAdd={() => setIsAdding('budgets')} />
+            <div className="space-y-6">
+              {data.budgets.map(item => {
+                const percent = Math.min(100, Math.round((item.current / item.target) * 100)) || 0;
+                return (
+                  <div key={item.id} onClick={() => setIsEditing({ type: 'budgets', item })} className="cursor-pointer group">
+                    <div className="flex justify-between items-end mb-2.5">
+                      <span className="text-[#F5F5F7] font-medium text-sm flex items-center gap-2">
+                        {item.name} {item.done && <Check size={14} className="text-[#32D74B]" strokeWidth={3} />}
+                      </span>
+                      <span className="text-[#86868B] text-xs font-medium tracking-tight">已攒 {item.current.toLocaleString()} / {item.target.toLocaleString()}</span>
+                    </div>
+                    <div className="h-2 w-full bg-[#1C1C1E] rounded-full overflow-hidden">
+                      <div className={`h-full rounded-full transition-all duration-1000 ${item.done ? 'bg-[#32D74B]' : 'bg-[#BF5AF2]'}`} style={{ width: `${percent}%` }}></div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7">
+            <SectionHeader titleKey="goals" icon={<Award size={16} className="text-[#FFD60A]"/>} onAdd={() => setIsAdding('goals')} />
+            <div className="grid gap-3">
+              {data.goals.map(item => (
+                <div key={item.id} onClick={() => setIsEditing({ type: 'goals', item })} className="flex items-center p-4 rounded-2xl bg-[#1C1C1E] border border-[#2C2C2E]/50 hover:bg-[#2C2C2E] cursor-pointer transition-colors gap-4">
+                  <div className={`p-3 rounded-full ${item.done ? 'bg-[#32D74B]/10 text-[#32D74B]' : 'bg-[#FFD60A]/10 text-[#FFD60A]'}`}>
+                    {renderIcon(item.icon)}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <div className="text-[#F5F5F7] font-medium text-sm">{item.name}</div>
+                      {item.done && <Check size={14} className="text-[#32D74B]" strokeWidth={3} />}
+                    </div>
+                    <div className="text-xs font-medium text-[#86868B] mt-1">{item.desc} • ¥{item.target.toLocaleString()}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+        </div>
+
+        {/* 人生里程碑板块 */}
+        <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 mt-4 relative overflow-hidden">
+           <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-[#FFD60A] opacity-[0.03] rounded-full blur-3xl pointer-events-none"></div>
+           
+           <SectionHeader titleKey="milestones" icon={<Crown size={16} className="text-[#FFD60A]"/>} onAdd={() => setIsAdding('milestones')} />
+           
+           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
+              {data.milestones.map((m, i) => {
+                const percent = m.target > 0 ? Math.min(100, Math.max(0, (computedNetWorth / m.target) * 100)) : 0;
+                
+                return (
+                  <div 
+                    key={m.id} 
+                    onClick={() => setIsEditing({ type: 'milestones', item: m })} 
+                    className={`relative p-5 rounded-3xl cursor-pointer transition-all duration-300 flex flex-col justify-center items-center text-center overflow-hidden hover:-translate-y-1 hover:shadow-lg
+                      ${m.achieved 
+                        ? 'bg-gradient-to-br from-[#2C2C2E] to-[#1C1C1E] border border-[#FFD60A]/50 shadow-[#FFD60A]/10' 
+                        : 'bg-[#1C1C1E] border border-[#2C2C2E]/50 hover:bg-[#2C2C2E]'}`}
+                  >
+                    {m.achieved && (
+                       <div className="absolute top-0 right-0 p-2">
+                         <Crown size={14} className="text-[#FFD60A] drop-shadow-md" />
+                       </div>
+                    )}
+                    
+                    <div className={`text-[11px] font-semibold mb-2 uppercase tracking-wider ${m.achieved ? 'text-[#FFD60A]' : 'text-[#86868B]'}`}>
+                      Milestone 0{i+1}
+                    </div>
+                    <div className={`font-semibold ${m.achieved ? 'text-white' : 'text-[#F5F5F7]'}`}>
+                      {m.name}
+                    </div>
+
+                    {!m.achieved && m.target > 0 && (
+                      <div className="absolute bottom-0 left-0 h-1 bg-[#2C2C2E] w-full">
+                         <div className="h-full bg-[#FFD60A]/40 transition-all duration-1000" style={{ width: `${percent}%` }}></div>
+                      </div>
+                    )}
+                    {m.achieved && (
+                      <div className="absolute bottom-0 left-0 h-1 bg-[#FFD60A] w-full shadow-[0_0_8px_#FFD60A]"></div>
+                    )}
+                  </div>
+                )
+              })}
+           </div>
+        </div>
+
+      </main>
+
+      {/* 动态弹窗 */}
+      {isEditing && (
+        <Modal 
+          title={isEditing.type === 'title' ? '修改名称' : '编辑项目'}
+          item={isEditing.type === 'title' ? { key: isEditing.key, label: isEditing.label } : isEditing.item}
+          category={isEditing.type}
+          onSave={(updatedItem) => updateItem(isEditing.type, updatedItem)}
+          onClose={() => setIsEditing(null)}
+          isNew={false}
+        />
+      )}
+
+      {isAdding && (
+        <Modal 
+          title="新增项目"
+          item={
+            isAdding === 'incomes' ? { name: '', amount: '' } :
+            isAdding === 'expenses' ? { name: '', amount: '' } :
+            isAdding === 'budgets' ? { name: '', target: '', current: 0, done: false } :
+            isAdding === 'goals' ? { name: '', desc: '', target: '', done: false, icon: 'Target' } :
+            isAdding === 'milestones' ? { name: '', target: '', achieved: false } :
+            { name: '', amount: '' }
+          }
+          category={isAdding}
+          onSave={(newItem) => addItem(isAdding, newItem)}
+          onClose={() => setIsAdding(null)}
+          isNew={true}
+        />
+      )}
+    </div>
+  );
+}
