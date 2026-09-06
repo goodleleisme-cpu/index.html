@@ -1,557 +1,574 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Xl">
-    
-    <title>Xl</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>个人财务控制台</title>
+  
+  <!-- 引入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 引入 Phosphor 图标库 (完美替代之前的图标) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- 引入 React 和 Babel，让浏览器直接解析 React 代码 -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- === 黎明破晓蓝星空图标 === -->
-    <script>
-        (function() {
-            var canvas = document.createElement('canvas');
-            canvas.width = 180;
-            canvas.height = 180;
-            var ctx = canvas.getContext('2d');
-
-            var gradient = ctx.createLinearGradient(0, 0, 0, 180);
-            gradient.addColorStop(0, "#14213d");   
-            gradient.addColorStop(1, "#4a6fa5");   
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, 180, 180);
-
-            for (var i = 0; i < 50; i++) {
-                var x = Math.random() * 180;
-                var y = Math.random() * 180;
-                var r = Math.random() * 1.7 + 0.5; 
-                var alpha = Math.random() * 0.6 + 0.4;
-
-                ctx.beginPath();
-                ctx.arc(x, y, r, 0, 2 * Math.PI);
-                ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
-                
-                if (r > 1.5) {
-                    ctx.shadowBlur = 4;
-                    ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
-                } else {
-                    ctx.shadowBlur = 0;
-                }
-                
-                ctx.fill();
-            }
-
-            var iconUrl = canvas.toDataURL('image/png');
-
-            var linkIcon = document.createElement('link');
-            linkIcon.rel = 'icon';
-            linkIcon.href = iconUrl;
-            document.head.appendChild(linkIcon);
-
-            var linkApple = document.createElement('link');
-            linkApple.rel = 'apple-touch-icon';
-            linkApple.href = iconUrl;
-            document.head.appendChild(linkApple);
-        })();
-    </script>
-    <!-- ============================================== -->
-
-    <!-- 引入图标库 -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --ios-blue: #007AFF;
-            --ios-red: #FF3B30;
-            --ios-orange: #FF9500;
-            --ios-green: #34C759;
-            --ios-gray: #8E8E93;
-            --ios-teal: #40C8E0; 
-            --bg-light: #F2F2F7;
-            --glass: rgba(255, 255, 255, 0.85);
-            --border: rgba(0, 0, 0, 0.05);
-            --text-main: #1C1C1E;
-            --text-sub: #8E8E93;
-            --ios-dark: #1C1C1E;
-        }
-
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-
-        body {
-            margin: 0; padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-            color: var(--text-main);
-            height: 100vh; overflow: hidden;
-            
-            /* --- 背景修改：风景感极强的城市高空俯瞰 --- */
-            background-color: #dbeafe;
-            background-image: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover; 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        #app-frame {
-            max-width: 430px; margin: 0 auto; height: 100vh;
-            display: flex; flex-direction: column; position: relative;
-        }
-
-        /* 顶部导航 */
-        .main-header {
-            padding-top: max(44px, env(safe-area-inset-top));
-            padding-bottom: 10px;
-            display: flex; justify-content: center;
-            z-index: 100;
-        }
-        .main-nav { 
-            display: flex; background: rgba(0,0,0,0.2); 
-            padding: 3px; border-radius: 20px;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-        .nav-item { 
-            font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.6); 
-            padding: 6px 20px; cursor: pointer; border-radius: 17px; transition: 0.3s;
-            letter-spacing: 1px;
-        }
-        .nav-item.active { background: #FFF; color: #000; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-
-        /* 内容容器 */
-        .page-container { 
-            flex: 1; 
-            overflow-y: auto; 
-            padding: 30px 20px 140px; 
-            scrollbar-width: none; 
-        }
-        .page-container::-webkit-scrollbar { display: none; }
-        .page { display: none; animation: fadeIn 0.4s ease; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* 卡片样式 */
-        .f-card { background: var(--glass); border-radius: 26px; border: 0.5px solid var(--border); overflow: hidden; margin-bottom: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-
-        /* 工作页面组件 */
-        .work-motto { text-align: center; margin: 25px 0 15px; }
-        .motto-cn { font-size: 16px; font-weight: 700; color: #FFF; margin-bottom: 4px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .motto-en { font-size: 10px; color: rgba(255,255,255,0.7); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2; }
-        
-        #page-work { padding-top: 8vh; }
-
-        .period-selector { display: flex; gap: 4px; background: rgba(255,255,255,0.15); padding: 3px; border-radius: 12px; margin: 15px 0; border: 0.5px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-        .period-btn { flex: 1; border: none; background: transparent; color: rgba(255,255,255,0.7); padding: 7px; font-size: 11px; font-weight: 700; border-radius: 9px; cursor: pointer; }
-        .period-btn.active { background: #FFF; color: #000; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        
-        .stat-card { 
-            background: var(--glass); 
-            border-radius: 24px; 
-            border: 0.5px solid var(--border); 
-            padding: 24px 12px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            transition: 0.2s; 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-        }
-        
-        .stat-icon-btn { 
-            width: 56px; height: 56px; border-radius: 16px; 
-            background: rgba(0,0,0,0.04); color: #1C1C1E; 
-            display: flex; align-items: center; justify-content: center; 
-            margin-bottom: 12px; cursor: pointer; transition: 0.2s;
-        }
-
-        .stat-card.media-theme .stat-icon-btn { background: rgba(0, 122, 255, 0.12); color: var(--ios-blue); }
-        .stat-card.music-theme .stat-icon-btn { background: rgba(255, 59, 48, 0.12); color: var(--ios-red); }
-
-        .stat-icon-btn:active { transform: scale(0.9); }
-
-        .stat-label { font-size: 10px; font-weight: 800; color: var(--text-sub); margin-bottom: 2px; }
-        .stat-value { font-size: 20px; font-weight: 800; color: var(--ios-gray); letter-spacing: -0.5px; } 
-        
-        .stat-ctrl { display: flex; align-items: center; gap: 10px; margin-top: 10px; min-height: 32px; }
-        .ctrl-btn { width: 32px; height: 32px; border-radius: 10px; border: none; background: #FFF; color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        
-        .submit-btn { background: var(--ios-dark); color: #FFF; width: 44px; height: 32px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0.9; }
-        .submit-btn:active { opacity: 0.7; transform: scale(0.95); }
-
-        .goal-entry { background: var(--glass); padding: 14px 20px; border-radius: 18px; border: 0.5px solid var(--border); margin-top: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); cursor: pointer; }
-        .goal-text h4 { margin: 0; font-size: 16px; font-weight: 800; color: var(--ios-gray); text-align: center; letter-spacing: 2px; }
-
-        /* 子页面弹出层系统 */
-        .sub-layer { position: fixed; inset: 0; background: #FFF; z-index: 1000; transform: translateY(100%); transition: 0.4s cubic-bezier(0.1, 0.9, 0.2, 1); overflow: hidden; }
-        .sub-layer.active { transform: translateY(0); }
-        .sub-head { padding: 60px 24px 20px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
-        .sub-layer h2 { text-align: center; color: #FFF; font-weight: 800; font-size: 20px; margin: 0; letter-spacing: 3px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .sub-layer .close-btn { color: #FFF; position: absolute; right: 24px; top: 62px; font-weight: 700; cursor: pointer; text-shadow: 0 1px 5px rgba(0,0,0,0.3); }
-
-        .sub-layer.health-center .sub-head { padding-top: 19vh; }
-
-        .sub-layer.vision-future { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; }
-        .sub-layer.health-center { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; }
-        .sub-layer-2026 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; }
-
-        .health-grid { display: flex; flex-direction: column; align-items: center; gap: 30px; padding: 20px 30px; }
-        .fitness-check { display: flex; justify-content: space-between; width: 100%; padding: 10px 0; max-width: 320px; }
-        .check-day { font-size: 24px; font-weight: 800; color: rgba(255,255,255,0.3); transition: 0.3s; cursor: pointer; }
-        .check-day.active { color: #FFF; text-shadow: 0 0 15px rgba(255,255,255,0.8); }
-
-        .quick-check-btn { background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.3); color: #FFF; padding: 12px 28px; border-radius: 100px; font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.2s; }
-        .quick-check-btn.checked-warm { background: rgba(255, 149, 0, 0.6); }
-        
-        .exam-row { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 10px; }
-        
-        .memo-container { padding: 20px; height: calc(100% - 120px); overflow-y: auto; }
-        .memo-input-box { display: flex; gap: 10px; margin-bottom: 24px; }
-        .memo-input { flex: 1; border: none; background: rgba(255,255,255,0.2); padding: 14px 18px; border-radius: 16px; backdrop-filter: blur(10px); font-size: 15px; font-weight: 600; color: #FFF; border: 0.5px solid rgba(255,255,255,0.2); }
-        .memo-add-btn { background: #FFF; color: #000; border: none; padding: 0 24px; border-radius: 16px; font-weight: 700; font-size: 14px; cursor: pointer; }
-        .memo-item { padding: 18px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 20px; border: 0.5px solid rgba(255,255,255,0.1); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
-        .memo-item-text { font-size: 15px; font-weight: 600; color: #FFF; flex: 1; }
-        .memo-del-btn { color: #FFF; padding: 5px; opacity: 0.4; cursor: pointer; }
-
-        .history-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
-        .history-overlay.active { display: flex; }
-        .history-card { background: #FFF; width: 100%; max-width: 320px; border-radius: 28px; padding: 24px; max-height: 70vh; display: flex; flex-direction: column; }
-        .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .history-list { flex: 1; overflow-y: auto; }
-        .history-item { padding: 12px 0; border-bottom: 0.5px solid #EEE; display: flex; justify-content: space-between; font-weight: 600; }
-        .history-item span:first-child { color: var(--ios-gray); }
-
-        #page-future { padding-top: 6vh; }
-    </style>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #000; color: #F5F5F7; }
+    /* 隐藏滚动条但保留滚动功能 */
+    ::-webkit-scrollbar { width: 0px; background: transparent; }
+  </style>
 </head>
 <body>
+  <div id="root"></div>
 
-<div id="app-frame">
-    <header class="main-header">
-        <nav class="main-nav">
-            <!-- 移除 LIFE 导航选项，仅保留 WORK 和 FUTURE -->
-            <div class="nav-item active" onclick="switchNav('work', this)">WORK</div>
-            <div class="nav-item" onclick="switchNav('future', this)">FUTURE</div>
-        </nav>
-    </header>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
 
-    <div class="page-container">
-        <!-- === 工作页面 === -->
-        <div id="page-work" class="page active">
-            <div class="work-motto">
-                <div class="motto-cn">一旦觉得自己聪明 你将开始变得愚蠢</div>
-                <div class="motto-en">Once you think you are smart you will start to become foolish</div>
-            </div>
-            <div class="period-selector">
-                <button class="period-btn active" id="btn-week" onclick="setPeriod('week', this)">每周</button>
-                <button class="period-btn" onclick="setPeriod('month', this)">每月</button>
-                <button class="period-btn" onclick="setPeriod('quarter', this)">季度</button>
-                <button class="period-btn" onclick="setPeriod('year', this)">年度</button>
-            </div>
-            <div class="work-grid">
-                <div class="stat-card media-theme">
-                    <div class="stat-icon-btn" onclick="openHistory('v')">
-                        <i data-lucide="tv" width="28"></i>
-                    </div>
-                    <div class="stat-label">媒体</div>
-                    <div class="stat-value" id="val-v">0</div>
-                    <div class="stat-ctrl" id="ctrl-v"></div>
-                </div>
-                <div class="stat-card music-theme">
-                    <div class="stat-icon-btn" onclick="openHistory('m')">
-                        <i data-lucide="disc" width="28"></i>
-                    </div>
-                    <div class="stat-label">音乐</div>
-                    <div class="stat-value" id="val-m">0</div>
-                    <div class="stat-ctrl" id="ctrl-m"></div>
-                </div>
-            </div>
-            <div class="goal-entry" onclick="openSub('2026')">
-                <div class="goal-text"><h4>2026</h4></div>
-            </div>
-        </div>
-
-        <!-- === 未来页面 === -->
-        <div id="page-future" class="page">
-            <div style="display: flex; flex-direction: column; gap: 40px; padding-top: 10px;">
-                <!-- 愿景目标 -->
-                <div class="f-card" style="min-height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(0,122,255,0.05)); cursor: pointer;" onclick="openSub('vision-future')">
-                    <div style="background: rgba(0,122,255,0.15); width: 88px; height: 88px; border-radius: 26px; display: flex; align-items: center; justify-content: center; color: var(--ios-blue); margin-bottom: 18px; backdrop-filter: blur(10px);">
-                        <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 15C50 15 58 42 85 50C58 58 50 85 50 85C50 85 42 58 15 50C42 42 50 15 50 15Z" fill="url(#paint_star_main)"/>
-                            <circle cx="50" cy="50" r="10" fill="white" fill-opacity="0.3" filter="blur(2px)"/>
-                            <circle cx="50" cy="50" r="4" fill="white"/>
-                            <path d="M78 22C78 22 80 28 86 30C80 32 78 38 78 38C78 38 76 32 70 30C76 28 78 22 78 22Z" fill="#5AC8FA" fill-opacity="0.8"/>
-                            <defs>
-                                <linearGradient id="paint_star_main" x1="50" y1="15" x2="50" y2="85" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#5AC8FA"/>
-                                    <stop offset="0.5" stop-color="#007AFF"/>
-                                    <stop offset="1" stop-color="#5856D6"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #000; letter-spacing: 2px;">愿景目标</h3>
-                </div>
-                
-                <!-- 身心修养 -->
-                <div class="f-card" style="min-height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(64,200,224,0.05)); cursor: pointer;" onclick="openSub('health')">
-                    <div style="background: rgba(64,200,224,0.15); width: 88px; height: 88px; border-radius: 26px; display: flex; align-items: center; justify-content: center; color: var(--ios-teal); margin-bottom: 18px; backdrop-filter: blur(10px);">
-                        <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 35C45 15 15 15 15 45C15 65 35 75 50 85C65 75 85 65 85 45C85 15 55 15 50 35Z" fill="url(#paint_heart_fluid)" fill-opacity="0.2"/>
-                            <path d="M50 80C35 70 20 60 20 45C20 28 35 25 45 35" stroke="url(#paint_heart_line)" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M50 80C65 70 80 60 80 45C80 28 65 25 55 35" stroke="url(#paint_heart_line)" stroke-width="6" stroke-linecap="round"/>
-                            <circle cx="75" cy="25" r="4" fill="#30D158" fill-opacity="0.6"/>
-                            <circle cx="25" cy="75" r="3" fill="#40C8E0" fill-opacity="0.6"/>
-                            <defs>
-                                <linearGradient id="paint_heart_fluid" x1="50" y1="20" x2="50" y2="85" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#30D158"/>
-                                    <stop offset="1" stop-color="#40C8E0"/>
-                                </linearGradient>
-                                <linearGradient id="paint_heart_line" x1="20" y1="30" x2="80" y2="70" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#34C759"/>
-                                    <stop offset="1" stop-color="#30B0C7"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #000; letter-spacing: 2px;">身心修养</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ================== 所有的子页面内容保持不变 ================== -->
-
-<div id="sub-layer-2026" class="sub-layer sub-layer-2026">
-    <div class="sub-head">
-        <h2 style="margin:0; font-size:19px; font-weight:800; color:#FFF;">2026目标</h2>
-        <div class="close-btn" onclick="closeAllSubs()" style="color:#FFF;">完成</div>
-    </div>
-    <div class="memo-container">
-        <div class="memo-input-box">
-            <input type="text" id="memo-input-2026" class="memo-input" style="background:rgba(255,255,255,0.2); color:#FFF;" placeholder="记录你的愿景...">
-            <button class="memo-add-btn" style="background:#FFF; color:#000;" onclick="addItem('2026')">记录</button>
-        </div>
-        <div id="memo-list-2026" class="memo-list"></div>
-    </div>
-</div>
-
-<div id="sub-layer-vision-future" class="sub-layer vision-future">
-    <div class="sub-head">
-        <h2>愿景目标</h2>
-        <div style="font-size: 10px; color: rgba(255,255,255,0.8); font-weight: 700; margin-top: 5px; letter-spacing: 5px; text-shadow: 0 1px 3px rgba(0,0,0,0.4);">心外无物 为家为梦</div>
-        <div class="close-btn" onclick="closeAllSubs()">返回</div>
-    </div>
-    <div class="memo-container">
-        <div class="memo-input-box">
-            <input type="text" id="memo-input-future" class="memo-input" placeholder="">
-            <button class="memo-add-btn" onclick="addItem('future')">记录</button>
-        </div>
-        <div id="memo-list-future" class="memo-list"></div>
-    </div>
-</div>
-
-<div id="sub-layer-health" class="sub-layer health-center">
-    <div class="sub-head">
-        <h2>身心修养</h2>
-        <div style="font-size: 10px; color: rgba(255,255,255,0.8); font-weight: 700; margin-top: 5px; letter-spacing: 4px; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">着急的都不重要 重要的都不着急</div>
-        <div class="close-btn" onclick="closeAllSubs()">完成</div>
-    </div>
-    <div class="health-grid">
-        <div class="fitness-check" id="fitness-check"></div>
-        <div id="btn-fitness-main" class="quick-check-btn" onclick="autoCheckToday()">
-            <i data-lucide="check-circle" width="16"></i> <span id="txt-fitness-btn">健身打卡</span>
-        </div>
-        <div class="exam-row">
-            <div style="color:rgba(255,255,255,0.8); font-size:12px; font-weight:600; letter-spacing: 0.5px;">体检更新时间</div>
-            <div class="exam-date" id="exam-date-display" style="color:#FFF; font-weight:700;">...</div>
-        </div>
-        <div id="btn-exam-main" class="quick-check-btn" onclick="autoUpdateExam(event)">
-            <i data-lucide="clipboard-check" width="16"></i> <span id="txt-exam-btn">记录</span>
-        </div>
-    </div>
-</div>
-
-<div id="history-overlay" class="history-overlay">
-    <div class="history-card">
-        <div class="history-header">
-            <h3 id="history-title" style="margin:0; font-size:18px;">历史记录</h3>
-            <div onclick="closeHistory()" style="cursor:pointer; color:var(--ios-gray);"><i data-lucide="x" width="20"></i></div>
-        </div>
-        <div id="history-list" class="history-list"></div>
-    </div>
-</div>
-
-<script>
-    // --- 数据存储系统 ---
-    let counters = JSON.parse(localStorage.getItem('my_universe_counters_v3')) || {
-        week: { v: 0, m: 0 },
-        month: { v: 0, m: 0 },
-        quarter: { v: 0, m: 0 },
-        year: { v: 0, m: 0 }
+    const initialData = {
+      titles: {
+        netWorth: '净资产总额',
+        incomes: '收入',
+        expenses: '支出与负债',
+        assets: '资产分布',
+        budgets: '资金进度',
+        goals: '心愿单',
+        milestones: '人生里程碑'
+      },
+      settings: {
+        hideNetWorth: false
+      },
+      incomes: [
+        { id: 'i1', name: '主业收入', amount: 30 },
+      ],
+      expenses: [
+        { id: 'e1', name: '生活', amount: 90 }, 
+        { id: 'e2', name: '还债', amount: 5016, target: 127121 },
+        { id: 'e3', name: '事业', amount: 0 },
+        { id: 'e4', name: '投资', amount: 1 },
+      ],
+      assets: [
+        { id: 'a1', name: '储蓄余额', amount: 1 },
+        { id: 'a2', name: '债券', amount: 0 },
+        { id: 'a3', name: '指数', amount: 0 },
+        { id: 'a4', name: '股票', amount: 0 },
+        { id: 'a5', name: '货币基金', amount: 0 },
+        { id: 'a6', name: '黄金', amount: 0 },
+      ],
+      budgets: [
+        { id: 'b1', name: '生存', target: 42000, current: 3500 },
+        { id: 'b2', name: '负债', target: 12622, current: 1200, done: true },
+        { id: 'b3', name: '事业运营', target: 6000, current: 500 },
+        { id: 'b4', name: '财务投资', target: 6000, current: 500 },
+        { id: 'b5', name: '其他', target: 24622, current: 5700 },
+      ],
+      goals: [
+        { id: 'g1', name: '领克03', desc: '轿跑', target: 150000, done: true, icon: 'Car' },
+        { id: 'g2', name: '特斯拉', desc: 'SUV', target: 300000, done: false, icon: 'Car' },
+        { id: 'g3', name: '父母换房子', desc: '房产', target: 500000, done: false, icon: 'Home' },
+        { id: 'g4', name: '家庭定期游玩', desc: '旅行', target: 150000, done: false, icon: 'Plane' },
+        { id: 'g5', name: '安静的私人住房', desc: '房产', target: 2000000, done: false, icon: 'Home' },
+        { id: 'g6', name: '移居海外', desc: '生活', target: 0, done: false, icon: 'Plane' },
+      ],
+      milestones: [
+        { id: 'm1', name: '第一个50万', target: 500000, achieved: false },
+        { id: 'm2', name: '第一个100万', target: 1000000, achieved: false },
+        { id: 'm3', name: '第一个1000万', target: 10000000, achieved: false },
+        { id: 'm4', name: '第一个1个亿', target: 100000000, achieved: false },
+      ]
     };
-    
-    let mediaHistory = JSON.parse(localStorage.getItem('my_universe_media_history_v2')) || [];
-    let musicHistory = JSON.parse(localStorage.getItem('my_universe_music_history_v2')) || [];
-    
-    let saved2026 = JSON.parse(localStorage.getItem('pure_light_memo_v2')) || [];
-    let savedFuture = JSON.parse(localStorage.getItem('pure_light_future_vision')) || [];
-    let savedFitness = JSON.parse(localStorage.getItem('pure_light_fitness')) || [0,0,0,0,0,0,0];
-    let savedExam = localStorage.getItem('pure_light_exam_date') || "未记录";
-    
-    let lastWeekMonday = localStorage.getItem('my_universe_last_week_monday') || "";
 
-    let activePeriod = 'week';
+    function App() {
+      const [data, setData] = useState(initialData);
+      const [isEditing, setIsEditing] = useState(null); 
+      const [isAdding, setIsAdding] = useState(null); 
+      const [toast, setToast] = useState(null);
 
-    // --- 工作逻辑 ---
-    function updateVal(type, delta) {
-        if(activePeriod !== 'week') return;
-        ['week', 'month', 'quarter', 'year'].forEach(p => {
-            counters[p][type] = Math.max(0, counters[p][type] + delta);
-        });
-        saveCounters(); renderWork();
-    }
+      // 优雅的消息提示代替 alert
+      const showToast = (msg) => {
+        setToast(msg);
+        setTimeout(() => setToast(null), 3000);
+      };
 
-    function submitPeriod(type) {
-        const valToSubmit = counters[activePeriod][type];
-        if(valToSubmit <= 0) return;
-        const now = new Date();
-        let label = "";
-        if(activePeriod === 'month') label = `${now.getFullYear()}年${now.getMonth()+1}月结算`;
-        else if(activePeriod === 'quarter') label = `${now.getFullYear()}年Q${Math.floor(now.getMonth()/3)+1}结算`;
-        else if(activePeriod === 'year') label = `${now.getFullYear()}年度总结`;
-        else label = `第${getWeekNumber(now)}周存档`;
+      useEffect(() => {
+        const saved = localStorage.getItem('xinle_finance_data_v8');
+        if (saved) {
+          try { 
+            const parsed = JSON.parse(saved);
+            setData({ ...initialData, ...parsed, titles: { ...initialData.titles, ...parsed.titles }, settings: { ...initialData.settings, ...parsed.settings } }); 
+          } catch (e) { console.error('Load error'); }
+        }
+      }, []);
 
-        const log = { label, value: valToSubmit, periodType: activePeriod, date: now.getTime() };
-        if(type === 'v') mediaHistory.unshift(log);
-        else musicHistory.unshift(log);
-        localStorage.setItem(`my_universe_${type==='v'?'media':'music'}_history_v2`, JSON.stringify(type==='v'?mediaHistory:musicHistory));
-        counters[activePeriod][type] = 0;
-        saveCounters(); renderWork();
-    }
-    
-    function getWeekNumber(d) {
-        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-        var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
-        return weekNo;
-    }
+      useEffect(() => {
+        localStorage.setItem('xinle_finance_data_v8', JSON.stringify(data));
+      }, [data]);
 
-    function saveCounters() { localStorage.setItem('my_universe_counters_v3', JSON.stringify(counters)); }
+      // 核心计算逻辑
+      const totalAssets = data.assets.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+      const totalDebts = data.expenses.reduce((sum, item) => {
+          if (item.target !== undefined && item.target > 0) {
+              return sum + Math.max(0, item.target - (item.amount || 0)); 
+          }
+          return sum;
+      }, 0);
+      
+      const computedNetWorth = totalAssets - totalDebts;
+      const computedIncome = data.incomes.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+      const computedExpense = data.expenses.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+      const computedBalance = computedIncome - computedExpense; 
 
-    function renderWork() {
-        document.getElementById('val-v').innerText = counters[activePeriod].v;
-        document.getElementById('val-m').innerText = counters[activePeriod].m;
-        const renderControls = (type) => {
-            const container = document.getElementById(`ctrl-${type}`);
-            if(activePeriod === 'week') {
-                container.innerHTML = `<button class="ctrl-btn" onclick="updateVal('${type}', -1)"><i data-lucide="minus" width="16"></i></button><button class="ctrl-btn" onclick="updateVal('${type}', 1)"><i data-lucide="plus" width="16"></i></button>`;
-            } else {
-                container.innerHTML = `<button class="submit-btn" onclick="submitPeriod('${type}')"><i data-lucide="upload" width="16"></i></button>`;
-            }
+      const handleExport = () => {
+        const dataStr = JSON.stringify(data, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Finance_Backup_${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+        showToast('数据已备份');
+      };
+
+      const handleImport = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const parsed = JSON.parse(event.target.result);
+            setData({ ...initialData, ...parsed });
+            showToast('数据导入成功');
+          } catch (err) {
+            showToast('文件格式错误');
+          }
         };
-        renderControls('v'); renderControls('m');
-        lucide.createIcons();
-    }
+        reader.readAsText(file);
+      };
 
-    function setPeriod(p, el) {
-        activePeriod = p;
-        document.querySelectorAll('#page-work .period-btn').forEach(b => b.classList.remove('active'));
-        el.classList.add('active');
-        renderWork();
-    }
-
-    function switchNav(p, el) {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        const target = document.getElementById('page-'+p); if(target) target.classList.add('active');
-        lucide.createIcons();
-    }
-
-    function openSub(type) {
-        const t = document.getElementById('sub-layer-' + (type === 'health' ? 'health' : (type === '2026' ? '2026' : 'vision-future')));
-        if(t) {
-            t.classList.add('active');
-            if(type === 'health') renderHealth();
-            else renderMemoList(type === '2026' ? '2026' : 'future');
+      const updateItem = (category, updatedItem) => {
+        if (category === 'title') {
+           setData(prev => ({ ...prev, titles: { ...prev.titles, [updatedItem.key]: updatedItem.label } }));
+           setIsEditing(null); return;
         }
-    }
-
-    function closeAllSubs() { document.querySelectorAll('.sub-layer').forEach(l => l.classList.remove('active')); }
-
-    function openHistory(type) {
-        const fullHistory = type === 'v' ? mediaHistory : musicHistory;
-        const history = fullHistory.filter(h => h.periodType === activePeriod);
-        const list = document.getElementById('history-list');
-        if(history.length === 0) list.innerHTML = `<div style="text-align:center; padding:40px; color:#999;">暂无存档</div>`;
-        else list.innerHTML = history.map(h => `<div class="history-item"><span>${h.label}</span><span>${h.value}</span></div>`).join('');
-        document.getElementById('history-overlay').classList.add('active');
-        lucide.createIcons();
-    }
-
-    function closeHistory() { document.getElementById('history-overlay').classList.remove('active'); }
-
-    function renderMemoList(type) {
-        const list = type === '2026' ? saved2026 : savedFuture;
-        const listId = type === '2026' ? 'memo-list-2026' : 'memo-list-future';
-        const container = document.getElementById(listId);
-        if(container) container.innerHTML = list.map((item, i) => `<div class="memo-item"><div class="memo-item-text">${item}</div><div class="memo-del-btn" onclick="deleteItem('${type}', ${i})"><i data-lucide="trash-2" width="18"></i></div></div>`).join('');
-        lucide.createIcons();
-    }
-
-    function addItem(type) {
-        const input = document.getElementById(type === '2026' ? 'memo-input-2026' : 'memo-input-future');
-        if(!input || !input.value.trim()) return;
-        if(type === '2026') { saved2026.unshift(input.value); localStorage.setItem('pure_light_memo_v2', JSON.stringify(saved2026)); }
-        else { savedFuture.unshift(input.value); localStorage.setItem('pure_light_future_vision', JSON.stringify(savedFuture)); }
-        input.value = ''; renderMemoList(type);
-    }
-
-    function deleteItem(type, idx) {
-        if(type === '2026') { saved2026.splice(idx, 1); localStorage.setItem('pure_light_memo_v2', JSON.stringify(saved2026)); }
-        else { savedFuture.splice(idx, 1); localStorage.setItem('pure_light_future_vision', JSON.stringify(savedFuture)); }
-        renderMemoList(type);
-    }
-
-    function renderHealth() {
-        const checkDays = ["一", "二", "三", "四", "五", "六", "日"];
-        const container = document.getElementById('fitness-check');
-        if(container) container.innerHTML = checkDays.map((d, i) => `<div class="check-day ${savedFitness[i] ? 'active' : ''}" onclick="toggleFitness(${i})">${d}</div>`).join('');
-        const todayIdx = (new Date().getDay() === 0) ? 6 : new Date().getDay() - 1;
-        const btnFit = document.getElementById('btn-fitness-main');
-        if(savedFitness[todayIdx]) { btnFit.classList.add('checked-warm'); document.getElementById('txt-fitness-btn').innerText = "健身已打卡"; }
-        else { btnFit.classList.remove('checked-warm'); document.getElementById('txt-fitness-btn').innerText = "健身打卡"; }
-        if(document.getElementById('exam-date-display')) document.getElementById('exam-date-display').innerText = savedExam;
-        lucide.createIcons();
-    }
-
-    function toggleFitness(idx) { savedFitness[idx] = savedFitness[idx] ? 0 : 1; localStorage.setItem('pure_light_fitness', JSON.stringify(savedFitness)); renderHealth(); }
-    function autoCheckToday() { const idx = (new Date().getDay() === 0) ? 6 : new Date().getDay() - 1; savedFitness[idx] = 1; localStorage.setItem('pure_light_fitness', JSON.stringify(savedFitness)); renderHealth(); }
-    function autoUpdateExam(e) { if(e) e.stopPropagation(); const now = new Date(); savedExam = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`; localStorage.setItem('pure_light_exam_date', savedExam); renderHealth(); }
-
-    function getCurrentWeekIdentifier() {
-        const d = new Date();
-        const day = d.getDay();
-        const diff = d.getDate() - day + (day === 0 ? -6 : 1); 
-        const monday = new Date(d.setDate(diff));
-        return monday.toDateString(); 
-    }
-
-    function checkWeekRotation() {
-        const currentWeekMonday = getCurrentWeekIdentifier();
-        if (currentWeekMonday !== lastWeekMonday) {
-            savedFitness = [0,0,0,0,0,0,0]; 
-            localStorage.setItem('pure_light_fitness', JSON.stringify(savedFitness));
-            localStorage.setItem('my_universe_last_week_monday', currentWeekMonday);
-            lastWeekMonday = currentWeekMonday;
+        if (category === 'settings') {
+           setData(prev => ({ ...prev, settings: { ...prev.settings, ...updatedItem } }));
+           return;
         }
+        setData(prev => ({
+          ...prev,
+          [category]: prev[category].map(item => item.id === updatedItem.id ? updatedItem : item)
+        }));
+        setIsEditing(null);
+      };
+
+      const addItem = (category, newItem) => {
+        newItem.id = Date.now().toString();
+        setData(prev => ({ ...prev, [category]: [...prev[category], newItem] }));
+        setIsAdding(null);
+      };
+
+      const deleteItem = (category, id) => {
+        setData(prev => ({ ...prev, [category]: prev[category].filter(item => item.id !== id) }));
+        setIsEditing(null);
+      };
+
+      const renderIcon = (iconName) => {
+        let iconClass = "ph-target";
+        if (iconName === 'Car') iconClass = "ph-car";
+        if (iconName === 'Home') iconClass = "ph-house";
+        if (iconName === 'Plane') iconClass = "ph-airplane";
+        if (iconName === 'Award') iconClass = "ph-medal";
+        if (iconName === 'Crown') iconClass = "ph-crown ph-fill text-[#FFD60A]";
+        
+        return <i className={`ph ${iconClass} text-lg ${iconName !== 'Crown' ? 'text-[#86868B]' : ''}`}></i>;
+      };
+
+      const SectionHeader = ({ titleKey, icon, onAdd }) => (
+        <div className="flex justify-between items-center mb-6 group">
+          <div className="flex items-center gap-2">
+            {icon}
+            <h3 className="text-sm font-semibold text-[#F5F5F7] tracking-wide">{data.titles[titleKey]}</h3>
+            <button onClick={(e) => { e.stopPropagation(); setIsEditing({ type: 'title', key: titleKey, label: data.titles[titleKey] }); }} className="opacity-0 group-hover:opacity-100 p-1 rounded-md text-[#86868B] hover:text-[#F5F5F7] transition-all">
+              <i className="ph ph-pencil-simple text-xs"></i>
+            </button>
+          </div>
+          <button onClick={(e) => { e.stopPropagation(); onAdd(); }} className="flex items-center justify-center w-7 h-7 bg-[#1C1C1E] rounded-full text-[#86868B] hover:text-[#F5F5F7] transition-colors">
+            <i className="ph ph-plus text-sm"></i>
+          </button>
+        </div>
+      );
+
+      const Modal = ({ title, item, category, onSave, onClose, isNew }) => {
+        if (category === 'title') {
+          const [label, setLabel] = useState(item.label || '');
+          return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={onClose}></div>
+              <div className="relative bg-[#1C1C1E] border border-[#2C2C2E] rounded-[32px] w-full max-w-sm p-6 shadow-2xl transform transition-all">
+                <h3 className="text-xl font-semibold text-[#F5F5F7] mb-6 tracking-tight">重命名板块</h3>
+                <input 
+                  type="text" value={label} onChange={(e) => setLabel(e.target.value)} placeholder="输入新名称"
+                  className="w-full bg-[#000000] border border-[#2C2C2E] rounded-2xl px-4 py-3.5 text-[#F5F5F7] focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/50 transition-all"
+                />
+                <div className="mt-8 flex gap-3">
+                  <button onClick={() => onSave({ key: item.key, label })} className="flex-1 px-5 py-3.5 rounded-2xl bg-[#0A84FF] text-white font-medium hover:bg-[#007AFF] active:scale-[0.98] transition-all">保存</button>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        const initialExpenseMode = (category === 'expenses' && item && item.target !== undefined) ? 'debt' : 'normal';
+        const [expenseMode, setExpenseMode] = useState(initialExpenseMode);
+        const [formData, setFormData] = useState(item || {});
+
+        const handleChange = (e) => {
+          const { name, value, type, checked } = e.target;
+          setFormData(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : (type === 'number' ? Number(value) : value)
+          }));
+        };
+
+        const handleModeSwitch = (mode) => {
+          setExpenseMode(mode);
+          if (mode === 'normal') {
+            const newData = { ...formData }; delete newData.target; setFormData(newData);
+          } else {
+            setFormData({ ...formData, target: '' }); 
+          }
+        };
+
+        const getLabel = (key) => {
+          if (category === 'expenses') {
+            if (expenseMode === 'debt') return key === 'name' ? '负债名称' : key === 'amount' ? '累计已还金额 (¥)' : '固定总额 (¥)';
+            return key === 'name' ? '支出名称' : '支出金额 (¥)';
+          }
+          if (category === 'incomes') return key === 'name' ? '收入来源' : '收入金额 (¥)';
+          if (category === 'assets') return key === 'name' ? '资产名称' : '资产金额 (¥)';
+          if (category === 'budgets') return key === 'name' ? '项目名称' : key === 'current' ? '当前进度 (¥)' : '目标总额 (¥)';
+          if (category === 'goals') return key === 'name' ? '心愿名称' : key === 'target' ? '目标金额 (¥)' : '备注描述';
+          if (category === 'milestones') return key === 'name' ? '里程碑名称' : key === 'target' ? '需达成的净资产金额 (¥)' : key;
+          return key;
+        };
+
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={onClose}></div>
+            <div className="relative bg-[#1C1C1E] border border-[#2C2C2E] rounded-[32px] w-full max-w-sm p-6 shadow-2xl transform transition-all">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-semibold text-[#F5F5F7] tracking-tight">{title}</h3>
+                <button onClick={onClose} className="flex items-center justify-center w-8 h-8 bg-[#2C2C2E]/50 hover:bg-[#2C2C2E] rounded-full text-[#86868B] hover:text-[#F5F5F7] transition-colors"><i className="ph ph-x text-base"></i></button>
+              </div>
+              
+              {category === 'expenses' && (
+                <div className="flex p-1 bg-[#000000] rounded-xl mb-6 border border-[#2C2C2E]/50">
+                  <button onClick={() => handleModeSwitch('normal')} className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${expenseMode === 'normal' ? 'bg-[#2C2C2E] text-white shadow-sm' : 'text-[#86868B] hover:text-white'}`}>日常支出</button>
+                  <button onClick={() => handleModeSwitch('debt')} className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${expenseMode === 'debt' ? 'bg-[#2C2C2E] text-white shadow-sm' : 'text-[#86868B] hover:text-white'}`}>负债还款</button>
+                </div>
+              )}
+
+              <div className="space-y-4">
+                {Object.keys(formData).map(key => {
+                  if (['id', 'icon', 'type', 'balance'].includes(key)) return null; 
+                  if (category === 'expenses' && expenseMode === 'normal' && key === 'target') return null;
+
+                  return (
+                    <div key={key}>
+                      <label className="block text-xs font-medium text-[#86868B] mb-1.5 ml-1">{getLabel(key)}</label>
+                      {typeof formData[key] === 'boolean' ? (
+                        <label className="flex items-center cursor-pointer gap-3 p-3 bg-[#000000] border border-[#2C2C2E] rounded-2xl group">
+                           <input type="checkbox" name={key} checked={formData[key]} onChange={handleChange} className="w-5 h-5 accent-[#FFD60A] rounded bg-[#1C1C1E] border-[#2C2C2E]" />
+                           <span className="text-[#F5F5F7] text-sm group-hover:text-[#FFD60A] transition-colors">
+                              {category === 'milestones' ? '🎉 标记为已达成此里程碑！' : '标记为已完成'}
+                           </span>
+                        </label>
+                      ) : (
+                        <input 
+                          type={typeof formData[key] === 'number' ? 'number' : 'text'}
+                          name={key}
+                          value={formData[key]}
+                          onChange={handleChange}
+                          placeholder={`输入${getLabel(key).replace(' (¥)', '')}`}
+                          className="w-full bg-[#000000] border border-[#2C2C2E] rounded-2xl px-4 py-3.5 text-[#F5F5F7] text-base focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/50 transition-all placeholder:text-[#48484A]"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+
+                {category === 'expenses' && expenseMode === 'debt' && formData.target !== undefined && formData.target > 0 && (
+                  <div className="mt-2 p-4 bg-[#0A84FF]/10 rounded-2xl border border-[#0A84FF]/20">
+                    <div className="text-xs text-[#0A84FF]/70 mb-1">系统计算：剩余未还</div>
+                    <div className="text-xl text-[#0A84FF] font-semibold tracking-tight">¥{(Number(formData.target || 0) - Number(formData.amount || 0)).toLocaleString()}</div>
+                  </div>
+                )}
+                
+                {category === 'milestones' && formData.target > 0 && (
+                  <div className="mt-2 p-4 bg-[#FFD60A]/10 rounded-2xl border border-[#FFD60A]/20">
+                    <div className="text-xs text-[#FFD60A]/70 mb-1">当前净资产进度</div>
+                    <div className="text-xl text-[#FFD60A] font-semibold tracking-tight">
+                      {Math.min(100, Math.floor((computedNetWorth / formData.target) * 100))}%
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-8 flex gap-3">
+                {!isNew && category && typeof category === 'string' && (
+                  <button onClick={() => deleteItem(category, formData.id)} className="px-5 py-3.5 rounded-2xl bg-[#FF453A]/10 text-[#FF453A] font-medium hover:bg-[#FF453A]/20 transition-colors">删除</button>
+                )}
+                <button onClick={() => onSave(formData)} className={`flex-1 px-5 py-3.5 rounded-2xl text-white font-medium active:scale-[0.98] transition-all ${category === 'milestones' && formData.achieved ? 'bg-[#FFD60A] text-black hover:bg-[#E5C009]' : 'bg-[#0A84FF] hover:bg-[#007AFF]'}`}>
+                  {category === 'milestones' && formData.achieved ? '保存荣耀时刻' : '保存'}
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      return (
+        <div className="min-h-screen bg-[#000000] text-[#F5F5F7] font-sans p-4 md:p-8 selection:bg-[#0A84FF]/30 pb-20">
+          
+          {/* Toast 通知框 */}
+          {toast && (
+            <div className="fixed top-8 left-1/2 transform -translate-x-1/2 bg-[#1C1C1E] text-[#F5F5F7] px-6 py-3 rounded-full shadow-2xl z-[100] border border-[#2C2C2E] flex items-center gap-2 transition-all">
+              <i className="ph-fill ph-check-circle text-[#32D74B] text-lg"></i>
+              <span className="text-sm font-medium">{toast}</span>
+            </div>
+          )}
+
+          {/* 顶栏：已移除标题 */}
+          <header className="max-w-6xl mx-auto flex justify-end items-center mb-6">
+            <div className="flex gap-2">
+              <button onClick={handleExport} className="flex items-center justify-center w-10 h-10 bg-[#1C1C1E] hover:bg-[#2C2C2E] border border-[#2C2C2E] rounded-full text-[#F5F5F7] transition-all" title="备份数据">
+                <i className="ph ph-download-simple text-base"></i>
+              </button>
+              <label className="flex items-center justify-center w-10 h-10 bg-[#1C1C1E] hover:bg-[#2C2C2E] border border-[#2C2C2E] rounded-full text-[#F5F5F7] cursor-pointer transition-all" title="恢复数据">
+                <i className="ph ph-upload-simple text-base"></i>
+                <input type="file" accept=".json" onChange={handleImport} className="hidden" />
+              </label>
+            </div>
+          </header>
+
+          <main className="max-w-6xl mx-auto space-y-6">
+            
+            {/* 净资产大盘：根据正负变色 */}
+            <div className="relative bg-gradient-to-b from-[#161B26] via-[#111115] to-[#111112] border border-[#2C2C2E] rounded-[32px] p-10 overflow-hidden flex flex-col items-center justify-center min-h-[220px] group shadow-2xl">
+              <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-[#0A84FF]/20 via-[#30B0C7]/15 to-[#FFD60A]/10 opacity-60 blur-3xl pointer-events-none transition-all duration-700 group-hover:opacity-80 group-hover:scale-105"></div>
+              <div className="absolute bottom-0 right-10 w-64 h-64 bg-[#0A84FF]/10 rounded-full blur-2xl pointer-events-none"></div>
+
+              <div className="flex items-center gap-3 mb-4 z-10">
+                <h2 className="text-sm font-semibold text-[#86868B] uppercase tracking-widest">{data.titles.netWorth}</h2>
+                <button onClick={() => setIsEditing({ type: 'title', key: 'netWorth', label: data.titles.netWorth })} className="text-[#86868B] hover:text-[#F5F5F7] transition-colors" title="修改标题"><i className="ph ph-pencil-simple text-xs"></i></button>
+                <button onClick={() => updateItem('settings', { hideNetWorth: !data.settings.hideNetWorth })} className="text-[#86868B] hover:text-[#F5F5F7] transition-colors" title="隐藏金额">
+                  {data.settings.hideNetWorth ? <i className="ph ph-eye-closed text-sm"></i> : <i className="ph ph-eye text-sm"></i>}
+                </button>
+              </div>
+
+              <div className="text-7xl md:text-8xl font-thin tracking-tighter z-10 transition-all flex flex-col items-center">
+                {data.settings.hideNetWorth ? (
+                  <span className="text-[#F5F5F7]">****</span>
+                ) : (
+                  <div className={`flex items-baseline ${computedNetWorth >= 0 ? 'text-[#32D74B]' : 'text-[#FF453A]'}`}>
+                    <span className="text-4xl mr-2 font-light opacity-80">¥</span>
+                    {computedNetWorth.toLocaleString()}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center bg-[#111112] border border-[#2C2C2E] rounded-2xl p-5 px-6">
+               <span className="text-[#86868B] font-medium text-sm flex items-center gap-2"><i className="ph ph-wallet text-base"></i> 本月流水结余</span>
+               <span className={`text-xl font-semibold ${computedBalance >= 0 ? 'text-[#32D74B]' : 'text-[#FF453A]'}`}>¥{computedBalance.toLocaleString()}</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 flex flex-col">
+                <SectionHeader titleKey="incomes" icon={<i className="ph ph-trend-up text-base text-[#32D74B]"></i>} onAdd={() => setIsAdding('incomes')} />
+                <div className="space-y-3 flex-1">
+                  {data.incomes.map(item => (
+                    <div key={item.id} onClick={() => setIsEditing({ type: 'incomes', item })} className="flex justify-between items-center p-4 bg-[#1C1C1E] border border-[#2C2C2E]/50 rounded-2xl cursor-pointer hover:bg-[#2C2C2E] transition-colors">
+                      <span className="text-[#F5F5F7] font-medium">{item.name}</span>
+                      <span className="text-[#F5F5F7] font-medium tracking-tight">¥{item.amount.toLocaleString()}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-5 border-t border-[#2C2C2E]/50 flex justify-between items-center">
+                  <span className="text-[#86868B] text-xs font-medium uppercase tracking-wider">总计收入</span>
+                  <span className="text-[#32D74B] font-semibold tracking-tight">¥{computedIncome.toLocaleString()}</span>
+                </div>
+              </div>
+
+              <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 flex flex-col">
+                <SectionHeader titleKey="expenses" icon={<i className="ph ph-trend-down text-base text-[#FF453A]"></i>} onAdd={() => setIsAdding('expenses')} />
+                <div className="space-y-3 flex-1">
+                  {data.expenses.map(item => (
+                    <div key={item.id} onClick={() => setIsEditing({ type: 'expenses', item })} className="flex justify-between items-center p-4 bg-[#1C1C1E] border border-[#2C2C2E]/50 rounded-2xl cursor-pointer hover:bg-[#2C2C2E] transition-colors">
+                      <span className="text-[#F5F5F7] font-medium">{item.name}</span>
+                      <div className="text-right">
+                        <div className="text-[#F5F5F7] font-medium tracking-tight">¥{item.amount.toLocaleString()}</div>
+                        {item.target !== undefined && item.target > 0 && (
+                          <div className="text-[11px] font-medium text-[#86868B] mt-0.5">剩 ¥{(item.target - item.amount).toLocaleString()}</div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-5 border-t border-[#2C2C2E]/50 flex justify-between items-center">
+                  <span className="text-[#86868B] text-xs font-medium uppercase tracking-wider">总剩余负债</span>
+                  <span className="text-[#FF453A] font-semibold tracking-tight">¥{totalDebts.toLocaleString()}</span>
+                </div>
+              </div>
+
+              <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 flex flex-col">
+                <SectionHeader titleKey="assets" icon={<i className="ph ph-chart-pie-slice text-base text-[#0A84FF]"></i>} onAdd={() => setIsAdding('assets')} />
+                <div className="space-y-3 flex-1">
+                  {data.assets.map(item => (
+                    <div key={item.id} onClick={() => setIsEditing({ type: 'assets', item })} className="flex justify-between items-center p-4 bg-[#1C1C1E] border border-[#2C2C2E]/50 rounded-2xl cursor-pointer hover:bg-[#2C2C2E] transition-colors">
+                      <span className="text-[#F5F5F7] font-medium">{item.name}</span>
+                      <span className="text-[#86868B] font-medium tracking-tight">{item.amount > 0 ? `¥${item.amount.toLocaleString()}` : '-'}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-5 border-t border-[#2C2C2E]/50 flex justify-between items-center">
+                  <span className="text-[#86868B] text-xs font-medium uppercase tracking-wider">总计资产</span>
+                  <span className="text-[#0A84FF] font-semibold tracking-tight">¥{totalAssets.toLocaleString()}</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+              
+              <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7">
+                 <SectionHeader titleKey="budgets" icon={<i className="ph ph-target text-base text-[#BF5AF2]"></i>} onAdd={() => setIsAdding('budgets')} />
+                <div className="space-y-6">
+                  {data.budgets.map(item => {
+                    const percent = Math.min(100, Math.round((item.current / item.target) * 100)) || 0;
+                    return (
+                      <div key={item.id} onClick={() => setIsEditing({ type: 'budgets', item })} className="cursor-pointer group">
+                        <div className="flex justify-between items-end mb-2.5">
+                          <span className="text-[#F5F5F7] font-medium text-sm flex items-center gap-2">
+                            {item.name} {item.done && <i className="ph-fill ph-check-circle text-sm text-[#32D74B]"></i>}
+                          </span>
+                          <span className="text-[#86868B] text-xs font-medium tracking-tight">已攒 {item.current.toLocaleString()} / {item.target.toLocaleString()}</span>
+                        </div>
+                        <div className="h-2 w-full bg-[#1C1C1E] rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full transition-all duration-1000 ${item.done ? 'bg-[#32D74B]' : 'bg-[#BF5AF2]'}`} style={{ width: `${percent}%` }}></div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+
+              <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7">
+                <SectionHeader titleKey="goals" icon={<i className="ph ph-medal text-base text-[#FFD60A]"></i>} onAdd={() => setIsAdding('goals')} />
+                <div className="grid gap-3">
+                  {data.goals.map(item => (
+                    <div key={item.id} onClick={() => setIsEditing({ type: 'goals', item })} className="flex items-center p-4 rounded-2xl bg-[#1C1C1E] border border-[#2C2C2E]/50 hover:bg-[#2C2C2E] cursor-pointer transition-colors gap-4">
+                      <div className={`p-3 rounded-full flex items-center justify-center ${item.done ? 'bg-[#32D74B]/10 text-[#32D74B]' : 'bg-[#FFD60A]/10 text-[#FFD60A]'}`}>
+                        {renderIcon(item.icon)}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <div className="text-[#F5F5F7] font-medium text-sm">{item.name}</div>
+                          {item.done && <i className="ph-fill ph-check-circle text-sm text-[#32D74B]"></i>}
+                        </div>
+                        <div className="text-xs font-medium text-[#86868B] mt-1">{item.desc} • ¥{item.target.toLocaleString()}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+            </div>
+
+            <div className="bg-[#111112] border border-[#2C2C2E] rounded-[32px] p-7 mt-4 relative overflow-hidden">
+               <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-[#FFD60A] opacity-[0.03] rounded-full blur-3xl pointer-events-none"></div>
+               
+               <SectionHeader titleKey="milestones" icon={<i className="ph-fill ph-crown text-base text-[#FFD60A]"></i>} onAdd={() => setIsAdding('milestones')} />
+               
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
+                  {data.milestones.map((m, i) => {
+                    const percent = m.target > 0 ? Math.min(100, Math.max(0, (computedNetWorth / m.target) * 100)) : 0;
+                    
+                    return (
+                      <div 
+                        key={m.id} 
+                        onClick={() => setIsEditing({ type: 'milestones', item: m })} 
+                        className={`relative p-5 rounded-3xl cursor-pointer transition-all duration-300 flex flex-col justify-center items-center text-center overflow-hidden hover:-translate-y-1 hover:shadow-lg
+                          ${m.achieved 
+                            ? 'bg-gradient-to-br from-[#2C2C2E] to-[#1C1C1E] border border-[#FFD60A]/50 shadow-[#FFD60A]/10' 
+                            : 'bg-[#1C1C1E] border border-[#2C2C2E]/50 hover:bg-[#2C2C2E]'}`}
+                      >
+                        {m.achieved && (
+                           <div className="absolute top-0 right-0 p-2">
+                             <i className="ph-fill ph-crown text-[#FFD60A] text-sm drop-shadow-md"></i>
+                           </div>
+                        )}
+                        
+                        <div className={`text-[11px] font-semibold mb-2 uppercase tracking-wider ${m.achieved ? 'text-[#FFD60A]' : 'text-[#86868B]'}`}>
+                          Milestone 0{i+1}
+                        </div>
+                        <div className={`font-semibold ${m.achieved ? 'text-white' : 'text-[#F5F5F7]'}`}>
+                          {m.name}
+                        </div>
+
+                        {!m.achieved && m.target > 0 && (
+                          <div className="absolute bottom-0 left-0 h-1 bg-[#2C2C2E] w-full">
+                             <div className="h-full bg-[#FFD60A]/40 transition-all duration-1000" style={{ width: `${percent}%` }}></div>
+                          </div>
+                        )}
+                        {m.achieved && (
+                          <div className="absolute bottom-0 left-0 h-1 bg-[#FFD60A] w-full shadow-[0_0_8px_#FFD60A]"></div>
+                        )}
+                      </div>
+                    )
+                  })}
+               </div>
+            </div>
+
+          </main>
+
+          {isEditing && (
+            <Modal 
+              title={isEditing.type === 'title' ? '修改名称' : '编辑项目'}
+              item={isEditing.type === 'title' ? { key: isEditing.key, label: isEditing.label } : isEditing.item}
+              category={isEditing.type}
+              onSave={(updatedItem) => updateItem(isEditing.type, updatedItem)}
+              onClose={() => setIsEditing(null)}
+              isNew={false}
+            />
+          )}
+
+          {isAdding && (
+            <Modal 
+              title="新增项目"
+              item={
+                isAdding === 'incomes' ? { name: '', amount: '' } :
+                isAdding === 'expenses' ? { name: '', amount: '' } :
+                isAdding === 'budgets' ? { name: '', target: '', current: 0, done: false } :
+                isAdding === 'goals' ? { name: '', desc: '', target: '', done: false, icon: 'Target' } :
+                isAdding === 'milestones' ? { name: '', target: '', achieved: false } :
+                { name: '', amount: '' }
+              }
+              category={isAdding}
+              onSave={(newItem) => addItem(isAdding, newItem)}
+              onClose={() => setIsAdding(null)}
+              isNew={true}
+            />
+          )}
+        </div>
+      );
     }
 
-    window.onload = function() { lucide.createIcons(); renderWork(); checkWeekRotation(); }
-</script>
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
 </body>
 </html>
