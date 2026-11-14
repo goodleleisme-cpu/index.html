@@ -1,515 +1,931 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
 <meta name="theme-color" content="#f4f1e9">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
+
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23f4f1e9'/><text x='50%' y='55%' font-size='100' text-anchor='middle' dominant-baseline='middle'>🪪</text></svg>">
+
 <title>XL</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+
 <style>
+
 :root{--bg:#f4f1e9;--ink:#302d26;--muted:#a39b8d;--gold:#b69a65;--rose:#a77b70;--sage:#788b79;--shadow:0 18px 44px rgba(67,57,39,.075),inset 0 1px 0 #fff;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif}
+
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
 html{min-height:100%;background:var(--bg)}
+
 body{margin:0;min-height:100vh;min-height:100dvh;color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;letter-spacing:-.025em;background:radial-gradient(ellipse at 7% -4%,#fff,transparent 37%),radial-gradient(ellipse at 100% 25%,rgba(207,190,153,.25),transparent 34%),linear-gradient(155deg,#faf8f2,#f0ede5 57%,#f7f5ef)}
+
 button,input,textarea{font:inherit}
+
 button{cursor:pointer}
+
 ::-webkit-scrollbar{width:0;height:0}
+
 #xl-app{width:min(100%,470px);min-height:100vh;min-height:100dvh;margin:0 auto;padding:max(15px,env(safe-area-inset-top)) 17px calc(112px + env(safe-area-inset-bottom))}
+
 .xl-head{display:flex;align-items:center;margin:1px 3px 16px}
+
 .xl-logo{width:39px;height:39px;display:grid;place-items:center;border:1px solid rgba(225,205,160,.34);border-radius:14px;color:#f9f6ee;background:linear-gradient(145deg,#756345,#3f392d);box-shadow:0 7px 18px rgba(72,58,34,.18),inset 0 1px 0 rgba(255,255,255,.24);font:600 14px Georgia,serif}
+
 .xl-hero{position:relative;isolation:isolate;overflow:hidden;padding:19px 20px 16px;border:1px solid rgba(255,255,255,.94);border-radius:27px;background:linear-gradient(128deg,rgba(255,255,255,.93),rgba(255,255,255,.74) 48%,rgba(230,219,196,.65));box-shadow:0 19px 48px rgba(76,63,39,.095),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(167,145,103,.08);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px)}
+
 .xl-hero:before{content:"";position:absolute;z-index:-1;width:250px;height:210px;top:-135px;right:-72px;border-radius:50%;background:radial-gradient(circle,rgba(207,183,132,.43),transparent 69%)}
+
 .xl-hero-top{display:flex;justify-content:flex-end}
+
 .xl-privacy{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid rgba(255,255,255,.85);border-radius:99px;color:#8d8069;background:rgba(255,255,255,.57);font-size:10px;font-weight:600}
+
 .xl-privacy svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.65}
+
 .xl-hero-label{display:flex;align-items:center;gap:8px;margin-top:14px;color:#817866;font-size:11px}
+
 .xl-hero-label:before{content:"";width:17px;height:1px;background:linear-gradient(90deg,#866d43,#d8c49a)}
+
 .xl-total{display:flex;align-items:baseline;gap:5px;margin-top:4px;color:#302c24;font-size:clamp(38px,10vw,50px);font-weight:320;letter-spacing:-.075em;line-height:1.13;font-variant-numeric:tabular-nums}
+
 .xl-currency{color:#a48a59;font:400 .42em Georgia,serif}
+
 .xl-hero-bottom{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(139,119,80,.15)}
+
 .xl-note{color:#a59d8f;font-size:9px;line-height:1.55}
+
 .xl-expense{text-align:right}
+
 .xl-expense span{display:block;color:#a39a8b;font-size:10px}
+
 .xl-expense strong{display:block;margin-top:3px;color:var(--rose);font-size:17px;font-weight:680;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+
 .xl-overview{margin-top:12px;padding:17px 16px 14px;border:1px solid rgba(255,255,255,.92);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.81),rgba(255,255,255,.57));box-shadow:var(--shadow);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px)}
+
 .xl-overview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 13px}
+
 .xl-overview-title{margin:0;color:#4a4438;font-size:14px;font-weight:690}
+
 .xl-live{display:flex;align-items:center;gap:6px;color:#9b8a69;font-size:9px}
+
 .xl-live i{width:5px;height:5px;border-radius:50%;background:#9b8c68;box-shadow:0 0 0 3px rgba(155,140,104,.1)}
+
 .xl-overview-body{display:grid;grid-template-columns:minmax(145px,178px) minmax(0,1fr);align-items:center;gap:13px}
+
 .xl-chart{position:relative;width:100%;max-width:178px;aspect-ratio:1;margin:auto;display:grid;place-items:center}
+
 .xl-chart svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 8px rgba(85,70,43,.055))}
+
 .xl-track{fill:none;stroke:rgba(156,145,121,.15)}
+
 #xl-asset-arc,#xl-expense-arc,#xl-wish-arc{fill:none;stroke-linecap:round;transition:stroke-dasharray .55s ease,stroke-dashoffset .55s ease}
+
 #xl-asset-arc{stroke:#b99d68}
+
 #xl-expense-arc{stroke:#a77d72}
+
 #xl-wish-arc{stroke:#7e907e}
+
 .xl-chart-core{position:absolute;inset:0;display:grid;align-content:center;justify-items:center;pointer-events:none;text-align:center}
+
 .xl-chart-core span{color:#aea38d;font-size:8px;font-weight:700}
+
 .xl-chart-core strong{max-width:132px;overflow:hidden;margin-top:5px;color:#494235;font-size:15px;font-weight:710;letter-spacing:-.045em;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}
+
 .xl-chart-core small{margin-top:3px;color:#a49b8d;font-size:9px}
+
 .xl-legend{display:grid;gap:13px;min-width:0}
+
 .xl-legend-item{display:grid;grid-template-columns:8px minmax(0,1fr);align-items:start;column-gap:8px}
+
 .xl-dot{width:7px;height:7px;margin-top:4px;border-radius:50%}
+
 .xl-dot.asset{background:var(--gold);box-shadow:0 0 0 3px rgba(182,154,101,.1)}
+
 .xl-dot.expense{background:var(--rose);box-shadow:0 0 0 3px rgba(167,123,112,.1)}
+
 .xl-dot.wish{background:var(--sage);box-shadow:0 0 0 3px rgba(126,144,126,.1)}
+
 .xl-legend-copy{min-width:0}
+
 .xl-legend-top{display:flex;align-items:center;justify-content:space-between;gap:5px}
+
 .xl-legend-name{color:#8e8678;font-size:10px}
+
 .xl-legend-pct{color:#a89978;font-size:9px;font-weight:700;font-variant-numeric:tabular-nums}
+
 .xl-legend-value{display:block;overflow:hidden;margin-top:3px;color:#4b453a;font-size:12px;font-weight:680;letter-spacing:-.025em;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}
+
 .xl-overview-note{margin:12px 2px 0;padding-top:10px;border-top:1px solid rgba(140,123,91,.11);color:#aaa18f;font-size:9px;line-height:1.55}
+
 .xl-colors{display:flex;gap:6px;align-items:center;margin-top:8px}
+
 .xl-pill{padding:4px 7px;border:1px solid rgba(181,160,120,.15);border-radius:99px;color:#958568;background:rgba(255,255,255,.48);font-size:8px}
+
 .xl-section-top{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:22px 2px 11px}
+
 .xl-section-title{margin:0;color:#39352d;font-size:22px;font-weight:680;letter-spacing:-.055em}
+
 .xl-section-sub{margin-top:4px;color:#aaa192;font-size:10px}
+
 .xl-add{min-height:37px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 13px;border:1px solid rgba(255,255,255,.94);border-radius:13px;color:#796747;background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(255,255,255,.64));box-shadow:0 5px 14px rgba(72,62,44,.05),inset 0 1px 0 #fff;font-size:11px;font-weight:680}
+
 .xl-manage{overflow:hidden;border:1px solid rgba(255,255,255,.92);border-radius:20px;background:rgba(255,255,255,.63);box-shadow:0 12px 30px rgba(67,57,39,.045),inset 0 1px 0 #fff;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+
 .xl-fold{width:100%;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border:0;color:inherit;background:transparent;text-align:left}
+
 .xl-fold-left{display:flex;align-items:center;gap:11px;min-width:0}
+
 .xl-fold-icon{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(182,154,101,.18);border-radius:12px;color:#9b8253;background:rgba(182,154,101,.09);font-size:16px;font-style:normal}
+
 .xl-fold-copy{min-width:0}
+
 .xl-fold-title{display:block;color:#514a3e;font-size:12px;font-weight:680}
+
 .xl-fold-meta{display:block;margin-top:4px;color:#aaa192;font-size:9px}
+
 .xl-fold-right{display:flex;align-items:center;gap:9px;color:#786747;font-size:12px;font-weight:680;white-space:nowrap}
+
 .xl-chevron{width:15px;height:15px;fill:none;stroke:#a99c83;stroke-width:1.8;transition:transform .2s}
+
 .xl-fold[aria-expanded="true"] .xl-chevron{transform:rotate(180deg)}
+
 .xl-panel{padding:0 12px 11px}
+
 .xl-hidden{display:none!important}
+
 .xl-record-list{padding:4px 10px;border:1px solid rgba(160,145,115,.1);border-radius:15px;background:rgba(255,255,255,.44)}
+
 .xl-record{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}
+
 .xl-record:last-child{border-bottom:0}
+
 .xl-record-left{display:flex;align-items:center;gap:9px;min-width:0}
+
 .xl-record-mark{width:27px;height:27px;display:grid;place-items:center;border-radius:10px;color:#957e53;background:rgba(182,154,101,.1);font-size:12px;font-style:normal}
+
 .xl-record-mark.expense{color:#a77b70;background:rgba(167,123,112,.1)}
+
 .xl-record-copy{min-width:0}
+
 .xl-record-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}
+
 .xl-record-meta{display:block;margin-top:3px;color:#aaa192;font-size:8px}
+
 .xl-record-value{flex:0 0 auto;color:#796747;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+
 .xl-record-value.expense{color:#a77b70}
+
 .xl-wish{width:100%;display:flex;align-items:center;gap:10px;padding:11px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}
+
 .xl-wish:last-child{border-bottom:0}
+
 .xl-wish-icon{width:29px;height:29px;display:grid;place-items:center;flex:0 0 auto;border-radius:10px;color:#9b8253;background:rgba(182,154,101,.1);font-size:13px}
+
 .xl-wish-copy{flex:1;min-width:0}
+
 .xl-wish-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}
+
 .xl-wish-desc{display:block;overflow:hidden;margin-top:3px;color:#aaa191;font-size:8px;text-overflow:ellipsis;white-space:nowrap}
+
 .xl-wish-price{flex:0 0 auto;color:#796747;font-size:10px;font-weight:680}
+
 .xl-wish.done{background:rgba(126,144,126,.055)}
+
 .xl-wish.done .xl-wish-icon{color:#718773;background:rgba(126,144,126,.15)}
+
 .xl-empty{padding:18px 10px;color:#a99f8f;font-size:10px;text-align:center}
+
 .xl-empty b{display:block;margin-bottom:5px;color:#b7a47d;font-size:18px;font-weight:400}
+
 .xl-nav{position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(calc(100% - 24px),438px);padding:7px 9px calc(7px + env(safe-area-inset-bottom));border:1px solid rgba(255,255,255,.9);border-bottom:0;border-radius:21px 21px 0 0;background:rgba(249,247,241,.86);box-shadow:0 -8px 30px rgba(75,63,42,.055),inset 0 1px 0 #fff;backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px)}
+
 .xl-nav-items{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+
 .xl-nav-btn{min-height:49px;display:grid;place-items:center;align-content:center;gap:4px;border:0;border-radius:14px;color:#aaa291;background:transparent;font-size:10px;font-weight:620}
+
 .xl-nav-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}
+
 .xl-nav-btn.active{color:#7b6744;background:linear-gradient(145deg,rgba(255,255,255,.93),rgba(234,226,210,.58));box-shadow:0 3px 10px rgba(75,63,42,.045),inset 0 1px 0 #fff}
+
 .xl-toast{position:fixed;z-index:60;left:50%;bottom:calc(82px + env(safe-area-inset-bottom));transform:translate(-50%,12px);max-width:calc(100% - 38px);padding:10px 15px;border:1px solid rgba(255,255,255,.88);border-radius:99px;color:#f8f5ed;background:rgba(58,52,41,.92);box-shadow:0 8px 28px rgba(40,34,24,.18);opacity:0;pointer-events:none;font-size:10px;white-space:nowrap;transition:opacity .2s,transform .2s}
+
 .xl-toast.show{opacity:1;transform:translate(-50%,0)}
+
 .xl-backdrop{position:fixed;z-index:40;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:15px 12px 0;background:rgba(43,39,31,.22);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+
 .xl-backdrop.xl-hidden{display:none}
+
 .xl-modal{width:min(100%,470px);max-height:min(86dvh,720px);overflow:auto;padding:9px 18px calc(23px + env(safe-area-inset-bottom));border:1px solid rgba(255,255,255,.94);border-bottom:0;border-radius:25px 25px 0 0;background:linear-gradient(150deg,#fcfbf7,#f2efe7);box-shadow:0 -14px 45px rgba(42,36,27,.15),inset 0 1px 0 #fff;animation:xl-sheet-in .23s ease-out}
+
 @keyframes xl-sheet-in{from{transform:translateY(24px);opacity:.75}to{transform:translateY(0);opacity:1}}
+
 .xl-grab{width:36px;height:4px;margin:0 auto 15px;border-radius:9px;background:#d8d1c3}
+
 .xl-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+
 .xl-modal-head h2{margin:0;color:#443e33;font-size:18px;font-weight:700}
+
 .xl-close{width:31px;height:31px;border:1px solid rgba(160,145,115,.13);border-radius:50%;color:#857c6c;background:rgba(255,255,255,.7);font-size:19px;line-height:1}
+
 .xl-field{display:grid;gap:7px;margin-top:12px}
+
 .xl-field label{color:#8e8576;font-size:11px}
+
 .xl-field input,.xl-field textarea{width:100%;min-height:46px;padding:0 13px;border:1px solid rgba(159,143,110,.2);border-radius:13px;outline:none;color:#37332b;background:rgba(255,255,255,.84);font-size:14px}
+
 .xl-field textarea{min-height:62px;padding:12px 13px;resize:vertical}
+
 .xl-field input:focus,.xl-field textarea:focus{border-color:rgba(166,139,88,.65);box-shadow:0 0 0 3px rgba(182,154,101,.12)}
+
 .xl-check{display:flex;align-items:center;gap:9px;margin-top:14px;color:#777063;font-size:11px}
+
 .xl-check input{width:16px;height:16px;accent-color:#8b7958}
+
 .xl-actions{display:flex;gap:9px;margin-top:20px}
+
 .xl-save,.xl-delete{min-height:46px;padding:0 17px;border:0;border-radius:14px;font-size:11px;font-weight:700}
+
 .xl-save{flex:1;color:#fbf8f0;background:linear-gradient(135deg,#b7a174,#876e45);box-shadow:0 7px 16px rgba(137,112,67,.2),inset 0 1px 0 rgba(255,255,255,.2)}
+
 .xl-delete{color:#a46f65;background:rgba(167,123,112,.11)}
+
 @media(min-width:700px){body{padding:22px 0}#xl-app{min-height:calc(100dvh - 44px);padding-top:19px;border:1px solid rgba(255,255,255,.62);border-radius:32px;background:rgba(248,246,240,.45);box-shadow:0 24px 90px rgba(73,62,42,.1)}.xl-nav{bottom:22px;border-bottom:1px solid rgba(255,255,255,.9);border-radius:21px}.xl-backdrop{align-items:center;padding-bottom:12px}.xl-modal{border-bottom:1px solid rgba(255,255,255,.94);border-radius:25px}}
+
 @media(max-width:360px){#xl-app{padding-left:13px;padding-right:13px}.xl-overview{padding-left:12px;padding-right:12px}.xl-overview-body{grid-template-columns:minmax(130px,150px) minmax(0,1fr);gap:8px}.xl-legend{gap:10px}.xl-legend-value{font-size:11px}}
+
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
 </style>
+
 </head>
+
 <body>
+
 <div id="xl-app">
+
 <header class="xl-head"><div class="xl-logo">XL</div></header>
 
 <section class="xl-hero">
+
   <div class="xl-hero-top">
+
     <button class="xl-privacy" id="xl-privacy" type="button" aria-label="隐藏或显示金额">
+
       <svg viewBox="0 0 24 24"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+
       <span id="xl-privacy-text">隐藏金额</span>
+
     </button>
+
   </div>
+
   <div class="xl-hero-label">资产总额</div>
+
   <div class="xl-total" id="xl-total"><span class="xl-currency">¥</span><span>0</span></div>
+
   <div class="xl-hero-bottom">
+
     <div class="xl-note"></div>
+
     <div class="xl-expense"><span>支出合计</span><strong id="xl-expense-total">¥0</strong></div>
+
   </div>
+
 </section>
 
 <section class="xl-overview">
+
   <div class="xl-overview-head">
+
     <h2 class="xl-overview-title">财富全景</h2>
+
     <div class="xl-live"><i></i>实时汇总</div>
+
   </div>
+
   <div class="xl-overview-body">
+
     <div class="xl-chart">
+
       <svg viewBox="0 0 210 210" aria-label="资产、支出和心愿完成情况">
+
         <circle class="xl-track" cx="105" cy="105" r="86" stroke-width="13"/>
+
         <circle id="xl-asset-arc" cx="105" cy="105" r="86" stroke-width="13" transform="rotate(-90 105 105)"/>
+
         <circle id="xl-expense-arc" cx="105" cy="105" r="86" stroke-width="13" transform="rotate(-90 105 105)"/>
+
         <circle class="xl-track" cx="105" cy="105" r="66" stroke-width="10"/>
+
         <circle id="xl-wish-arc" cx="105" cy="105" r="66" stroke-width="10" transform="rotate(-90 105 105)"/>
+
       </svg>
+
       <div class="xl-chart-core">
+
         <span>当前资产</span>
+
         <strong id="xl-chart-center">¥0</strong>
+
         <small>资产总额</small>
+
       </div>
+
     </div>
+
     <div class="xl-legend">
+
       <div class="xl-legend-item">
+
         <i class="xl-dot asset"></i>
+
         <div class="xl-legend-copy">
+
           <div class="xl-legend-top"><span class="xl-legend-name">资产总额</span><span class="xl-legend-pct" id="xl-asset-percent">0%</span></div>
+
           <strong class="xl-legend-value" id="xl-chart-assets">¥0</strong>
+
         </div>
+
       </div>
+
       <div class="xl-legend-item">
+
         <i class="xl-dot expense"></i>
+
         <div class="xl-legend-copy">
+
           <div class="xl-legend-top"><span class="xl-legend-name">支出合计</span><span class="xl-legend-pct" id="xl-expense-percent">0%</span></div>
+
           <strong class="xl-legend-value" id="xl-chart-expenses">¥0</strong>
+
         </div>
+
       </div>
+
       <div class="xl-legend-item">
+
         <i class="xl-dot wish"></i>
+
         <div class="xl-legend-copy">
+
           <div class="xl-legend-top"><span class="xl-legend-name">心愿完成</span><span class="xl-legend-pct" id="xl-wish-percent">0%</span></div>
+
           <strong class="xl-legend-value" id="xl-wish-count">0 / 0 项</strong>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
   <div class="xl-overview-note">
+
   <div class="xl-colors">
+
     <span class="xl-pill">
+
     <span class="xl-pill">
+
     <span class="xl-pill">
-  
+
 </section>
 
 <main id="xl-content" aria-live="polite"></main>
+
 </div>
 
 <nav class="xl-nav" aria-label="主要导航">
+
   <div class="xl-nav-items">
+
     <button class="xl-nav-btn active" data-xl-tab="assets" type="button">
+
       <svg viewBox="0 0 24 24"><path d="M12 3v9h9M20.2 15A9 9 0 1 1 9 3.8"/></svg>
+
       <span>资产</span>
+
     </button>
+
     <button class="xl-nav-btn" data-xl-tab="expenses" type="button">
+
       <svg viewBox="0 0 24 24"><path d="M4 5h16M6 5v14h12V5M9 9h6M9 13h6M9 17h3"/></svg>
+
       <span>支出</span>
+
     </button>
+
     <button class="xl-nav-btn" data-xl-tab="goals" type="button">
+
       <svg viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.8L12 3.5Z"/></svg>
+
       <span>心愿单</span>
+
     </button>
+
   </div>
+
 </nav>
 
 <div class="xl-toast" id="xl-toast" role="status"></div>
 
 <div class="xl-backdrop xl-hidden" id="xl-backdrop">
+
   <section class="xl-modal" role="dialog" aria-modal="true" aria-labelledby="xl-modal-title">
+
     <div class="xl-grab"></div>
+
     <div class="xl-modal-head">
+
       <h2 id="xl-modal-title">新增项目</h2>
+
       <button class="xl-close" id="xl-close" type="button" aria-label="关闭">×</button>
+
     </div>
+
     <form id="xl-form">
+
       <div id="xl-fields"></div>
+
       <div class="xl-actions">
+
         <button class="xl-delete xl-hidden" id="xl-delete" type="button">删除</button>
+
         <button class="xl-save" type="submit">保存更改</button>
+
       </div>
+
     </form>
+
   </section>
+
 </div>
 
 <script>
+
 (()=>{
+
 'use strict';
+
 const $=id=>document.getElementById(id);
+
 const key='xinle_finance_data_v8';
+
 const initial={settings:{hideNetWorth:false},assets:[],expenses:[],goals:[]};
+
 const demoAssets={a1:'储蓄余额',a2:'债券',a3:'指数',a4:'股票',a5:'货币基金',a6:'黄金'};
+
 const demoExpenses={e1:['生活'],e2:['事业','还债'],e3:['投资','事业'],e4:['投资','还债']};
+
 const safe=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
 const num=x=>Number.isFinite(Number(x))?Math.max(0,Number(x)):0;
+
 const money=x=>'¥'+num(x).toLocaleString('zh-CN',{maximumFractionDigits:2});
+
 let data=JSON.parse(JSON.stringify(initial));
+
 let tab='assets',modal=null,timer=null;
+
 const expanded={assets:false,expenses:false,goals:false};
 
 try{
+
   const old=localStorage.getItem(key);
+
   if(old){
+
     const p=JSON.parse(old);
+
     data.settings={...initial.settings,...(p.settings||{})};
+
     data.assets=(Array.isArray(p.assets)?p.assets:[]).filter(x=>demoAssets[x.id]!==x.name);
+
     data.expenses=(Array.isArray(p.expenses)?p.expenses:[]).filter(x=>x.target===undefined&&!(demoExpenses[x.id]||[]).includes(x.name));
+
     data.goals=Array.isArray(p.goals)?p.goals:[];
+
   }
+
 }catch(e){console.warn('读取本地记录失败',e)}
 
 const sum=list=>list.reduce((s,x)=>s+num(x.amount),0);
+
 const assets=()=>sum(data.assets);
+
 const expenses=()=>sum(data.expenses);
+
 const done=()=>data.goals.filter(x=>x.done).length;
 
 function save(){
+
   try{localStorage.setItem(key,JSON.stringify(data))}
+
   catch(e){toast('本地保存失败，请检查浏览器存储空间')}
+
 }
 
 function toast(message){
+
   const el=$('xl-toast');
+
   el.textContent=message;
+
   el.classList.add('show');
+
   clearTimeout(timer);
+
   timer=setTimeout(()=>el.classList.remove('show'),2200);
+
 }
 
 function arc(id,ratio,c){
+
   const n=$(id),v=Math.max(0,Math.min(1,ratio));
+
   n.style.strokeDasharray=`${(c*v).toFixed(2)} ${(c*(1-v)).toFixed(2)}`;
+
 }
 
 function renderSummary(){
+
   const a=assets(),e=expenses(),all=a+e;
+
   const ar=all?a/all:0,er=all?e/all:0;
+
   const wr=data.goals.length?done()/data.goals.length:0;
+
   const hide=data.settings.hideNetWorth;
 
   $('xl-total').innerHTML=hide?'<span>••••••</span>':`<span class="xl-currency">¥</span><span>${a.toLocaleString('zh-CN',{maximumFractionDigits:2})}</span>`;
+
   $('xl-expense-total').textContent=hide?'••••':money(e);
+
   $('xl-chart-center').textContent=hide?'••••':money(a);
+
   $('xl-chart-assets').textContent=hide?'••••':money(a);
+
   $('xl-chart-expenses').textContent=hide?'••••':money(e);
+
   $('xl-privacy-text').textContent=hide?'显示金额':'隐藏金额';
 
   $('xl-asset-percent').textContent=Math.round(ar*100)+'%';
+
   $('xl-expense-percent').textContent=Math.round(er*100)+'%';
+
   $('xl-wish-percent').textContent=Math.round(wr*100)+'%';
+
   $('xl-wish-count').textContent=`${done()} / ${data.goals.length} 项`;
 
   const outer=2*Math.PI*86,inner=2*Math.PI*66;
+
   arc('xl-asset-arc',ar,outer);
+
   arc('xl-expense-arc',er,outer);
+
   $('xl-expense-arc').style.strokeDashoffset=`-${(outer*ar).toFixed(2)}`;
+
   arc('xl-wish-arc',wr,inner);
+
 }
 
 const names={assets:'资产',expenses:'支出',goals:'心愿单'};
 
 function empty(text){
+
   return `<div class="xl-empty"><b>＋</b>${text}</div>`;
+
 }
 
 function rows(category){
+
   const list=data[category];
+
   if(!list.length)return empty(category==='assets'?'还没有资产，点击上方添加':'还没有'+names[category]+'，点击上方添加');
 
   if(category==='goals'){
+
     return list.map(x=>`
+
       <button class="xl-wish ${x.done?'done':''}" type="button" data-xl-edit="goals" data-xl-id="${safe(x.id)}">
+
         <i class="xl-wish-icon">${x.done?'✓':'✧'}</i>
+
         <span class="xl-wish-copy">
+
           <span class="xl-wish-name">${safe(x.name)}${x.done?' · 已完成':''}</span>
+
           <span class="xl-wish-desc">${safe(x.desc||'心愿目标')} · 点击编辑</span>
+
         </span>
+
         <span class="xl-wish-price">${num(x.target)>0?(data.settings.hideNetWorth?'••••':money(x.target)):'待定'}</span>
+
       </button>`).join('');
+
   }
 
   return list.map(x=>`
+
     <button class="xl-record" type="button" data-xl-edit="${category}" data-xl-id="${safe(x.id)}">
+
       <span class="xl-record-left">
+
         <i class="xl-record-mark ${category==='expenses'?'expense':''}">${category==='assets'?'◈':'−'}</i>
+
         <span class="xl-record-copy">
+
           <span class="xl-record-name">${safe(x.name)}</span>
+
           <span class="xl-record-meta">点击编辑</span>
+
         </span>
+
       </span>
+
       <span class="xl-record-value ${category==='expenses'?'expense':''}">${data.settings.hideNetWorth?'••••':money(x.amount)}</span>
+
     </button>`).join('');
+
 }
 
 function renderContent(){
+
   const title=names[tab],list=data[tab];
+
   const total=tab==='assets'?(data.settings.hideNetWorth?'••••':money(assets())):
+
     tab==='expenses'?(data.settings.hideNetWorth?'••••':money(expenses())):
+
     `${done()} / ${list.length} 项完成`;
+
   const sub=tab==='assets'?'由你定义每一项资产':
+
     tab==='expenses'?'记录自己的实际支出':'把想实现的生活放在这里';
+
   const label=tab==='goals'?'心愿清单':title+'项目';
 
   $('xl-content').innerHTML=`
+
     <div class="xl-section-top">
+
       <div><h1 class="xl-section-title">${title}</h1><div class="xl-section-sub">${sub}</div></div>
+
       <button class="xl-add" type="button" data-xl-add="${tab}">＋ 添加${tab==='goals'?'心愿':title}</button>
+
     </div>
+
     <section class="xl-manage">
+
       <button class="xl-fold" type="button" data-xl-fold="${tab}" aria-expanded="${expanded[tab]}">
+
         <span class="xl-fold-left">
+
           <i class="xl-fold-icon">${tab==='assets'?'◈':tab==='expenses'?'−':'✧'}</i>
+
           <span>
+
             <span class="xl-fold-title">${label}</span>
+
             <span class="xl-fold-meta">${list.length} 项记录 · 点击项目即可修改</span>
+
           </span>
+
         </span>
+
         <span class="xl-fold-right">${total}
+
           <svg class="xl-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+
         </span>
+
       </button>
+
       <div class="xl-panel ${expanded[tab]?'':'xl-hidden'}">
+
         <div class="xl-record-list">${rows(tab)}</div>
+
       </div>
+
     </section>`;
 
   document.querySelectorAll('[data-xl-tab]').forEach(b=>b.classList.toggle('active',b.dataset.xlTab===tab));
+
 }
 
 function render(){
+
   renderSummary();
+
   renderContent();
+
 }
 
 function field(label,name,value,type='text',placeholder=''){
+
   return `<div class="xl-field">
+
     <label for="xl-field-${name}">${label}</label>
+
     <input id="xl-field-${name}" name="${name}" type="${type}" value="${safe(value??'')}" ${type==='number'?'min="0" step="0.01" inputmode="decimal"':''} placeholder="${placeholder}" ${name==='name'?'required':''}>
+
   </div>`;
+
 }
 
 function openModal(category,item=null){
+
   modal={category,item:item?JSON.parse(JSON.stringify(item)):null};
+
   const isGoal=category==='goals';
+
   $('xl-modal-title').textContent=(item?'编辑':'添加')+names[category];
+
   $('xl-delete').classList.toggle('xl-hidden',!item);
 
   let html=field(isGoal?'心愿名称':names[category]+'名称','name',item?.name||'','text',isGoal?'写下想实现的心愿':'填写名称');
 
   if(isGoal){
+
     html+=`<div class="xl-field">
+
       <label for="xl-field-desc">备注描述</label>
+
       <textarea id="xl-field-desc" name="desc" placeholder="写下一点说明">${safe(item?.desc||'')}</textarea>
+
     </div>`;
+
   }
 
   html+=field(isGoal?'目标金额（元）':names[category]+'金额（元）',isGoal?'target':'amount',
+
     item?(isGoal?item.target:item.amount)??'':'','number','填写金额');
 
   if(isGoal){
+
     html+=`<label class="xl-check"><input type="checkbox" name="done" ${item?.done?'checked':''}> 标记为已完成</label>`;
+
   }
 
   $('xl-fields').innerHTML=html;
+
   $('xl-backdrop').classList.remove('xl-hidden');
+
   setTimeout(()=>$('xl-fields').querySelector('input:not([type=checkbox])')?.focus(),80);
+
 }
 
 function closeModal(){
+
   $('xl-backdrop').classList.add('xl-hidden');
+
   modal=null;
+
 }
 
 function submit(event){
+
   event.preventDefault();
+
   if(!modal)return;
 
   const {category,item}=modal;
+
   const form=$('xl-form');
+
   const fd=new FormData(form);
+
   const name=String(fd.get('name')||'').trim();
 
   if(!name){toast('请填写名称');return}
 
   const goal=category==='goals';
+
   const entry={...(item||{}),id:item?.id||category+'-'+Date.now(),name};
 
   if(goal){
+
     entry.desc=String(fd.get('desc')||'').trim();
+
     entry.target=num(fd.get('target'));
+
     entry.done=!!form.querySelector('[name="done"]')?.checked;
+
   }else{
+
     entry.amount=num(fd.get('amount'));
+
   }
 
   const index=data[category].findIndex(x=>x.id===entry.id);
+
   if(index>=0)data[category][index]=entry;
+
   else data[category].push(entry);
 
   expanded[category]=true;
+
   save();
+
   closeModal();
+
   render();
+
   toast(item?'已保存修改':'已添加');
+
 }
 
 function removeItem(){
+
   if(!modal?.item)return;
+
   const {category,item}=modal;
+
   if(!confirm(`确定删除「${item.name}」吗？`))return;
+
   data[category]=data[category].filter(x=>x.id!==item.id);
+
   save();
+
   closeModal();
+
   render();
+
   toast('已删除');
+
 }
 
 document.addEventListener('click',event=>{
+
   const tabButton=event.target.closest('[data-xl-tab]');
+
   if(tabButton){tab=tabButton.dataset.xlTab;renderContent();return}
 
   const add=event.target.closest('[data-xl-add]');
+
   if(add){openModal(add.dataset.xlAdd);return}
 
   const fold=event.target.closest('[data-xl-fold]');
+
   if(fold){expanded[fold.dataset.xlFold]=!expanded[fold.dataset.xlFold];renderContent();return}
 
   const edit=event.target.closest('[data-xl-edit]');
+
   if(edit){
+
     const item=data[edit.dataset.xlEdit].find(x=>String(x.id)===edit.dataset.xlId);
+
     if(item)openModal(edit.dataset.xlEdit,item);
+
   }
+
 });
 
 $('xl-privacy').addEventListener('click',()=>{
+
   data.settings.hideNetWorth=!data.settings.hideNetWorth;
+
   save();
+
   render();
+
 });
 
 $('xl-form').addEventListener('submit',submit);
+
 $('xl-delete').addEventListener('click',removeItem);
+
 $('xl-close').addEventListener('click',closeModal);
+
 $('xl-backdrop').addEventListener('click',e=>{
+
   if(e.target===$('xl-backdrop'))closeModal();
+
 });
+
 document.addEventListener('keydown',e=>{
+
   if(e.key==='Escape'&&modal)closeModal();
+
 });
 
 render();
+
 })();
+
 </script>
+
 </body>
+
 </html>
