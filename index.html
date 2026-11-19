@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f4f1e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>王馨乐 · 个人财务管理系统 V13</title>
+<title>王馨乐 · 个人财务管理系统 V17</title>
 <style>
 :root{--bg:#f4f1e9;--ink:#302d26;--muted:#a39b8d;--gold:#b69a65;--rose:#a77b70;--sage:#788b79;--shadow:0 18px 44px rgba(67,57,39,.075),inset 0 1px 0 #fff;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;min-height:100dvh;color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;letter-spacing:-.025em;background:radial-gradient(ellipse at 7% -4%,#fff,transparent 37%),radial-gradient(ellipse at 100% 25%,rgba(207,190,153,.25),transparent 34%),linear-gradient(155deg,#faf8f2,#f0ede5 57%,#f7f5ef)}button,input,textarea,select{font:inherit}button{cursor:pointer}::-webkit-scrollbar{width:0;height:0}
@@ -18,7 +18,7 @@
 .xl-stage{margin-top:14px;padding-top:14px;border-top:1px solid rgba(140,123,91,.14)}.xl-stage-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.xl-stage-kicker{color:#a09276;font-size:9px;font-weight:700;letter-spacing:.08em}.xl-stage-status{display:flex;align-items:center;gap:6px;margin-top:6px;color:#8c8069;font-size:9px}.xl-stage-status i{width:6px;height:6px;border-radius:50%;background:#9b8c68;box-shadow:0 0 0 3px rgba(155,140,104,.12)}.xl-stage-select{max-width:155px;padding:7px 9px;border:1px solid rgba(166,143,102,.2);border-radius:10px;color:#756343;background:rgba(255,255,255,.85);font-size:10px;font-weight:650}.xl-stage-name{margin:11px 0 0;color:#413b31;font-size:21px;font-weight:720;letter-spacing:-.04em}.xl-stage-goal{margin:9px 0 0;padding:12px 13px;border:1px solid rgba(182,154,101,.17);border-radius:14px;color:#777064;background:rgba(182,154,101,.055);font-size:11px;line-height:1.7}.xl-stage-goal b{display:block;margin-bottom:4px;color:#806d49;font-size:9px;font-weight:750;letter-spacing:.04em}
 .xl-section-top{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:22px 2px 11px}.xl-section-title{margin:0;color:#39352d;font-size:22px;font-weight:680;letter-spacing:-.055em}.xl-section-sub{margin-top:4px;color:#aaa192;font-size:10px}.xl-record-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.xl-record-tile{min-width:0;min-height:93px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:10px 4px;border:1px solid rgba(255,255,255,.94);border-radius:17px;color:#514a3e;background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(255,255,255,.64));box-shadow:0 7px 18px rgba(72,62,44,.045),inset 0 1px 0 #fff}.xl-record-tile.active{border-color:rgba(182,154,101,.42);background:linear-gradient(145deg,#fff,#eee6d6);box-shadow:0 5px 15px rgba(72,62,44,.07),inset 0 1px 0 #fff}.xl-tile-icon{width:29px;height:29px;display:grid;place-items:center;border-radius:10px;color:#9b8253;background:rgba(182,154,101,.1);font-size:15px;font-style:normal}.xl-record-tile.income .xl-tile-icon{color:#788b79;background:rgba(120,139,121,.11)}.xl-record-tile.expense .xl-tile-icon{color:#a77b70;background:rgba(167,123,112,.11)}.xl-tile-name{font-size:10px;font-weight:700}.xl-tile-meta{max-width:100%;overflow:hidden;color:#a49a89;font-size:8px;text-overflow:ellipsis;white-space:nowrap}
 .xl-manage{overflow:hidden;margin-top:10px;border:1px solid rgba(255,255,255,.92);border-radius:20px;background:rgba(255,255,255,.63);box-shadow:0 12px 30px rgba(67,57,39,.045),inset 0 1px 0 #fff;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.xl-manage-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(170,151,117,.13)}.xl-manage-title{color:#514a3e;font-size:12px;font-weight:700}.xl-manage-meta{margin-top:3px;color:#aaa192;font-size:9px}.xl-add{min-height:32px;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:0 10px;border:1px solid rgba(255,255,255,.94);border-radius:11px;color:#796747;background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(255,255,255,.64));box-shadow:0 4px 12px rgba(72,62,44,.04);font-size:10px;font-weight:680}.xl-panel{padding:0 12px 11px}.xl-record-list{padding:4px 10px;border:1px solid rgba(160,145,115,.1);border-radius:15px;background:rgba(255,255,255,.44)}.xl-record{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}.xl-record:last-child{border-bottom:0}.xl-record-left{display:flex;align-items:center;gap:9px;min-width:0}.xl-record-mark{width:27px;height:27px;display:grid;place-items:center;border-radius:10px;color:#957e53;background:rgba(182,154,101,.1);font-size:12px;font-style:normal}.xl-record-mark.expense,.xl-record-mark.liability{color:#a77b70;background:rgba(167,123,112,.1)}.xl-record-mark.income{color:#788b79;background:rgba(120,139,121,.1)}.xl-record-copy{min-width:0}.xl-record-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}.xl-record-meta{display:block;margin-top:3px;color:#aaa192;font-size:8px}.xl-record-value{flex:0 0 auto;color:#796747;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}.xl-record-value.expense,.xl-record-value.liability{color:#a77b70}.xl-record-value.income{color:#788b79}.xl-wish{width:100%;display:flex;align-items:center;gap:10px;padding:11px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}.xl-wish:last-child{border-bottom:0}.xl-wish-icon{width:29px;height:29px;display:grid;place-items:center;flex:0 0 auto;border-radius:10px;color:#9b8253;background:rgba(182,154,101,.1);font-size:13px}.xl-wish-copy{flex:1;min-width:0}.xl-wish-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}.xl-wish-desc{display:block;overflow:hidden;margin-top:3px;color:#aaa191;font-size:8px;text-overflow:ellipsis;white-space:nowrap}.xl-wish-price{flex:0 0 auto;color:#796747;font-size:10px;font-weight:680}.xl-wish.done{background:rgba(126,144,126,.055)}.xl-empty{padding:18px 10px;color:#a99f8f;font-size:10px;text-align:center}.xl-empty b{display:block;margin-bottom:5px;color:#b7a47d;font-size:18px;font-weight:400}.xl-debt-subpanel{margin:10px 0 0;padding:11px;border:1px solid rgba(167,123,112,.17);border-radius:16px;background:rgba(255,255,255,.55)}.xl-debt-subhead{display:flex;align-items:center;justify-content:space-between;gap:8px}.xl-debt-subhead b{font-size:11px;color:#725c54}.xl-debt-subhead small{display:block;margin-top:3px;color:#aa958b;font-size:8px}.xl-debt-subhead strong{color:#9e6e64;font-size:11px}.xl-debt-note{margin:8px 1px 0;color:#a99b90;font-size:8px;line-height:1.55}
-.xl-footnote{margin:16px 5px 0;color:#aaa192;font-size:9px;line-height:1.6;text-align:center}.xl-toast{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,12px);max-width:calc(100% - 38px);padding:10px 15px;border:1px solid rgba(255,255,255,.88);border-radius:99px;color:#f8f5ed;background:rgba(58,52,41,.92);box-shadow:0 8px 28px rgba(40,34,24,.18);opacity:0;pointer-events:none;font-size:10px;white-space:nowrap;transition:opacity .2s,transform .2s}.xl-toast.show{opacity:1;transform:translate(-50%,0)}.xl-backdrop{position:fixed;z-index:40;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:15px 12px 0;background:rgba(43,39,31,.22);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}.xl-backdrop.xl-hidden{display:none}.xl-modal{width:min(100%,470px);max-height:min(86dvh,720px);overflow:auto;padding:9px 18px calc(23px + env(safe-area-inset-bottom));border:1px solid rgba(255,255,255,.94);border-bottom:0;border-radius:25px 25px 0 0;background:linear-gradient(150deg,#fcfbf7,#f2efe7);box-shadow:0 -14px 45px rgba(42,36,27,.15),inset 0 1px 0 #fff;animation:xl-sheet-in .23s ease-out}@keyframes xl-sheet-in{from{transform:translateY(24px);opacity:.75}to{transform:translateY(0);opacity:1}}.xl-grab{width:36px;height:4px;margin:0 auto 15px;border-radius:9px;background:#d8d1c3}.xl-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.xl-modal-head h2{margin:0;color:#443e33;font-size:18px;font-weight:700}.xl-close{width:31px;height:31px;border:1px solid rgba(160,145,115,.13);border-radius:50%;color:#857c6c;background:rgba(255,255,255,.7);font-size:19px;line-height:1}.xl-field{display:grid;gap:7px;margin-top:12px}.xl-field label{color:#8e8576;font-size:11px}.xl-field input,.xl-field textarea,.xl-field select{width:100%;min-height:46px;padding:0 13px;border:1px solid rgba(159,143,110,.2);border-radius:13px;outline:none;color:#37332b;background:rgba(255,255,255,.84);font-size:14px}.xl-field textarea{min-height:62px;padding:12px 13px;resize:vertical}.xl-field input:focus,.xl-field textarea:focus,.xl-field select:focus{border-color:rgba(166,139,88,.65);box-shadow:0 0 0 3px rgba(182,154,101,.12)}.xl-check{display:flex;align-items:center;gap:9px;margin-top:14px;color:#777063;font-size:11px}.xl-check input{width:16px;height:16px;accent-color:#8b7958}.xl-actions{display:flex;gap:9px;margin-top:20px}.xl-save,.xl-delete{min-height:46px;padding:0 17px;border:0;border-radius:14px;font-size:11px;font-weight:700}.xl-save{flex:1;color:#fbf8f0;background:linear-gradient(135deg,#b7a174,#876e45);box-shadow:0 7px 16px rgba(137,112,67,.2),inset 0 1px 0 rgba(255,255,255,.2)}.xl-delete{color:#a46f65;background:rgba(167,123,112,.11)}
+.xl-toast{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,12px);max-width:calc(100% - 38px);padding:10px 15px;border:1px solid rgba(255,255,255,.88);border-radius:99px;color:#f8f5ed;background:rgba(58,52,41,.92);box-shadow:0 8px 28px rgba(40,34,24,.18);opacity:0;pointer-events:none;font-size:10px;white-space:nowrap;transition:opacity .2s,transform .2s}.xl-toast.show{opacity:1;transform:translate(-50%,0)}.xl-backdrop{position:fixed;z-index:40;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:15px 12px 0;background:rgba(43,39,31,.22);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}.xl-backdrop.xl-hidden{display:none}.xl-modal{width:min(100%,470px);max-height:min(86dvh,720px);overflow:auto;padding:9px 18px calc(23px + env(safe-area-inset-bottom));border:1px solid rgba(255,255,255,.94);border-bottom:0;border-radius:25px 25px 0 0;background:linear-gradient(150deg,#fcfbf7,#f2efe7);box-shadow:0 -14px 45px rgba(42,36,27,.15),inset 0 1px 0 #fff;animation:xl-sheet-in .23s ease-out}@keyframes xl-sheet-in{from{transform:translateY(24px);opacity:.75}to{transform:translateY(0);opacity:1}}.xl-grab{width:36px;height:4px;margin:0 auto 15px;border-radius:9px;background:#d8d1c3}.xl-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.xl-modal-head h2{margin:0;color:#443e33;font-size:18px;font-weight:700}.xl-close{width:31px;height:31px;border:1px solid rgba(160,145,115,.13);border-radius:50%;color:#857c6c;background:rgba(255,255,255,.7);font-size:19px;line-height:1}.xl-field{display:grid;gap:7px;margin-top:12px}.xl-field label{color:#8e8576;font-size:11px}.xl-field input,.xl-field textarea,.xl-field select{width:100%;min-height:46px;padding:0 13px;border:1px solid rgba(159,143,110,.2);border-radius:13px;outline:none;color:#37332b;background:rgba(255,255,255,.84);font-size:14px}.xl-field textarea{min-height:62px;padding:12px 13px;resize:vertical}.xl-field input:focus,.xl-field textarea:focus,.xl-field select:focus{border-color:rgba(166,139,88,.65);box-shadow:0 0 0 3px rgba(182,154,101,.12)}.xl-check{display:flex;align-items:center;gap:9px;margin-top:14px;color:#777063;font-size:11px}.xl-check input{width:16px;height:16px;accent-color:#8b7958}.xl-actions{display:flex;gap:9px;margin-top:20px}.xl-save,.xl-delete{min-height:46px;padding:0 17px;border:0;border-radius:14px;font-size:11px;font-weight:700}.xl-save{flex:1;color:#fbf8f0;background:linear-gradient(135deg,#b7a174,#876e45);box-shadow:0 7px 16px rgba(137,112,67,.2),inset 0 1px 0 rgba(255,255,255,.2)}.xl-delete{color:#a46f65;background:rgba(167,123,112,.11)}
 @media(min-width:700px){body{padding:22px 0}#xl-app{min-height:calc(100dvh - 44px);padding-top:19px;border:1px solid rgba(255,255,255,.62);border-radius:32px;background:rgba(248,246,240,.45);box-shadow:0 24px 90px rgba(73,62,42,.1)}.xl-backdrop{align-items:center;padding-bottom:12px}.xl-modal{border-bottom:1px solid rgba(255,255,255,.94);border-radius:25px}}@media(max-width:360px){#xl-app{padding-left:13px;padding-right:13px}.xl-hub{padding-left:12px;padding-right:12px}.xl-overview-body{grid-template-columns:minmax(125px,145px) minmax(0,1fr);gap:8px}.xl-legend{gap:10px}.xl-legend-value{font-size:11px}.xl-record-grid{gap:5px}.xl-record-tile{min-height:86px}.xl-tile-name{font-size:9px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 /* V10：可编辑年龄年月、人生重心卡片、精致分类图标 */
@@ -88,6 +88,48 @@
 @media(max-width:360px){.xl-focus-head .xl-focus-mvp{padding:4px 7px;font-size:8px}.xl-focus-message{font-size:10px;line-height:1.85}}
 
 
+
+/* V14：Mom You Are MVP 标题、分行心语排版、移除财务入口辅助小字 */
+.xl-focus-head{justify-content:flex-start;color:#826c46;font-size:10px;font-weight:800;letter-spacing:.045em}
+.xl-focus-head .xl-focus-mvp{display:inline-flex;align-items:center;padding:0;border:0;border-radius:0;color:#806d49;background:transparent;font-size:11px;font-weight:850;letter-spacing:.055em;white-space:nowrap}
+.xl-focus-message{display:grid;gap:6px;margin:10px 0 0;color:#574e40;font-size:11px;font-weight:540;line-height:1.85;letter-spacing:0}
+.xl-focus-message p{margin:0}
+.xl-focus-message strong{color:#40372b;font-weight:800}
+.xl-record-tile{gap:9px;min-height:88px}
+.xl-tile-name{font-size:11px;font-weight:750;letter-spacing:.015em}
+@media(max-width:360px){.xl-focus-message{gap:5px;font-size:10px;line-height:1.8}.xl-focus-head .xl-focus-mvp{font-size:10px}.xl-record-tile{min-height:82px}.xl-tile-name{font-size:10px}}
+
+
+/* V16：保留 V14 现有资产图表与财务记录样式，仅优化重心文案间距并清理底部说明 */
+.xl-focus-message{display:grid;gap:8px;margin:10px 0 0;color:#574e40;font-size:11px;font-weight:560;line-height:1.9;letter-spacing:0}
+.xl-focus-message p{margin:0}
+.xl-focus-message strong{color:#40372b;font-weight:800}
+@media(max-width:360px){.xl-focus-message{gap:7px;font-size:10px;line-height:1.85}}
+
+
+
+/* V17：修复心语卡片在部分 iPhone / WebKit 环境中的文字发白，并让阶段选择直接响应 */
+.xl-focus-message,
+.xl-focus-message p,
+.xl-focus-message strong,
+.xl-focus-message p *{
+  color:#40372b !important;
+  -webkit-text-fill-color:#40372b !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+.xl-focus-message{font-size:11px;font-weight:650;line-height:1.95;letter-spacing:0}
+.xl-focus-message p{margin:0}
+.xl-focus-message strong{font-weight:800}
+.xl-stage-top{position:relative;z-index:2}
+.xl-stage-select{
+  position:relative;z-index:3;pointer-events:auto;touch-action:manipulation;
+  -webkit-appearance:auto;appearance:auto;cursor:pointer;
+  color:#59482d !important;background-color:#fff !important;
+  -webkit-text-fill-color:#59482d !important;
+}
+@media(max-width:360px){.xl-focus-message{font-size:10px;line-height:1.85}}
+
 </style>
 </head>
 <body>
@@ -104,10 +146,15 @@
     <div class="xl-hero-top"><button class="xl-privacy" id="xl-privacy" type="button" aria-label="隐藏或显示金额"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span id="xl-privacy-text">隐藏金额</span></button></div>
     <div class="xl-hero-label">总资产</div>
     <div class="xl-total" id="xl-total"><span class="xl-currency">$</span><span id="xl-total-usd">0.00</span></div>
-    <div class="xl-hero-conversion"><strong class="xl-hero-cny" id="xl-total-cny">¥0</strong></div>
+    <div class="xl-hero-conversion"><strong class="xl-hero-cny" id="xl-total-cny">¥0</strong><a id="xl-fx-attribution" href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" hidden style="color:#9b8253;font-size:8px;text-decoration:none">Rates By Exchange Rate API</a></div>
     <section class="xl-focus" aria-label="我的人生重心">
-      <div class="xl-focus-head"><span>我的重心</span><span class="xl-focus-mvp">Mom, you are MVP!</span></div>
-      <p class="xl-focus-message">王馨乐，<strong>不要忘记你为何而出发，没有什么是你不配得到的，不要自卑和讨好，让自己配得上它。</strong>妈妈是我人生永远的 only one，我立志，改善我的生活，改变我们的人生。人活一辈子，不能白活，让妈妈享福，是我值得认真去做的事，<strong>爱你老妈。</strong></p>
+      <div class="xl-focus-head"><span class="xl-focus-mvp">Mom You Are MVP</span></div>
+      <div class="xl-focus-message">
+        <p><strong>不要忘记你为何而出发，没有什么是你不配得到的，不要自卑和讨好，让自己配得上它。</strong></p>
+        <p><strong>妈妈是我人生永远的 only one，</strong><br><strong>我立志，改善我的生活，改变我们的人生。</strong></p>
+        <p><strong>人活一辈子，不能白活，</strong><br><strong>让妈妈享福，是我值得认真去做的事，</strong></p>
+        <p><strong>爱你老妈。</strong></p>
+      </div>
     </section>
     <div class="xl-stage" id="xl-current-stage">
       <div class="xl-stage-top"><div><div class="xl-stage-kicker">MY FINANCIAL ROADMAP</div><div class="xl-stage-status"><i></i><span>当前财富阶段</span></div></div>
@@ -133,11 +180,11 @@
   </section>
 
   <main id="xl-content" aria-live="polite">
-    <div class="xl-section-top"><div><h2 class="xl-section-title">财务记录</h2><div class="xl-section-sub">选择分类，查看和管理对应记录</div></div></div>
+    <div class="xl-section-top"><div><h2 class="xl-section-title">财务记录</h2></div></div>
     <div class="xl-record-grid" id="xl-record-grid"></div>
     <section class="xl-manage" id="xl-manage" hidden><div class="xl-manage-head"><div><div class="xl-manage-title" id="xl-manage-title">收入</div><div class="xl-manage-meta" id="xl-manage-meta"></div></div><button class="xl-add" id="xl-add-current" type="button">＋ 添加</button></div><div class="xl-panel" id="xl-panel"></div></section>
   </main>
-  <div class="xl-footnote">金额始终以人民币记录；美元展示会联网自动更新参考汇率，暂时离线时沿用上次成功汇率，恢复联网后自动校准。参考汇率不等同于银行实际成交价。记录保存在当前浏览器本地。</div><div class="xl-footnote" style="margin-top:4px"><a id="xl-fx-attribution" href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" hidden>Rates By Exchange Rate API</a></div>
+
 </div>
 
 <div class="xl-toast" id="xl-toast" role="status"></div>
@@ -281,7 +328,7 @@ function rows(category){
 }
 function categoryAmount(category){if(category==='incomes')return incomeAll();if(category==='expenses')return expenseAll();if(category==='assets')return assets();return done()}
 function renderTiles(){
- $('xl-record-grid').innerHTML=order.map(category=>{const list=data[category],amount=category==='goals'?`${done()}/${list.length}项`:masked(money(categoryAmount(category))),isOpen=activeCategory===category;return `<button class="xl-record-tile ${category==='incomes'?'income':category==='expenses'?'expense':category==='assets'?'asset':category==='goals'?'goal':''} ${isOpen?'active':''}" type="button" data-xl-category="${category}" aria-expanded="${isOpen}"><i class="xl-tile-icon">${icons[category]}</i><span class="xl-tile-name">${names[category]}</span><span class="xl-tile-meta">${list.length}项 · ${amount}</span><span class="xl-tile-toggle">${isOpen?'⌃ 点击收起':'⌄ 点击展开'}</span></button>`}).join('');
+ $('xl-record-grid').innerHTML=order.map(category=>{const isOpen=activeCategory===category;return `<button class="xl-record-tile ${category==='incomes'?'income':category==='expenses'?'expense':category==='assets'?'asset':category==='goals'?'goal':''} ${isOpen?'active':''}" type="button" data-xl-category="${category}" aria-label="${names[category]}，点击展开或收起" aria-expanded="${isOpen}"><i class="xl-tile-icon">${icons[category]}</i><span class="xl-tile-name">${names[category]}</span></button>`}).join('');
 }
 function renderPanel(){
  const panel=$('xl-manage');
@@ -333,7 +380,7 @@ document.addEventListener('click',event=>{
  const add=event.target.closest('[data-xl-add]');if(add){openModal(add.dataset.xlAdd);return}
  const edit=event.target.closest('[data-xl-edit]');if(edit){const item=data[edit.dataset.xlEdit].find(x=>String(x.id)===edit.dataset.xlId);if(item)openModal(edit.dataset.xlEdit,item)}
 });
-$('xl-profile-edit').addEventListener('click',()=>openModal('profile'));$('xl-mom-goal').addEventListener('click',openMotherGoal);$('xl-add-current').addEventListener('click',()=>openModal(activeCategory));$('xl-stage-select').addEventListener('change',e=>{const value=String(e.target.value);if(!STAGES[value])return;if(value!==String(data.settings.stage)&&!confirm(`确认将当前阶段调整为「${STAGES[value].name}」吗？`)){e.target.value=String(data.settings.stage);return}data.settings.stage=value;save();renderStage();toast('当前财务阶段已更新')});
+$('xl-profile-edit').addEventListener('click',()=>openModal('profile'));$('xl-mom-goal').addEventListener('click',openMotherGoal);$('xl-add-current').addEventListener('click',()=>openModal(activeCategory));$('xl-stage-select').addEventListener('change',e=>{const value=String(e.target.value);if(!Object.prototype.hasOwnProperty.call(STAGES,value)){e.target.value=String(data.settings.stage);return}data.settings.stage=value;save();renderStage();toast('当前财务阶段已更新')});
 $('xl-privacy').addEventListener('click',()=>{data.settings.hideNetWorth=!data.settings.hideNetWorth;save();render()});$('xl-form').addEventListener('submit',submit);$('xl-delete').addEventListener('click',removeItem);$('xl-close').addEventListener('click',closeModal);$('xl-backdrop').addEventListener('click',e=>{if(e.target===$('xl-backdrop'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal)closeModal()});
 render();
 renderFxAttribution(exchangeRateProvider);
