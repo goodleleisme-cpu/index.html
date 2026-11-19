@@ -6,303 +6,340 @@
 <meta name="theme-color" content="#f4f1e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>XL</title>
-<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAHeklEQVR42u2dW2wbVRqAf2cyzoybcSFOQpsbSVdt0gYqkLho2ywq4iKxqEggoV3tCyq7gpcVi9QHeAItT7z0BSGh3RcaHlCrFiGBUKWq4tqrAisImIYihTbEDW3sFCemntiZDA+BbAlJE499xmP7+xRFE8eeMznzzTn/uSaUSV8SgOWoIwsAOQA5ADkAOQA5ADkAOQA5ADkAOQCQA5ADkAOQA5ADkAOQA5ADkAOQAwA5ADkAOQA5ADkAOQA5ADkAOQA5AJADkAOQA5ADkAOQA5ADkAOQA5ADkAMAOQA5ADkAOQA5ADkAOQA5ADmg9qj3J5lUJnvs7OjIROrM6MV01ibfPbDeNO7e1Na3MXb/1k2xRtOHFEM+/APAg0PxwRNf4kQJLXli561/ubO/4uX49zsfH42PckdLzoP9m1585J4KjjkODsUxQxFH46MHh+KVKkcqk33l2BB3UR2vHBtKZbIVKcer72OGcpRmskI5zoxe5OapRmkmK5SD5okPKM1kOsEAOQA5ADkAOQA5IJgoHFs5MRMif31gp+VScgDVCiAHIAcgByAHIAcAcsB1qS9Xwg+2t6g4bdp2zqSmlv1V8nL2/PdjjuOUMLno+satvV2UHKVkc7RR0ZnXG9qyr9t5p+RmiMh0OpNITCJHZZO3cyU3g5ijSrAsU9M0FWdu0BurNdPqg3xxJ8//ZoLkxpjbY3lfBti7pWv84uR0OlOqyzNNI9ZkNbeaZckcO++ofsLrg+nEm6cn372w7IN+5Ynt4T0D6zxYYllmFQSPiZlZEbmau6aKbDJrQo7vZrLPvzV1+lJIZMUqYHA4Nzic2zuQemZnR01FAImZ2d84UVPVSnzC/vMbV0TWNAtk3/G65HTypYeaa0ELO+98Pz1buwFp2naePTBW0EcGh3MvHEliRvXLMfjZxLlcwWH/4HAuPmFjRjXLkbadfcc9XsnBzzOYUc0xx3tnE65bFwrVue58oZ/d/4W9915npY7RJczMZH37oyyr2EZEyp6jn0NOfhMSEQ9miIg48/Ef8ju6V5cjkZgc97Gr2zSNLX03G7rmudjwuW0S0Grl3QuaOPMev0Q+TSTXktfj/g6CZLN25kqucouNoMjhzhWVESe+Xb31m7dz/v9ds3nv8VDZi41AVCsnz9vu/Hxx51i96LYs0zSNrI+7QmiaFmtt8lynBOGhDUYn2HyReaGv5U1b+m5OXZ6azvgUk3a0tXgOOIJQp0jAB95Ki6Fr7e0t7QIVFXNAMCl/ybGj2wgxDYeSAyg5CsZximqt9N7UwI2s2pJjW3NRl9Ecrbaxt5gRiIc2EBfxx76mrz/2vk3I7u2xNb4zeTlbTMfUAtFoY/HjJlQra2XPwLr9p3Qnn/fw2b/fc2b/fc0Mapwye/WasNBNIE5PbtvYo9cPQtUhYY2xFRKTHMg886WV257ZWfY2Twey8U8KpxeMXlQ/TBKFmCUon2I5uY6D3hk++KizT9+yyqrVID0LhEaCm7L92/RI6hHR91QMR6W+P/O32rrXndXR9yRaYdLS1+JAh7VYDJcf/C4/nH21++e2k+2vwcZ2D+kjkv//oLOj8W3u7ShKQxlqbPA+aFEpntKGMk8GCNbaysNrg5bdXmZ+hWdaRp9p7LKPgRm+rKVJJDQ1D18roR+B6SJ/Z2XH4n3397ZGFH+fzuSXfH7sj9tVz3f0bDakNFvxADhGRtO2IyJ5dxua">
+<title>王馨乐 · 个人财务管理系统 V13</title>
 <style>
-:root{--bg:#f4f1e9;--ink:#302d26;--muted:#a39b8d;--gold:#b69a65;--rose:#a77b70;--sage:#788b79;--blue:#78899a;--shadow:0 18px 44px rgba(67,57,39,.075),inset 0 1px 0 #fff;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif}
+:root{--bg:#f4f1e9;--ink:#302d26;--muted:#a39b8d;--gold:#b69a65;--rose:#a77b70;--sage:#788b79;--shadow:0 18px 44px rgba(67,57,39,.075),inset 0 1px 0 #fff;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;min-height:100dvh;color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;letter-spacing:-.025em;background:radial-gradient(ellipse at 7% -4%,#fff,transparent 37%),radial-gradient(ellipse at 100% 25%,rgba(207,190,153,.25),transparent 34%),linear-gradient(155deg,#faf8f2,#f0ede5 57%,#f7f5ef)}button,input,textarea,select{font:inherit}button{cursor:pointer}::-webkit-scrollbar{width:0;height:0}
-#xl-app{width:min(100%,470px);min-height:100vh;min-height:100dvh;margin:0 auto;padding:max(15px,env(safe-area-inset-top)) 17px calc(112px + env(safe-area-inset-bottom))}
-.xl-head{display:flex;align-items:center;justify-content:space-between;margin:1px 3px 16px}.xl-logo{width:39px;height:39px;display:grid;place-items:center;border:1px solid rgba(225,205,160,.34);border-radius:14px;color:#f9f6ee;background:linear-gradient(145deg,#756345,#3f392d);box-shadow:0 7px 18px rgba(72,58,34,.18),inset 0 1px 0 rgba(255,255,255,.24);font:600 14px Georgia,serif}.xl-head-actions{display:flex;gap:7px}.xl-mini-btn{min-height:34px;padding:0 10px;border:1px solid rgba(255,255,255,.88);border-radius:12px;color:#887755;background:rgba(255,255,255,.6);font-size:10px;font-weight:650}
-.xl-hero{position:relative;isolation:isolate;overflow:hidden;padding:19px 20px 16px;border:1px solid rgba(255,255,255,.94);border-radius:27px;background:linear-gradient(128deg,rgba(255,255,255,.93),rgba(255,255,255,.74) 48%,rgba(230,219,196,.65));box-shadow:0 19px 48px rgba(76,63,39,.095),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(167,145,103,.08);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px)}.xl-hero:before{content:"";position:absolute;z-index:-1;width:250px;height:210px;top:-135px;right:-72px;border-radius:50%;background:radial-gradient(circle,rgba(207,183,132,.43),transparent 69%)}.xl-hero-top{display:flex;justify-content:flex-end}.xl-privacy{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid rgba(255,255,255,.85);border-radius:99px;color:#8d8069;background:rgba(255,255,255,.57);font-size:10px;font-weight:600}.xl-privacy svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.65}.xl-hero-label{display:flex;align-items:center;gap:8px;margin-top:14px;color:#817866;font-size:11px}.xl-hero-label:before{content:"";width:17px;height:1px;background:linear-gradient(90deg,#866d43,#d8c49a)}.xl-total{display:flex;align-items:baseline;gap:5px;margin-top:4px;color:#302c24;font-size:clamp(38px,10vw,50px);font-weight:320;letter-spacing:-.075em;line-height:1.13;font-variant-numeric:tabular-nums}.xl-currency{color:#a48a59;font:400 .42em Georgia,serif}.xl-hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(139,119,80,.15)}.xl-mini-stat span{display:block;color:#a39a8b;font-size:10px}.xl-mini-stat strong{display:block;margin-top:4px;color:#796747;font-size:16px;font-weight:680;letter-spacing:-.035em;font-variant-numeric:tabular-nums}.xl-mini-stat.right{text-align:right}.xl-mini-stat.right strong{color:var(--rose)}
-.xl-overview{margin-top:12px;padding:17px 16px 14px;border:1px solid rgba(255,255,255,.92);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.81),rgba(255,255,255,.57));box-shadow:var(--shadow);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px)}.xl-overview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 13px}.xl-overview-title{margin:0;color:#4a4438;font-size:14px;font-weight:690}.xl-live{display:flex;align-items:center;gap:6px;color:#9b8a69;font-size:9px}.xl-live i{width:5px;height:5px;border-radius:50%;background:#9b8c68;box-shadow:0 0 0 3px rgba(155,140,104,.1)}.xl-overview-body{display:grid;grid-template-columns:minmax(140px,178px) minmax(0,1fr);align-items:center;gap:13px}.xl-chart{position:relative;width:100%;max-width:178px;aspect-ratio:1;margin:auto;display:grid;place-items:center}.xl-chart svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 8px rgba(85,70,43,.055))}.xl-track{fill:none;stroke:rgba(156,145,121,.15)}#xl-asset-arc,#xl-liability-arc,#xl-wish-arc{fill:none;stroke-linecap:round;transition:stroke-dasharray .55s ease,stroke-dashoffset .55s ease}#xl-asset-arc{stroke:#b99d68}#xl-liability-arc{stroke:#a77d72}#xl-wish-arc{stroke:#7e907e}.xl-chart-core{position:absolute;inset:0;display:grid;align-content:center;justify-items:center;pointer-events:none;text-align:center}.xl-chart-core span{color:#aea38d;font-size:8px;font-weight:700}.xl-chart-core strong{max-width:132px;overflow:hidden;margin-top:5px;color:#494235;font-size:15px;font-weight:710;letter-spacing:-.045em;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}.xl-chart-core small{margin-top:3px;color:#a49b8d;font-size:9px}.xl-legend{display:grid;gap:13px;min-width:0}.xl-legend-item{display:grid;grid-template-columns:8px minmax(0,1fr);align-items:start;column-gap:8px}.xl-dot{width:7px;height:7px;margin-top:4px;border-radius:50%}.xl-dot.asset{background:var(--gold);box-shadow:0 0 0 3px rgba(182,154,101,.1)}.xl-dot.liability{background:var(--rose);box-shadow:0 0 0 3px rgba(167,123,112,.1)}.xl-dot.wish{background:var(--sage);box-shadow:0 0 0 3px rgba(126,144,126,.1)}.xl-legend-copy{min-width:0}.xl-legend-top{display:flex;align-items:center;justify-content:space-between;gap:5px}.xl-legend-name{color:#8e8678;font-size:10px}.xl-legend-pct{color:#a89978;font-size:9px;font-weight:700;font-variant-numeric:tabular-nums}.xl-legend-value{display:block;overflow:hidden;margin-top:3px;color:#4b453a;font-size:12px;font-weight:680;letter-spacing:-.025em;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}.xl-overview-note{margin:12px 2px 0;padding-top:10px;border-top:1px solid rgba(140,123,91,.11);color:#aaa18f;font-size:9px;line-height:1.55}
-.xl-cashflow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px;padding:14px 12px;border:1px solid rgba(255,255,255,.92);border-radius:20px;background:rgba(255,255,255,.65);box-shadow:var(--shadow)}.xl-cash-item{min-width:0}.xl-cash-item span{display:block;color:#9d9587;font-size:9px}.xl-cash-item strong{display:block;overflow:hidden;margin-top:5px;color:#514a3e;font-size:13px;font-weight:700;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}.xl-cash-item.income strong{color:#788b79}.xl-cash-item.expense strong{color:#a77b70}.xl-cash-item.surplus strong.negative{color:#b35f55}
-.xl-stage{margin-top:12px;padding:16px;border:1px solid rgba(255,255,255,.92);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(255,255,255,.62));box-shadow:var(--shadow)}.xl-stage-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.xl-stage-kicker{color:#a09276;font-size:9px;font-weight:700;letter-spacing:.08em}.xl-stage-select{max-width:155px;padding:7px 9px;border:1px solid rgba(166,143,102,.2);border-radius:10px;color:#756343;background:rgba(255,255,255,.85);font-size:10px;font-weight:650}.xl-stage-name{margin-top:9px;color:#413b31;font-size:19px;font-weight:720;letter-spacing:-.04em}.xl-stage-goal{margin-top:5px;color:#817969;font-size:11px;line-height:1.6}.xl-stage-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.xl-stage-metric{padding:10px;border:1px solid rgba(175,157,122,.12);border-radius:13px;background:rgba(255,255,255,.48)}.xl-stage-metric span{display:block;color:#a49a89;font-size:9px}.xl-stage-metric strong{display:block;margin-top:4px;color:#514a3e;font-size:13px;font-weight:700}.xl-stage-gate{margin-top:11px;padding-top:10px;border-top:1px solid rgba(140,123,91,.11);color:#978e7e;font-size:10px;line-height:1.6}.xl-stage-gate b{color:#746748}.xl-stage-note{margin-top:7px;color:#b0a797;font-size:9px;line-height:1.5}
+#xl-app{width:min(100%,470px);min-height:100vh;min-height:100dvh;margin:0 auto;padding:max(15px,env(safe-area-inset-top)) 17px calc(32px + env(safe-area-inset-bottom))}
+.xl-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:1px 3px 16px}.xl-logo{width:39px;height:39px;display:grid;place-items:center;border:1px solid rgba(225,205,160,.34);border-radius:14px;color:#f9f6ee;background:linear-gradient(145deg,#756345,#3f392d);box-shadow:0 7px 18px rgba(72,58,34,.18),inset 0 1px 0 rgba(255,255,255,.24);font:600 14px Georgia,serif}.xl-head-actions{display:flex;gap:7px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.xl-mini-btn{min-height:34px;padding:0 10px;border:1px solid rgba(255,255,255,.88);border-radius:12px;color:#887755;background:rgba(255,255,255,.6);font-size:10px;font-weight:650}
+.xl-hero{position:relative;isolation:isolate;overflow:hidden;padding:19px 20px 17px;border:1px solid rgba(255,255,255,.94);border-radius:27px;background:linear-gradient(128deg,rgba(255,255,255,.93),rgba(255,255,255,.74) 48%,rgba(230,219,196,.65));box-shadow:0 19px 48px rgba(76,63,39,.095),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(167,145,103,.08);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px)}.xl-hero:before{content:"";position:absolute;z-index:-1;width:250px;height:210px;top:-135px;right:-72px;border-radius:50%;background:radial-gradient(circle,rgba(207,183,132,.43),transparent 69%)}.xl-hero-top{display:flex;justify-content:flex-end}.xl-privacy{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid rgba(255,255,255,.85);border-radius:99px;color:#8d8069;background:rgba(255,255,255,.57);font-size:10px;font-weight:600}.xl-privacy svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.65}.xl-hero-label{display:flex;align-items:center;gap:8px;margin-top:14px;color:#817866;font-size:11px}.xl-hero-label:before{content:"";width:17px;height:1px;background:linear-gradient(90deg,#866d43,#d8c49a)}.xl-total{display:flex;align-items:baseline;gap:5px;margin-top:4px;color:#302c24;font-size:clamp(38px,10vw,50px);font-weight:320;letter-spacing:-.075em;line-height:1.13;font-variant-numeric:tabular-nums}.xl-currency{color:#a48a59;font:400 .42em Georgia,serif}.xl-hero-conversion{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px 10px;margin-top:7px}.xl-hero-cny{color:#786b55;font-size:12px;font-weight:680;font-variant-numeric:tabular-nums}.xl-hero .xl-stage{position:relative;margin-top:15px;padding-top:13px;border-top:1px solid rgba(140,123,91,.16)}
+.xl-hub{margin-top:12px;padding:17px 16px 15px;border:1px solid rgba(255,255,255,.94);border-radius:25px;background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,255,255,.61));box-shadow:var(--shadow);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px)}.xl-priority{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 8px;margin:0 0 14px;padding:10px 11px;border:1px solid rgba(182,154,101,.17);border-radius:13px;background:rgba(182,154,101,.055)}.xl-priority b{color:#806d49;font-size:10px}.xl-priority p{grid-column:1/-1;margin:0;color:#817969;font-size:9px;line-height:1.6}.xl-priority button{grid-column:2;grid-row:1;padding:5px 7px;border:1px solid rgba(255,255,255,.95);border-radius:9px;color:#806d49;background:#fff;font-size:8px;font-weight:700}.xl-overview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 13px}.xl-overview-title{margin:0;color:#4a4438;font-size:14px;font-weight:690}.xl-live{display:flex;align-items:center;gap:6px;color:#9b8a69;font-size:9px}.xl-live i{width:5px;height:5px;border-radius:50%;background:#9b8c68;box-shadow:0 0 0 3px rgba(155,140,104,.1)}
+.xl-overview-body{display:grid;grid-template-columns:minmax(140px,178px) minmax(0,1fr);align-items:center;gap:13px}.xl-chart{position:relative;width:100%;max-width:178px;aspect-ratio:1;margin:auto;display:grid;place-items:center}.xl-chart svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 8px rgba(85,70,43,.055))}.xl-track{fill:none;stroke:rgba(156,145,121,.15)}#xl-expense-arc{fill:none;stroke:#a77d72;stroke-linecap:round;transition:stroke-dasharray .55s ease}.xl-chart-core{position:absolute;inset:0;display:grid;align-content:center;justify-items:center;pointer-events:none;text-align:center}.xl-chart-core span{color:#aea38d;font-size:8px;font-weight:700}.xl-chart-core strong{max-width:132px;overflow:hidden;margin-top:5px;color:#494235;font-size:15px;font-weight:710;letter-spacing:-.045em;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}.xl-legend{display:grid;gap:14px;min-width:0}.xl-legend-item{display:grid;grid-template-columns:8px minmax(0,1fr);align-items:start;column-gap:8px}.xl-dot{width:7px;height:7px;margin-top:4px;border-radius:50%}.xl-dot.asset{background:var(--gold);box-shadow:0 0 0 3px rgba(182,154,101,.1)}.xl-dot.expense{background:var(--rose);box-shadow:0 0 0 3px rgba(167,123,112,.1)}.xl-dot.surplus{background:var(--sage);box-shadow:0 0 0 3px rgba(126,144,126,.1)}.xl-legend-copy{min-width:0}.xl-legend-top{display:flex;align-items:center;justify-content:space-between;gap:5px}.xl-legend-name{color:#8e8678;font-size:10px}.xl-legend-pct{color:#a89978;font-size:9px;font-weight:700;font-variant-numeric:tabular-nums}.xl-legend-value{display:block;overflow:hidden;margin-top:3px;color:#4b453a;font-size:12px;font-weight:680;letter-spacing:-.025em;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}.xl-legend-value.negative{color:#b35f55}
+.xl-stage{margin-top:14px;padding-top:14px;border-top:1px solid rgba(140,123,91,.14)}.xl-stage-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.xl-stage-kicker{color:#a09276;font-size:9px;font-weight:700;letter-spacing:.08em}.xl-stage-status{display:flex;align-items:center;gap:6px;margin-top:6px;color:#8c8069;font-size:9px}.xl-stage-status i{width:6px;height:6px;border-radius:50%;background:#9b8c68;box-shadow:0 0 0 3px rgba(155,140,104,.12)}.xl-stage-select{max-width:155px;padding:7px 9px;border:1px solid rgba(166,143,102,.2);border-radius:10px;color:#756343;background:rgba(255,255,255,.85);font-size:10px;font-weight:650}.xl-stage-name{margin:11px 0 0;color:#413b31;font-size:21px;font-weight:720;letter-spacing:-.04em}.xl-stage-goal{margin:9px 0 0;padding:12px 13px;border:1px solid rgba(182,154,101,.17);border-radius:14px;color:#777064;background:rgba(182,154,101,.055);font-size:11px;line-height:1.7}.xl-stage-goal b{display:block;margin-bottom:4px;color:#806d49;font-size:9px;font-weight:750;letter-spacing:.04em}
+.xl-section-top{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:22px 2px 11px}.xl-section-title{margin:0;color:#39352d;font-size:22px;font-weight:680;letter-spacing:-.055em}.xl-section-sub{margin-top:4px;color:#aaa192;font-size:10px}.xl-record-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.xl-record-tile{min-width:0;min-height:93px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:10px 4px;border:1px solid rgba(255,255,255,.94);border-radius:17px;color:#514a3e;background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(255,255,255,.64));box-shadow:0 7px 18px rgba(72,62,44,.045),inset 0 1px 0 #fff}.xl-record-tile.active{border-color:rgba(182,154,101,.42);background:linear-gradient(145deg,#fff,#eee6d6);box-shadow:0 5px 15px rgba(72,62,44,.07),inset 0 1px 0 #fff}.xl-tile-icon{width:29px;height:29px;display:grid;place-items:center;border-radius:10px;color:#9b8253;background:rgba(182,154,101,.1);font-size:15px;font-style:normal}.xl-record-tile.income .xl-tile-icon{color:#788b79;background:rgba(120,139,121,.11)}.xl-record-tile.expense .xl-tile-icon{color:#a77b70;background:rgba(167,123,112,.11)}.xl-tile-name{font-size:10px;font-weight:700}.xl-tile-meta{max-width:100%;overflow:hidden;color:#a49a89;font-size:8px;text-overflow:ellipsis;white-space:nowrap}
+.xl-manage{overflow:hidden;margin-top:10px;border:1px solid rgba(255,255,255,.92);border-radius:20px;background:rgba(255,255,255,.63);box-shadow:0 12px 30px rgba(67,57,39,.045),inset 0 1px 0 #fff;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.xl-manage-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(170,151,117,.13)}.xl-manage-title{color:#514a3e;font-size:12px;font-weight:700}.xl-manage-meta{margin-top:3px;color:#aaa192;font-size:9px}.xl-add{min-height:32px;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:0 10px;border:1px solid rgba(255,255,255,.94);border-radius:11px;color:#796747;background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(255,255,255,.64));box-shadow:0 4px 12px rgba(72,62,44,.04);font-size:10px;font-weight:680}.xl-panel{padding:0 12px 11px}.xl-record-list{padding:4px 10px;border:1px solid rgba(160,145,115,.1);border-radius:15px;background:rgba(255,255,255,.44)}.xl-record{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}.xl-record:last-child{border-bottom:0}.xl-record-left{display:flex;align-items:center;gap:9px;min-width:0}.xl-record-mark{width:27px;height:27px;display:grid;place-items:center;border-radius:10px;color:#957e53;background:rgba(182,154,101,.1);font-size:12px;font-style:normal}.xl-record-mark.expense,.xl-record-mark.liability{color:#a77b70;background:rgba(167,123,112,.1)}.xl-record-mark.income{color:#788b79;background:rgba(120,139,121,.1)}.xl-record-copy{min-width:0}.xl-record-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}.xl-record-meta{display:block;margin-top:3px;color:#aaa192;font-size:8px}.xl-record-value{flex:0 0 auto;color:#796747;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}.xl-record-value.expense,.xl-record-value.liability{color:#a77b70}.xl-record-value.income{color:#788b79}.xl-wish{width:100%;display:flex;align-items:center;gap:10px;padding:11px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}.xl-wish:last-child{border-bottom:0}.xl-wish-icon{width:29px;height:29px;display:grid;place-items:center;flex:0 0 auto;border-radius:10px;color:#9b8253;background:rgba(182,154,101,.1);font-size:13px}.xl-wish-copy{flex:1;min-width:0}.xl-wish-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}.xl-wish-desc{display:block;overflow:hidden;margin-top:3px;color:#aaa191;font-size:8px;text-overflow:ellipsis;white-space:nowrap}.xl-wish-price{flex:0 0 auto;color:#796747;font-size:10px;font-weight:680}.xl-wish.done{background:rgba(126,144,126,.055)}.xl-empty{padding:18px 10px;color:#a99f8f;font-size:10px;text-align:center}.xl-empty b{display:block;margin-bottom:5px;color:#b7a47d;font-size:18px;font-weight:400}.xl-debt-subpanel{margin:10px 0 0;padding:11px;border:1px solid rgba(167,123,112,.17);border-radius:16px;background:rgba(255,255,255,.55)}.xl-debt-subhead{display:flex;align-items:center;justify-content:space-between;gap:8px}.xl-debt-subhead b{font-size:11px;color:#725c54}.xl-debt-subhead small{display:block;margin-top:3px;color:#aa958b;font-size:8px}.xl-debt-subhead strong{color:#9e6e64;font-size:11px}.xl-debt-note{margin:8px 1px 0;color:#a99b90;font-size:8px;line-height:1.55}
+.xl-footnote{margin:16px 5px 0;color:#aaa192;font-size:9px;line-height:1.6;text-align:center}.xl-toast{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,12px);max-width:calc(100% - 38px);padding:10px 15px;border:1px solid rgba(255,255,255,.88);border-radius:99px;color:#f8f5ed;background:rgba(58,52,41,.92);box-shadow:0 8px 28px rgba(40,34,24,.18);opacity:0;pointer-events:none;font-size:10px;white-space:nowrap;transition:opacity .2s,transform .2s}.xl-toast.show{opacity:1;transform:translate(-50%,0)}.xl-backdrop{position:fixed;z-index:40;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:15px 12px 0;background:rgba(43,39,31,.22);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}.xl-backdrop.xl-hidden{display:none}.xl-modal{width:min(100%,470px);max-height:min(86dvh,720px);overflow:auto;padding:9px 18px calc(23px + env(safe-area-inset-bottom));border:1px solid rgba(255,255,255,.94);border-bottom:0;border-radius:25px 25px 0 0;background:linear-gradient(150deg,#fcfbf7,#f2efe7);box-shadow:0 -14px 45px rgba(42,36,27,.15),inset 0 1px 0 #fff;animation:xl-sheet-in .23s ease-out}@keyframes xl-sheet-in{from{transform:translateY(24px);opacity:.75}to{transform:translateY(0);opacity:1}}.xl-grab{width:36px;height:4px;margin:0 auto 15px;border-radius:9px;background:#d8d1c3}.xl-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.xl-modal-head h2{margin:0;color:#443e33;font-size:18px;font-weight:700}.xl-close{width:31px;height:31px;border:1px solid rgba(160,145,115,.13);border-radius:50%;color:#857c6c;background:rgba(255,255,255,.7);font-size:19px;line-height:1}.xl-field{display:grid;gap:7px;margin-top:12px}.xl-field label{color:#8e8576;font-size:11px}.xl-field input,.xl-field textarea,.xl-field select{width:100%;min-height:46px;padding:0 13px;border:1px solid rgba(159,143,110,.2);border-radius:13px;outline:none;color:#37332b;background:rgba(255,255,255,.84);font-size:14px}.xl-field textarea{min-height:62px;padding:12px 13px;resize:vertical}.xl-field input:focus,.xl-field textarea:focus,.xl-field select:focus{border-color:rgba(166,139,88,.65);box-shadow:0 0 0 3px rgba(182,154,101,.12)}.xl-check{display:flex;align-items:center;gap:9px;margin-top:14px;color:#777063;font-size:11px}.xl-check input{width:16px;height:16px;accent-color:#8b7958}.xl-actions{display:flex;gap:9px;margin-top:20px}.xl-save,.xl-delete{min-height:46px;padding:0 17px;border:0;border-radius:14px;font-size:11px;font-weight:700}.xl-save{flex:1;color:#fbf8f0;background:linear-gradient(135deg,#b7a174,#876e45);box-shadow:0 7px 16px rgba(137,112,67,.2),inset 0 1px 0 rgba(255,255,255,.2)}.xl-delete{color:#a46f65;background:rgba(167,123,112,.11)}
+@media(min-width:700px){body{padding:22px 0}#xl-app{min-height:calc(100dvh - 44px);padding-top:19px;border:1px solid rgba(255,255,255,.62);border-radius:32px;background:rgba(248,246,240,.45);box-shadow:0 24px 90px rgba(73,62,42,.1)}.xl-backdrop{align-items:center;padding-bottom:12px}.xl-modal{border-bottom:1px solid rgba(255,255,255,.94);border-radius:25px}}@media(max-width:360px){#xl-app{padding-left:13px;padding-right:13px}.xl-hub{padding-left:12px;padding-right:12px}.xl-overview-body{grid-template-columns:minmax(125px,145px) minmax(0,1fr);gap:8px}.xl-legend{gap:10px}.xl-legend-value{font-size:11px}.xl-record-grid{gap:5px}.xl-record-tile{min-height:86px}.xl-tile-name{font-size:9px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-.xl-timeline{margin-top:12px;padding:16px;border:1px solid rgba(255,255,255,.92);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(255,255,255,.62));box-shadow:var(--shadow)}
-.xl-timeline-head{display:flex;align-items:center;justify-content:space-between;gap:9px}.xl-timeline-title{color:#484236;font-size:14px;font-weight:700}.xl-timeline-sub{margin-top:4px;color:#a49a89;font-size:9px}.xl-timeline-switch{display:flex;gap:5px;margin-top:13px;padding:4px;border:1px solid rgba(173,153,115,.13);border-radius:12px;background:rgba(237,232,220,.48)}.xl-timeline-switch button{flex:1;min-height:31px;border:0;border-radius:9px;color:#9a907f;background:transparent;font-size:10px}.xl-timeline-switch button.active{color:#786441;background:rgba(255,255,255,.9);box-shadow:0 2px 8px rgba(70,57,35,.07)}.xl-timeline-yearbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 8px}.xl-timeline-yearbar label{color:#9c927f;font-size:10px}.xl-timeline-yearbar select{padding:6px 9px;border:1px solid rgba(166,143,102,.2);border-radius:9px;color:#756343;background:rgba(255,255,255,.85);font-size:10px}.xl-timeline-list{display:grid;gap:7px}.xl-month-row,.xl-year-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:9px;padding:10px 9px;border:1px solid rgba(175,157,122,.13);border-radius:13px;background:rgba(255,255,255,.48)}.xl-month-row.current{border-color:rgba(182,154,101,.55);background:rgba(248,243,232,.92);box-shadow:inset 0 0 0 1px rgba(182,154,101,.08)}.xl-month-label{color:#746a58;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums}.xl-month-copy{min-width:0}.xl-month-copy b{display:block;overflow:hidden;color:#514a3e;font-size:10px;text-overflow:ellipsis;white-space:nowrap}.xl-month-copy small{display:block;overflow:hidden;margin-top:3px;color:#a49a89;font-size:8px;text-overflow:ellipsis;white-space:nowrap}.xl-month-tag{padding:4px 6px;border-radius:8px;color:#867451;background:rgba(182,154,101,.1);font-size:8px;white-space:nowrap}.xl-month-tag.stage-1{color:#728372;background:rgba(120,139,121,.12)}.xl-month-tag.stage-2{color:#8d7651;background:rgba(182,154,101,.13)}.xl-month-tag.stage-3{color:#6d7f91;background:rgba(120,137,154,.12)}.xl-month-tag.stage-4{color:#8b716b;background:rgba(167,123,112,.12)}.xl-year-row{grid-template-columns:49px minmax(0,1fr);align-items:start}.xl-year-label{padding-top:2px;color:#756747;font-size:12px;font-weight:750}.xl-year-phases{display:flex;flex-wrap:wrap;gap:5px}.xl-year-chip{padding:5px 7px;border-radius:8px;color:#81704f;background:rgba(182,154,101,.11);font-size:8px}.xl-year-chip.stage-1{color:#728372;background:rgba(120,139,121,.12)}.xl-year-chip.stage-2{color:#8d7651;background:rgba(182,154,101,.13)}.xl-year-chip.stage-3{color:#6d7f91;background:rgba(120,137,154,.12)}.xl-year-chip.stage-4{color:#8b716b;background:rgba(167,123,112,.12)}.xl-year-note{margin-top:6px;color:#a49a89;font-size:8px;line-height:1.5}.xl-timeline-foot{margin-top:10px;color:#aaa18f;font-size:9px;line-height:1.55}.xl-date-editor[hidden]{display:none}.xl-date-editor{display:grid;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(140,123,91,.11)}.xl-date-edit-row{display:grid;grid-template-columns:minmax(0,1fr) 1fr 1fr;align-items:center;gap:6px}.xl-date-edit-row span{color:#776b56;font-size:9px}.xl-date-edit-row input{width:100%;min-width:0;padding:7px 5px;border:1px solid rgba(166,143,102,.22);border-radius:8px;color:#615741;background:#fff;font-size:9px}.xl-date-edit-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:3px}.xl-date-edit-actions button{padding:8px 11px;border:1px solid rgba(166,143,102,.2);border-radius:9px;color:#826f4b;background:#fff;font-size:9px}.xl-date-edit-actions .primary{color:#fff;background:linear-gradient(135deg,#b7a174,#876e45)}\n.xl-notice{display:flex;gap:8px;margin-top:12px;padding:11px 12px;border:1px solid rgba(182,154,101,.16);border-radius:14px;color:#8d8068;background:rgba(255,255,255,.44);font-size:9px;line-height:1.6}.xl-notice b{color:#756342}.xl-stage-focus{padding:16px 16px 14px;border-color:rgba(255,255,255,.96);background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.68) 68%,rgba(230,219,196,.48))}.xl-stage-status{display:flex;align-items:center;gap:6px;margin-top:6px;color:#8c8069;font-size:9px}.xl-stage-status i{width:6px;height:6px;border-radius:50%;background:#9b8c68;box-shadow:0 0 0 3px rgba(155,140,104,.12)}.xl-stage-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:10px}.xl-stage-title-row .xl-stage-name{margin:0;font-size:21px}.xl-stage-period{flex:0 0 auto;color:#9a8760;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums}.xl-stage-debt{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;padding:11px 12px;border:1px solid rgba(167,123,112,.17);border-radius:14px;background:rgba(167,123,112,.065)}.xl-stage-debt span{display:block;color:#9a837a;font-size:9px}.xl-stage-debt strong{display:block;margin-top:3px;color:#9e6e64;font-size:18px;font-weight:720;font-variant-numeric:tabular-nums}.xl-stage-debt small{max-width:45%;color:#a99b90;font-size:8px;line-height:1.5;text-align:right}.xl-stage-grid-compact{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:9px}.xl-stage-grid-compact .xl-stage-metric{padding:8px 10px}.xl-stage-gate{margin-top:10px}.xl-stage-life{margin-top:10px;padding:10px 11px;border:1px solid rgba(120,139,121,.15);border-radius:13px;background:rgba(120,139,121,.055)}.xl-stage-life>span{color:#788b79;font-size:9px;font-weight:700}.xl-stage-life p{margin:5px 0 0;color:#777468;font-size:10px;line-height:1.6}.xl-stage-actions{display:flex;justify-content:space-between;gap:8px;margin-top:10px}.xl-stage-actions .xl-mini-btn{min-height:31px;font-size:9px}.xl-stage-note{margin-top:8px}.xl-timeline-current{padding:5px 8px;border-radius:9px;color:#806d49;background:rgba(182,154,101,.1);font-size:9px;white-space:nowrap}.xl-timeline-body.xl-hidden{display:none!important}.xl-vision{margin-top:12px;padding:15px 16px;border:1px solid rgba(255,255,255,.92);border-radius:21px;background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.52));box-shadow:var(--shadow)}.xl-vision-kicker{color:#a09276;font-size:8px;font-weight:700;letter-spacing:.12em}.xl-vision h2{margin:7px 0 5px;color:#484236;font-size:15px}.xl-vision p{margin:0;color:#817969;font-size:10px;line-height:1.7}.xl-vision-foot{margin-top:9px;padding-top:8px;border-top:1px solid rgba(140,123,91,.11);color:#9a8b6e;font-size:9px;line-height:1.6}
-.xl-section-top{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:22px 2px 11px}.xl-section-title{margin:0;color:#39352d;font-size:22px;font-weight:680;letter-spacing:-.055em}.xl-section-sub{margin-top:4px;color:#aaa192;font-size:10px}.xl-add{min-height:37px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 13px;border:1px solid rgba(255,255,255,.94);border-radius:13px;color:#796747;background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(255,255,255,.64));box-shadow:0 5px 14px rgba(72,62,44,.05),inset 0 1px 0 #fff;font-size:11px;font-weight:680}.xl-manage{overflow:hidden;border:1px solid rgba(255,255,255,.92);border-radius:20px;background:rgba(255,255,255,.63);box-shadow:0 12px 30px rgba(67,57,39,.045),inset 0 1px 0 #fff;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.xl-fold{width:100%;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border:0;color:inherit;background:transparent;text-align:left}.xl-fold-left{display:flex;align-items:center;gap:11px;min-width:0}.xl-fold-icon{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(182,154,101,.18);border-radius:12px;color:#9b8253;background:rgba(182,154,101,.09);font-size:16px;font-style:normal}.xl-fold-icon.expense{color:#a77b70;background:rgba(167,123,112,.1)}.xl-fold-icon.income{color:#788b79;background:rgba(120,139,121,.1)}.xl-fold-icon.liability{color:#a77b70;background:rgba(167,123,112,.1)}.xl-fold-copy{min-width:0}.xl-fold-title{display:block;color:#514a3e;font-size:12px;font-weight:680}.xl-fold-meta{display:block;margin-top:4px;color:#aaa192;font-size:9px}.xl-fold-right{display:flex;align-items:center;gap:9px;color:#786747;font-size:12px;font-weight:680;white-space:nowrap}.xl-chevron{width:15px;height:15px;fill:none;stroke:#a99c83;stroke-width:1.8;transition:transform .2s}.xl-fold[aria-expanded="true"] .xl-chevron{transform:rotate(180deg)}.xl-panel{padding:0 12px 11px}.xl-hidden{display:none!important}.xl-record-list{padding:4px 10px;border:1px solid rgba(160,145,115,.1);border-radius:15px;background:rgba(255,255,255,.44)}.xl-record{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}.xl-record:last-child{border-bottom:0}.xl-record-left{display:flex;align-items:center;gap:9px;min-width:0}.xl-record-mark{width:27px;height:27px;display:grid;place-items:center;border-radius:10px;color:#957e53;background:rgba(182,154,101,.1);font-size:12px;font-style:normal}.xl-record-mark.expense,.xl-record-mark.liability{color:#a77b70;background:rgba(167,123,112,.1)}.xl-record-mark.income{color:#788b79;background:rgba(120,139,121,.1)}.xl-record-copy{min-width:0}.xl-record-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}.xl-record-meta{display:block;margin-top:3px;color:#aaa192;font-size:8px}.xl-record-value{flex:0 0 auto;color:#796747;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}.xl-record-value.expense,.xl-record-value.liability{color:#a77b70}.xl-record-value.income{color:#788b79}.xl-wish{width:100%;display:flex;align-items:center;gap:10px;padding:11px 2px;border:0;border-bottom:1px solid rgba(170,151,117,.13);color:inherit;background:transparent;text-align:left}.xl-wish:last-child{border-bottom:0}.xl-wish-icon{width:29px;height:29px;display:grid;place-items:center;flex:0 0 auto;border-radius:10px;color:#9b8253;background:rgba(182,154,101,.1);font-size:13px}.xl-wish-copy{flex:1;min-width:0}.xl-wish-name{display:block;overflow:hidden;color:#595246;font-size:11px;font-weight:660;text-overflow:ellipsis;white-space:nowrap}.xl-wish-desc{display:block;overflow:hidden;margin-top:3px;color:#aaa191;font-size:8px;text-overflow:ellipsis;white-space:nowrap}.xl-wish-price{flex:0 0 auto;color:#796747;font-size:10px;font-weight:680}.xl-wish.done{background:rgba(126,144,126,.055)}.xl-wish.done .xl-wish-icon{color:#718773;background:rgba(126,144,126,.15)}.xl-empty{padding:18px 10px;color:#a99f8f;font-size:10px;text-align:center}.xl-empty b{display:block;margin-bottom:5px;color:#b7a47d;font-size:18px;font-weight:400}
-.xl-nav{position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(calc(100% - 24px),438px);padding:7px 7px calc(7px + env(safe-area-inset-bottom));border:1px solid rgba(255,255,255,.9);border-bottom:0;border-radius:21px 21px 0 0;background:rgba(249,247,241,.9);box-shadow:0 -8px 30px rgba(75,63,42,.055),inset 0 1px 0 #fff;backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px)}.xl-nav-items{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}.xl-nav-btn{min-width:0;min-height:49px;display:grid;place-items:center;align-content:center;gap:4px;border:0;border-radius:13px;color:#aaa291;background:transparent;font-size:9px;font-weight:620}.xl-nav-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}.xl-nav-btn.active{color:#7b6744;background:linear-gradient(145deg,rgba(255,255,255,.93),rgba(234,226,210,.58));box-shadow:0 3px 10px rgba(75,63,42,.045),inset 0 1px 0 #fff}
-.xl-toast{position:fixed;z-index:60;left:50%;bottom:calc(82px + env(safe-area-inset-bottom));transform:translate(-50%,12px);max-width:calc(100% - 38px);padding:10px 15px;border:1px solid rgba(255,255,255,.88);border-radius:99px;color:#f8f5ed;background:rgba(58,52,41,.92);box-shadow:0 8px 28px rgba(40,34,24,.18);opacity:0;pointer-events:none;font-size:10px;white-space:nowrap;transition:opacity .2s,transform .2s}.xl-toast.show{opacity:1;transform:translate(-50%,0)}.xl-backdrop{position:fixed;z-index:40;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:15px 12px 0;background:rgba(43,39,31,.22);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}.xl-backdrop.xl-hidden{display:none}.xl-modal{width:min(100%,470px);max-height:min(86dvh,720px);overflow:auto;padding:9px 18px calc(23px + env(safe-area-inset-bottom));border:1px solid rgba(255,255,255,.94);border-bottom:0;border-radius:25px 25px 0 0;background:linear-gradient(150deg,#fcfbf7,#f2efe7);box-shadow:0 -14px 45px rgba(42,36,27,.15),inset 0 1px 0 #fff;animation:xl-sheet-in .23s ease-out}@keyframes xl-sheet-in{from{transform:translateY(24px);opacity:.75}to{transform:translateY(0);opacity:1}}.xl-grab{width:36px;height:4px;margin:0 auto 15px;border-radius:9px;background:#d8d1c3}.xl-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.xl-modal-head h2{margin:0;color:#443e33;font-size:18px;font-weight:700}.xl-close{width:31px;height:31px;border:1px solid rgba(160,145,115,.13);border-radius:50%;color:#857c6c;background:rgba(255,255,255,.7);font-size:19px;line-height:1}.xl-field{display:grid;gap:7px;margin-top:12px}.xl-field label{color:#8e8576;font-size:11px}.xl-field input,.xl-field textarea,.xl-field select{width:100%;min-height:46px;padding:0 13px;border:1px solid rgba(159,143,110,.2);border-radius:13px;outline:none;color:#37332b;background:rgba(255,255,255,.84);font-size:14px}.xl-field textarea{min-height:62px;padding:12px 13px;resize:vertical}.xl-field input:focus,.xl-field textarea:focus,.xl-field select:focus{border-color:rgba(166,139,88,.65);box-shadow:0 0 0 3px rgba(182,154,101,.12)}.xl-check{display:flex;align-items:center;gap:9px;margin-top:14px;color:#777063;font-size:11px}.xl-check input{width:16px;height:16px;accent-color:#8b7958}.xl-actions{display:flex;gap:9px;margin-top:20px}.xl-save,.xl-delete{min-height:46px;padding:0 17px;border:0;border-radius:14px;font-size:11px;font-weight:700}.xl-save{flex:1;color:#fbf8f0;background:linear-gradient(135deg,#b7a174,#876e45);box-shadow:0 7px 16px rgba(137,112,67,.2),inset 0 1px 0 rgba(255,255,255,.2)}.xl-delete{color:#a46f65;background:rgba(167,123,112,.11)}.xl-footnote{margin:16px 5px 0;color:#aaa192;font-size:9px;line-height:1.6;text-align:center}
-@media(min-width:700px){body{padding:22px 0}#xl-app{min-height:calc(100dvh - 44px);padding-top:19px;border:1px solid rgba(255,255,255,.62);border-radius:32px;background:rgba(248,246,240,.45);box-shadow:0 24px 90px rgba(73,62,42,.1)}.xl-nav{bottom:22px;border-bottom:1px solid rgba(255,255,255,.9);border-radius:21px}.xl-backdrop{align-items:center;padding-bottom:12px}.xl-modal{border-bottom:1px solid rgba(255,255,255,.94);border-radius:25px}}@media(max-width:360px){#xl-app{padding-left:13px;padding-right:13px}.xl-overview{padding-left:12px;padding-right:12px}.xl-overview-body{grid-template-columns:minmax(125px,145px) minmax(0,1fr);gap:8px}.xl-legend{gap:10px}.xl-legend-value{font-size:11px}.xl-nav-btn{font-size:8px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* V10：可编辑年龄年月、人生重心卡片、精致分类图标 */
+.xl-profile-pill{min-height:34px;display:inline-flex;align-items:center;gap:6px;padding:0 10px;border:1px solid rgba(255,255,255,.9);border-radius:12px;color:#826f4b;background:rgba(255,255,255,.68);box-shadow:0 4px 12px rgba(72,62,44,.035);font-size:10px;font-weight:700;font-variant-numeric:tabular-nums}
+.xl-profile-pill svg{width:12px;height:12px;fill:none;stroke:#a18b62;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.xl-profile-separator{color:#c1b69f}
+.xl-focus{margin-top:13px;padding:12px 13px 11px;border:1px solid rgba(182,154,101,.19);border-radius:16px;background:linear-gradient(135deg,rgba(182,154,101,.075),rgba(255,255,255,.62));box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+.xl-focus-head{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#9a8760;font-size:8px;font-weight:750;letter-spacing:.09em}
+.xl-focus-head span:last-child{padding:4px 7px;border-radius:99px;background:rgba(182,154,101,.1);letter-spacing:0}
+
+
+
+
+
+
+
+.xl-focus-end{margin-top:8px;padding-top:7px;border-top:1px solid rgba(140,123,91,.12);color:#8b7651;font-size:10px;font-weight:800;letter-spacing:.08em;text-align:right}
+.xl-profile-field-hint{margin-top:7px;color:#aaa18f;font-size:9px;line-height:1.6}
+.xl-tile-icon svg,.xl-record-mark svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.xl-record-mark svg{width:14px;height:14px}
+.xl-record-tile.goal .xl-tile-icon{color:#788b79;background:rgba(120,139,121,.11)}
+.xl-record-tile.asset .xl-tile-icon{color:#9b8253;background:rgba(182,154,101,.12)}
+@media(max-width:360px){.xl-profile-pill{gap:4px;padding:0 7px;font-size:9px}.xl-focus{padding:10px}.xl-focus-copy{font-size:8px}}
+
+
+/* V11：记录独立删除、分类默认折叠、兼容式年月选择、精简说明 */
+.xl-focus-message{margin:10px 0 0;color:#655b4a;font-size:10px;font-weight:520;line-height:1.85;letter-spacing:-.015em;text-wrap:pretty}
+.xl-profile-date-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.xl-profile-date-grid .xl-field{min-width:0}
+.xl-profile-date-grid select{width:100%;min-height:46px;padding:0 12px;border:1px solid rgba(159,143,110,.2);border-radius:13px;color:#37332b;background:rgba(255,255,255,.84);font-size:14px}
+.xl-tile-toggle{display:block;margin-top:1px;color:#a09276;font-size:8px;letter-spacing:.02em}
+.xl-record-row,.xl-wish-row{display:flex;align-items:center;gap:5px;border-bottom:1px solid rgba(170,151,117,.13)}
+.xl-record-row:last-child,.xl-wish-row:last-child{border-bottom:0}
+.xl-record-row .xl-record,.xl-wish-row .xl-wish{flex:1;min-width:0;border-bottom:0}
+.xl-wish-row .xl-wish{width:auto}
+.xl-record-delete{width:31px;height:31px;flex:0 0 31px;display:grid;place-items:center;border:1px solid rgba(167,123,112,.13);border-radius:10px;color:#a77b70;background:rgba(167,123,112,.055);transition:background .15s,border-color .15s}
+.xl-record-delete:active{background:rgba(167,123,112,.15);border-color:rgba(167,123,112,.3)}
+.xl-record-delete svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.xl-manage[hidden]{display:none!important}
+@media(max-width:360px){.xl-focus-message{font-size:9px;line-height:1.8}.xl-record-delete{width:29px;height:29px;flex-basis:29px}}
+
+
+/* V12：品牌文字、资产概览与阶段字体清晰度优化 */
+.xl-logo{width:auto;min-width:66px;height:39px;padding:0 10px;font-family:var(--font);font-size:12px;font-weight:760;letter-spacing:.035em;white-space:nowrap}
+.xl-hero-label{color:#6f634e;font-size:12px;font-weight:700}
+.xl-total{color:#28241e;font-weight:560;letter-spacing:-.06em;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+.xl-currency{color:#8d7448}
+.xl-hero-cny{color:#5f5544;font-size:13px;font-weight:750}
+.xl-overview-title{color:#383329;font-size:16px;font-weight:760;letter-spacing:-.025em}
+.xl-chart-core span{color:#887957;font-size:9px;font-weight:750}
+.xl-chart-core strong{color:#383329;font-size:16px;font-weight:760;letter-spacing:-.035em}
+.xl-legend-name{color:#756b5b;font-size:11px;font-weight:650}
+.xl-legend-value{color:#39352d;font-size:13px;font-weight:760;letter-spacing:-.02em}
+.xl-stage-kicker{color:#89734c;font-size:10px;font-weight:760;letter-spacing:.075em}
+.xl-stage-status{color:#6e624f;font-size:10px;font-weight:650}
+.xl-stage-select{color:#59482d;font-size:11px;font-weight:750;border-color:rgba(166,143,102,.32)}
+.xl-stage-name{color:#302c24;font-size:23px;font-weight:780;letter-spacing:-.035em}
+.xl-stage-goal{color:#5e584d;background:rgba(182,154,101,.075);font-size:12px;font-weight:520;line-height:1.8}
+.xl-stage-goal b{color:#705a35;font-size:10px;font-weight:800}
+.xl-focus-message{color:#5a5144;font-size:11px;font-weight:560;line-height:1.95;letter-spacing:0;text-wrap:pretty}
+@media(max-width:360px){.xl-logo{min-width:62px;padding:0 8px;font-size:11px}.xl-total{font-size:clamp(36px,10vw,46px)}.xl-stage-name{font-size:21px}.xl-stage-goal{font-size:11px;line-height:1.75}.xl-focus-message{font-size:10px;line-height:1.85}}
+/* V13：将 Mom, you are MVP 放回重心标题行，强化文字层次 */
+.xl-focus-head{color:#826c46;font-size:10px;font-weight:800;letter-spacing:.045em}
+.xl-focus-head .xl-focus-mvp{padding:5px 9px;border:1px solid rgba(182,154,101,.2);border-radius:99px;color:#806d49;background:rgba(182,154,101,.11);font-size:9px;font-weight:800;letter-spacing:.015em;white-space:nowrap}
+.xl-focus-message{color:#574e40;font-size:11px;font-weight:540;line-height:1.95;letter-spacing:0}
+.xl-focus-message strong{color:#40372b;font-weight:800}
+@media(max-width:360px){.xl-focus-head .xl-focus-mvp{padding:4px 7px;font-size:8px}.xl-focus-message{font-size:10px;line-height:1.85}}
+
+
 </style>
 </head>
 <body>
 <div id="xl-app">
   <header class="xl-head">
-    <div class="xl-logo">XL</div>
-    <div class="xl-head-actions">
-      <button class="xl-mini-btn" id="xl-export" type="button">备份数据</button>
-      <button class="xl-mini-btn" id="xl-import-btn" type="button">恢复数据</button>
-      <input id="xl-import-file" type="file" accept="application/json,.json" class="xl-hidden">
-    </div>
+    <div class="xl-logo">王馨乐</div>
+    <button class="xl-profile-pill" id="xl-profile-edit" type="button" aria-label="修改年龄和显示年月">
+      <span id="xl-profile-age">28岁</span><span class="xl-profile-separator">·</span><span id="xl-profile-month">2026年11月</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5 5 5M4 20l4.2-.8L19 8.4a2.1 2.1 0 0 0-3-3L5.2 16.2 4 20Z"/></svg>
+    </button>
   </header>
 
   <section class="xl-hero">
-    <div class="xl-hero-top">
-      <button class="xl-privacy" id="xl-privacy" type="button" aria-label="隐藏或显示金额">
-        <svg viewBox="0 0 24 24"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
-        <span id="xl-privacy-text">隐藏金额</span>
-      </button>
-    </div>
-    <div class="xl-hero-label">净资产（总资产 − 总负债）</div>
-    <div class="xl-total" id="xl-total"><span class="xl-currency">¥</span><span>0</span></div>
-    <div class="xl-hero-bottom">
-      <div class="xl-mini-stat"><span>总资产</span><strong id="xl-assets-total">¥0</strong></div>
-      <div class="xl-mini-stat right"><span>总负债</span><strong id="xl-liabilities-total">¥0</strong></div>
-    </div>
-  </section>
-
-  <section class="xl-stage xl-stage-focus" id="xl-current-stage">
-    <div class="xl-stage-top">
-      <div>
-        <div class="xl-stage-kicker">MY FINANCIAL ROADMAP</div>
-        <div class="xl-stage-status"><i></i><span id="xl-stage-status-text">当前进行阶段</span></div>
+    <div class="xl-hero-top"><button class="xl-privacy" id="xl-privacy" type="button" aria-label="隐藏或显示金额"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span id="xl-privacy-text">隐藏金额</span></button></div>
+    <div class="xl-hero-label">总资产</div>
+    <div class="xl-total" id="xl-total"><span class="xl-currency">$</span><span id="xl-total-usd">0.00</span></div>
+    <div class="xl-hero-conversion"><strong class="xl-hero-cny" id="xl-total-cny">¥0</strong></div>
+    <section class="xl-focus" aria-label="我的人生重心">
+      <div class="xl-focus-head"><span>我的重心</span><span class="xl-focus-mvp">Mom, you are MVP!</span></div>
+      <p class="xl-focus-message">王馨乐，<strong>不要忘记你为何而出发，没有什么是你不配得到的，不要自卑和讨好，让自己配得上它。</strong>妈妈是我人生永远的 only one，我立志，改善我的生活，改变我们的人生。人活一辈子，不能白活，让妈妈享福，是我值得认真去做的事，<strong>爱你老妈。</strong></p>
+    </section>
+    <div class="xl-stage" id="xl-current-stage">
+      <div class="xl-stage-top"><div><div class="xl-stage-kicker">MY FINANCIAL ROADMAP</div><div class="xl-stage-status"><i></i><span>当前财富阶段</span></div></div>
+        <select class="xl-stage-select" id="xl-stage-select" aria-label="选择当前财务阶段"><option value="-1">财务修复期</option><option value="1">自我供养期</option><option value="2">财务积累期</option><option value="3">财务稳定期</option><option value="4">财务独立期</option></select>
       </div>
-      <select class="xl-stage-select" id="xl-stage-select" aria-label="选择当前财务阶段">
-        <option value="-1">−1 财务修复期</option><option value="1">01 自我供养期</option><option value="2">02 财富积累期</option><option value="3">03 财务安全期</option><option value="4">04 财富循环期</option>
-      </select>
+      <div class="xl-stage-name" id="xl-stage-name">财务修复期</div>
+      <div class="xl-stage-goal"><b>本阶段财务目标</b><span id="xl-stage-goal-text">还清现有债务、停止新增非必要负债，并建立能够覆盖基本生活的现金流。</span></div>
     </div>
-    <div class="xl-stage-title-row">
-      <div class="xl-stage-name" id="xl-stage-name">−1｜财务修复期</div>
-      <span class="xl-stage-period" id="xl-stage-period">2026.11 — 2028.03</span>
-    </div>
-    <div class="xl-stage-goal" id="xl-stage-goal">当前重点：还清现有债务、停止新增负债，同时建立能覆盖基本生活的现金流。</div>
-    <div class="xl-stage-debt" id="xl-stage-debt-focus">
-      <div><span>当前待偿还债务</span><strong id="xl-stage-debt">尚未录入</strong></div>
-      <small id="xl-stage-debt-status">请在下方「负债」中录入真实未偿还金额</small>
-    </div>
-    <div class="xl-stage-grid xl-stage-grid-compact">
-      <div class="xl-stage-metric"><span>计划周期</span><strong id="xl-stage-duration">17个月</strong></div>
-      <div class="xl-stage-metric"><span>距离计划结束</span><strong id="xl-stage-remaining">约16个月</strong></div>
-      <div class="xl-stage-metric"><span>目标月收入</span><strong id="xl-stage-income-target">¥4,500</strong></div>
-      <div class="xl-stage-metric"><span>必要月支出</span><strong id="xl-stage-expense-target">¥3,500</strong></div>
-    </div>
-    <div class="xl-stage-gate"><b>本阶段完成标准：</b><span id="xl-stage-gate">债务归零，连续3个月现金流为正，不再新增非必要债务。</span></div>
-    <div class="xl-stage-life"><span>这一阶段真正要换来的生活</span><p id="xl-stage-life">先把债务和生活压力降下来，让生活可以靠自己的收入独立运转。</p></div>
-    <div class="xl-stage-actions">
-      <button class="xl-mini-btn" id="xl-edit-targets" type="button">调整收入指标</button>
-      <button class="xl-mini-btn" id="xl-toggle-timeline" type="button" aria-expanded="false">查看完整阶段时间轴　⌄</button>
-    </div>
-    <div class="xl-stage-note">计划日期是目标坐标，不代表到期自动晋级；只有实际完成条件，才进入下一阶段。</div>
   </section>
 
-  <section class="xl-overview">
-    <div class="xl-overview-head"><h2 class="xl-overview-title">财富全景</h2><div class="xl-live"><i></i>实时汇总</div></div>
+  <section class="xl-hub" id="xl-financial-hub">
+    <div class="xl-priority"><b>当前行动原则</b><button id="xl-mom-goal" type="button">记录妈妈的心愿＋</button><p>妈妈与父母放在人生价值第一位 · 赚钱是当前行动优先级 · 保障基本生活后，可支配资金优先还债</p></div>
+    <div class="xl-overview-head"><h2 class="xl-overview-title">现有资产</h2></div>
     <div class="xl-overview-body">
-      <div class="xl-chart">
-        <svg viewBox="0 0 210 210" aria-label="总资产、总负债和心愿完成情况">
-          <circle class="xl-track" cx="105" cy="105" r="86" stroke-width="13"/>
-          <circle id="xl-asset-arc" cx="105" cy="105" r="86" stroke-width="13" transform="rotate(-90 105 105)"/>
-          <circle id="xl-liability-arc" cx="105" cy="105" r="86" stroke-width="13" transform="rotate(-90 105 105)"/>
-          <circle class="xl-track" cx="105" cy="105" r="66" stroke-width="10"/>
-          <circle id="xl-wish-arc" cx="105" cy="105" r="66" stroke-width="10" transform="rotate(-90 105 105)"/>
-        </svg>
-        <div class="xl-chart-core"><span>当前净资产</span><strong id="xl-chart-center">¥0</strong><small>资产减去负债</small></div>
-      </div>
+      <div class="xl-chart"><svg viewBox="0 0 210 210" aria-label="总资产、累计支出和盈余"><circle class="xl-track" cx="105" cy="105" r="86" stroke-width="13"/><circle id="xl-expense-arc" cx="105" cy="105" r="86" stroke-width="13" transform="rotate(-90 105 105)"/></svg><div class="xl-chart-core"><span>当前盈余</span><strong id="xl-chart-center">¥0</strong></div></div>
       <div class="xl-legend">
-        <div class="xl-legend-item"><i class="xl-dot asset"></i><div class="xl-legend-copy"><div class="xl-legend-top"><span class="xl-legend-name">总资产</span><span class="xl-legend-pct" id="xl-asset-percent">0%</span></div><strong class="xl-legend-value" id="xl-chart-assets">¥0</strong></div></div>
-        <div class="xl-legend-item"><i class="xl-dot liability"></i><div class="xl-legend-copy"><div class="xl-legend-top"><span class="xl-legend-name">总负债</span><span class="xl-legend-pct" id="xl-liability-percent">0%</span></div><strong class="xl-legend-value" id="xl-chart-liabilities">¥0</strong></div></div>
-        <div class="xl-legend-item"><i class="xl-dot wish"></i><div class="xl-legend-copy"><div class="xl-legend-top"><span class="xl-legend-name">心愿完成</span><span class="xl-legend-pct" id="xl-wish-percent">0%</span></div><strong class="xl-legend-value" id="xl-wish-count">0 / 0 项</strong></div></div>
+        <div class="xl-legend-item"><i class="xl-dot asset"></i><div class="xl-legend-copy"><div class="xl-legend-top"><span class="xl-legend-name">总资产</span><span class="xl-legend-pct" id="xl-asset-percent">100%</span></div><strong class="xl-legend-value" id="xl-chart-assets">¥0</strong></div></div>
+        <div class="xl-legend-item"><i class="xl-dot expense"></i><div class="xl-legend-copy"><div class="xl-legend-top"><span class="xl-legend-name">累计支出</span><span class="xl-legend-pct" id="xl-expense-percent">0%</span></div><strong class="xl-legend-value" id="xl-chart-expenses">¥0</strong></div></div>
+        <div class="xl-legend-item"><i class="xl-dot surplus"></i><div class="xl-legend-copy"><div class="xl-legend-top"><span class="xl-legend-name">盈余</span></div><strong class="xl-legend-value" id="xl-chart-surplus">¥0</strong></div></div>
       </div>
     </div>
-    <div class="xl-overview-note">净资产 = 当前资产余额 − 当前未偿还负债。日常支出不会直接计入负债。</div>
+
   </section>
 
-  <section class="xl-cashflow">
-    <div class="xl-cash-item income"><span>本月收入</span><strong id="xl-month-income">¥0</strong></div>
-    <div class="xl-cash-item expense"><span>本月支出</span><strong id="xl-month-expense">¥0</strong></div>
-    <div class="xl-cash-item surplus"><span>本月盈余</span><strong id="xl-month-surplus">¥0</strong></div>
-  </section>
-
-
-
-  <section class="xl-timeline" id="xl-timeline">
-    <div class="xl-timeline-head">
-      <div><div class="xl-timeline-title">完整阶段规划</div><div class="xl-timeline-sub">2026年11月开始 · 按月或按年查看</div></div>
-      <span class="xl-timeline-current" id="xl-timeline-current">当前：财务修复期</span>
-    </div>
-    <div class="xl-timeline-body xl-hidden" id="xl-timeline-body">
-    <div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="xl-mini-btn" id="xl-toggle-date-editor" type="button">调整阶段日期</button></div>
-    <div class="xl-timeline-switch"><button type="button" data-xl-timeline-view="month" class="active">按月查看</button><button type="button" data-xl-timeline-view="year">按年查看</button></div>
-    <div class="xl-timeline-yearbar"><label id="xl-timeline-view-label">选择年份，查看每个月的阶段安排</label><select id="xl-timeline-year" aria-label="选择年份"></select></div>
-    <div class="xl-timeline-list" id="xl-timeline-content"></div>
-    <div class="xl-timeline-foot">阶段日期是规划坐标，不代表到期自动晋级。只有完成实际财务条件，才正式进入下一阶段。</div>
-    <div class="xl-date-editor" id="xl-date-editor" hidden>
-      <div class="xl-date-edit-row"><span>阶段</span><span>开始月份</span><span>目标结束</span></div>
-      <div id="xl-date-editor-fields"></div>
-      <div class="xl-date-edit-actions"><button type="button" id="xl-cancel-date-edit">取消</button><button type="button" class="primary" id="xl-save-date-edit">保存时间表</button></div>
-      <div class="xl-timeline-foot">第四阶段不设置结束月份，代表长期持续。保存前会检查阶段顺序和月份是否连续。</div>
-    </div>
-    </div>
-  </section>
-
-  <section class="xl-vision">
-    <div class="xl-vision-kicker">THE LIFE WE ARE BUILDING</div>
-    <h2>最终想获得的，不只是财富数字</h2>
-    <p>拥有足够的安全储备和持续收入，可以自主选择工作与生活地点，安排旅行、陪伴父母、发展音乐事业；购置资产或出国生活，成为有能力时的选择，而不是必须完成的任务。</p>
-    <div class="xl-vision-foot">长期目标：非劳动收入逐步覆盖基本生活开支，资产能够持续增长，同时保有抗风险能力。</div>
-  </section>
-
-  <div class="xl-notice" id="xl-migration-notice"><span>说明</span><div><b>旧版数据迁移提醒：</b>原有资产、支出和心愿记录会保留；旧版累计支出不会自动转换为负债。请在「负债」中录入当前真实未偿还债务。没有日期的旧支出不会被计入本月现金流。若此前使用的是 V3 默认时间表，本版会替换为新的阶段日期；你自行调整过的日期会保留。</div></div>
-
-  <main id="xl-content" aria-live="polite"></main>
-  <div class="xl-footnote">数据保存在当前浏览器本地。建议定期点击「备份数据」，避免更换设备或清理浏览器数据造成记录丢失。</div>
+  <main id="xl-content" aria-live="polite">
+    <div class="xl-section-top"><div><h2 class="xl-section-title">财务记录</h2><div class="xl-section-sub">选择分类，查看和管理对应记录</div></div></div>
+    <div class="xl-record-grid" id="xl-record-grid"></div>
+    <section class="xl-manage" id="xl-manage" hidden><div class="xl-manage-head"><div><div class="xl-manage-title" id="xl-manage-title">收入</div><div class="xl-manage-meta" id="xl-manage-meta"></div></div><button class="xl-add" id="xl-add-current" type="button">＋ 添加</button></div><div class="xl-panel" id="xl-panel"></div></section>
+  </main>
+  <div class="xl-footnote">金额始终以人民币记录；美元展示会联网自动更新参考汇率，暂时离线时沿用上次成功汇率，恢复联网后自动校准。参考汇率不等同于银行实际成交价。记录保存在当前浏览器本地。</div><div class="xl-footnote" style="margin-top:4px"><a id="xl-fx-attribution" href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" hidden>Rates By Exchange Rate API</a></div>
 </div>
 
-<nav class="xl-nav" aria-label="主要导航"><div class="xl-nav-items">
-  <button class="xl-nav-btn active" data-xl-tab="assets" type="button"><svg viewBox="0 0 24 24"><path d="M3 7h18v13H3zM3 10h18M7 7V4h10v3"/></svg><span>资产</span></button>
-  <button class="xl-nav-btn" data-xl-tab="liabilities" type="button"><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5zM8 9h8M8 13h5"/></svg><span>负债</span></button>
-  <button class="xl-nav-btn" data-xl-tab="incomes" type="button"><svg viewBox="0 0 24 24"><path d="M12 3v18M17 7.5c0-1.7-2-2.5-5-2.5s-5 1-5 3 2 2.5 5 3 5 1.3 5 3.5-2 3.5-5 3.5-5-1-5-3"/></svg><span>收入</span></button>
-  <button class="xl-nav-btn" data-xl-tab="expenses" type="button"><svg viewBox="0 0 24 24"><path d="M4 5h16M6 5v14h12V5M9 9h6M9 13h6M9 17h3"/></svg><span>支出</span></button>
-  <button class="xl-nav-btn" data-xl-tab="goals" type="button"><svg viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.8L12 3.5Z"/></svg><span>心愿</span></button>
-</div></nav>
 <div class="xl-toast" id="xl-toast" role="status"></div>
-<div class="xl-backdrop xl-hidden" id="xl-backdrop"><section class="xl-modal" role="dialog" aria-modal="true" aria-labelledby="xl-modal-title">
-  <div class="xl-grab"></div><div class="xl-modal-head"><h2 id="xl-modal-title">新增项目</h2><button class="xl-close" id="xl-close" type="button" aria-label="关闭">×</button></div>
-  <form id="xl-form"><div id="xl-fields"></div><div class="xl-actions"><button class="xl-delete xl-hidden" id="xl-delete" type="button">删除</button><button class="xl-save" type="submit">保存更改</button></div></form>
-</section></div>
+<div class="xl-backdrop xl-hidden" id="xl-backdrop"><section class="xl-modal" role="dialog" aria-modal="true" aria-labelledby="xl-modal-title"><div class="xl-grab"></div><div class="xl-modal-head"><h2 id="xl-modal-title">新增项目</h2><button class="xl-close" id="xl-close" type="button" aria-label="关闭">×</button></div><form id="xl-form"><div id="xl-fields"></div><div class="xl-actions"><button class="xl-delete xl-hidden" id="xl-delete" type="button">删除</button><button class="xl-save" type="submit">保存更改</button></div></form></section></div>
+
 <script>
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const KEY='xinle_finance_data_v11',OLD_KEY='xinle_finance_data_v10',LEGACY_KEY='xinle_finance_data_v9',OLDER_KEY='xinle_finance_data_v8';
-const DEFAULT_STAGE_PLAN={
-  '-1':{start:'2026-11',end:'2028-03'},
-  '1':{start:'2028-04',end:'2028-09'},
-  '2':{start:'2028-10',end:'2030-12'},
-  '3':{start:'2031-01',end:'2033-12'},
-  '4':{start:'2034-01',end:''}
+const KEY='xinle_finance_data_v16',OLD_KEYS=['xinle_finance_data_v15','xinle_finance_data_v14','xinle_finance_data_v13','xinle_finance_data_v12','xinle_finance_data_v11','xinle_finance_data_v10','xinle_finance_data_v9','xinle_finance_data_v8'];
+const STAGES={
+ '-1':{name:'财务修复期',goal:'还清现有债务、停止新增非必要负债，并建立能够覆盖基本生活的现金流。'},
+ '1':{name:'自我供养期',goal:'让稳定收入持续覆盖必要生活开支，每个月保持正向盈余，生活不再依赖借款或家庭供给。'},
+ '2':{name:'财务积累期',goal:'建立稳定储蓄习惯，持续提升资产与盈余，在不新增负债的前提下逐步改善生活质量。'},
+ '3':{name:'财务稳定期',goal:'让事业收入与资产收益形成稳定支撑，长期保持收支健康、资产稳步增长，并拥有自主选择生活的能力。'},
+ '4':{name:'财务独立期',goal:'不再依靠出卖时间劳动换取收入，依托投资与复利效应获取持续性资产现金流，实现资产自循环，长期保持资产收支结构稳健循环。'}
 };
-const clonePlan=()=>JSON.parse(JSON.stringify(DEFAULT_STAGE_PLAN));
-const initial={settings:{hideNetWorth:false,stage:'-1',monthlyIncomeTarget:4500,essentialExpenseTarget:3500,emergencyMonths:6,stagePlan:clonePlan(),timelineView:'month',timelineYear:2026},assets:[],liabilities:[],incomes:[],expenses:[],goals:[]};
-const demoAssets={a1:'储蓄余额',a2:'债券',a3:'指数',a4:'股票',a5:'货币基金',a6:'黄金'};
-const demoExpenses={e1:['生活'],e2:['事业','还债'],e3:['投资','事业'],e4:['投资','还债']};
+const initial={settings:{hideNetWorth:false,stage:'-1',profileAge:28,displayYearMonth:'2026-11',stageSchemaVersion:2},assets:[],liabilities:[],incomes:[],expenses:[],goals:[]};
 const safe=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const num=x=>Number.isFinite(Number(x))?Math.max(0,Number(x)):0;
 const money=x=>'¥'+(Number.isFinite(Number(x))?Number(x):0).toLocaleString('zh-CN',{maximumFractionDigits:2});
 const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
-const currentMonth=()=>today().slice(0,7);
 const validDate=x=>/^\d{4}-\d{2}-\d{2}$/.test(String(x||''));
-const normalizeList=(v)=>Array.isArray(v)?v.filter(x=>x&&typeof x==='object').map(x=>({...x,amount:num(x.amount),target:num(x.target)})):[];
-let data=JSON.parse(JSON.stringify(initial)),tab='assets',modal=null,timer=null;
-const expanded={assets:false,liabilities:false,incomes:false,expenses:false,goals:false};
+const normalizeList=v=>Array.isArray(v)?v.filter(x=>x&&typeof x==='object').map(x=>({...x,amount:num(x.amount),target:num(x.target)})):[];
+let data=JSON.parse(JSON.stringify(initial)),activeCategory=null,modal=null,timer=null,loadedFromLegacyKey=false;
+const FX_CACHE_KEY='xl_cny_usd_reference_rate_v1';
+let exchangeRate=0.1501,exchangeRateDate='2026-11-19',exchangeRateUpdatedAt=0,exchangeRateStatus='内置参考汇率',exchangeRateProvider='内置参考值';
+try{const cached=JSON.parse(localStorage.getItem(FX_CACHE_KEY)||'null');if(cached&&Number.isFinite(Number(cached.rate))&&Number(cached.rate)>0){exchangeRate=Number(cached.rate);exchangeRateDate=String(cached.date||exchangeRateDate);exchangeRateUpdatedAt=Number(cached.updatedAt)||0;exchangeRateProvider=String(cached.provider||'本地缓存');exchangeRateStatus='缓存参考汇率'}}catch(e){}
+const order=['incomes','expenses','assets','goals'];
+const names={incomes:'收入',expenses:'支出',assets:'资产',goals:'心愿'};
+const icons={
+ incomes:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-11a2 2 0 0 1 2-2h12"/><path d="M3 9h16M16 14h5M8.5 10.5v5m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg>',
+ expenses:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12v17l-3-1.8-3 1.8-3-1.8-3 1.8z"/><path d="M9 8h6M9 11.5h6M9 15h3"/></svg>',
+ assets:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 8h10v8H7zM10 12h4M18 10v4"/><circle cx="12" cy="12" r="1.2"/></svg>',
+ goals:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 8.8c0 4.6-8.4 10.1-8.4 10.1S3.6 13.4 3.6 8.8a4.3 4.3 0 0 1 7.4-2.9l1 1 1-1a4.3 4.3 0 0 1 7.4 2.9Z"/><path d="m18.5 2 .6 1.7L21 4.3l-1.9.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6z"/></svg>'
+};
+const subtitles={incomes:'记录实际收入',expenses:'记录全部历史支出',assets:'当前持有资产',goals:'记录想实现的心愿'};
 try{
-  const raw=localStorage.getItem(KEY)||localStorage.getItem(OLD_KEY)||localStorage.getItem(LEGACY_KEY)||localStorage.getItem(OLDER_KEY);
-  if(raw){const p=JSON.parse(raw);data.settings={...initial.settings,...(p.settings||{})};
-    const savedPlan=p.settings?.stagePlan||{};
-    const v3DefaultPlan={'-1':{start:'2026-11',end:'2027-12'},'1':{start:'2028-01',end:'2028-12'},'2':{start:'2029-01',end:'2031-12'},'3':{start:'2032-01',end:'2035-12'},'4':{start:'2036-01',end:''}};
-    const matchesOldDefaults=Object.keys(v3DefaultPlan).every(k=>savedPlan[k]&&savedPlan[k].start===v3DefaultPlan[k].start&&savedPlan[k].end===v3DefaultPlan[k].end);
-    data.settings.stagePlan=matchesOldDefaults?clonePlan():{...clonePlan(),...savedPlan};
-    data.settings.timelineView=['month','year'].includes(p.settings?.timelineView)?p.settings.timelineView:'month';
-    data.settings.timelineYear=Number(p.settings?.timelineYear)||2026;
-    data.assets=normalizeList(p.assets).filter(x=>demoAssets[x.id]!==x.name);
-    data.liabilities=normalizeList(p.liabilities);
-    data.incomes=normalizeList(p.incomes);
-    data.expenses=normalizeList(p.expenses).filter(x=>x.target===undefined&&!(demoExpenses[x.id]||[]).includes(x.name));
-    data.goals=Array.isArray(p.goals)?p.goals.filter(x=>x&&typeof x==='object').map(x=>({...x,target:num(x.target),done:!!x.done})):[];
-    if(!['-1','1','2','3','4'].includes(String(data.settings.stage)))data.settings.stage='-1';
-    data.settings.monthlyIncomeTarget=num(data.settings.monthlyIncomeTarget)||4500;
-    data.settings.essentialExpenseTarget=num(data.settings.essentialExpenseTarget)||3500;
-    data.settings.emergencyMonths=num(data.settings.emergencyMonths)||6;
-  }
-}catch(e){console.warn('读取本地记录失败',e);toast('旧数据读取失败，请勿清理浏览器数据')}
+ let raw=localStorage.getItem(KEY);if(!raw){for(const k of OLD_KEYS){raw=localStorage.getItem(k);if(raw){loadedFromLegacyKey=true;break}}}
+ if(raw){const p=JSON.parse(raw);data.settings={...initial.settings,...(p.settings||{})};data.assets=normalizeList(p.assets);data.liabilities=normalizeList(p.liabilities);data.incomes=normalizeList(p.incomes);data.expenses=normalizeList(p.expenses);data.goals=Array.isArray(p.goals)?p.goals.filter(x=>x&&typeof x==='object').map(x=>({...x,target:num(x.target),done:!!x.done})):[];if(!STAGES[String(data.settings.stage)])data.settings.stage='-1'}
+}catch(e){console.warn('读取本地记录失败',e)}
+// V13 阶段迁移：旧版第 4 阶段“财务稳定期”移至新列表第 3 阶段；旧第 3 阶段与新第 3 阶段合并为财务稳定期。
+if(loadedFromLegacyKey&&String(data.settings.stage)==='4')data.settings.stage='3';
+data.settings.stageSchemaVersion=2;
+if(!STAGES[String(data.settings.stage)])data.settings.stage='-1';
+const savedAge=Number(data.settings.profileAge);
+data.settings.profileAge=Number.isInteger(savedAge)&&savedAge>=1&&savedAge<=120?savedAge:28;
+const savedYearMonth=String(data.settings.displayYearMonth||'2026-11');
+data.settings.displayYearMonth=/^\d{4}-(0[1-9]|1[0-2])$/.test(savedYearMonth)?savedYearMonth:'2026-11';
 const sum=list=>list.reduce((s,x)=>s+num(x.amount),0);
 const assets=()=>sum(data.assets),liabilities=()=>sum(data.liabilities),incomeAll=()=>sum(data.incomes),expenseAll=()=>sum(data.expenses);
-const netWorth=()=>assets()-liabilities();
-const monthSum=list=>list.reduce((s,x)=>s+(validDate(x.date)&&x.date.slice(0,7)===currentMonth()?num(x.amount):0),0);
-const monthIncome=()=>monthSum(data.incomes),monthExpense=()=>monthSum(data.expenses),monthSurplus=()=>monthIncome()-monthExpense();
+const totalAssets=()=>incomeAll()+assets();
+const surplus=()=>totalAssets()-expenseAll();
 const done=()=>data.goals.filter(x=>x.done).length;
-function save(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){toast('本地保存失败，请先导出备份并检查浏览器存储空间')}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){toast('本地保存失败，请检查浏览器存储空间')}}
 function toast(message){const el=$('xl-toast');el.textContent=message;el.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>el.classList.remove('show'),2400)}
-function arc(id,ratio,c){const n=$(id),v=Math.max(0,Math.min(1,ratio));n.style.strokeDasharray=`${(c*v).toFixed(2)} ${(c*(1-v)).toFixed(2)}`}
+function setArc(ratio){const circumference=2*Math.PI*86,v=Math.max(0,Math.min(1,ratio));$('xl-expense-arc').style.strokeDasharray=`${(circumference*v).toFixed(2)} ${(circumference*(1-v)).toFixed(2)}`}
+function masked(value){return data.settings.hideNetWorth?'••••':value}
+function renderProfile(){
+ const age=data.settings.profileAge||28,ym=String(data.settings.displayYearMonth||'2026-11');
+ $('xl-profile-age').textContent=`${age}岁`;
+ $('xl-profile-month').textContent=`${ym.slice(0,4)}年${Number(ym.slice(5,7))}月`;
+}
+function formatUSD(value){return '$'+Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function renderAssetCard(){
+ const a=totalAssets(),hide=data.settings.hideNetWorth;
+ $('xl-total').innerHTML=hide?'<span>••••••</span>':`<span class="xl-currency">$</span><span>${(a*exchangeRate).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</span>`;
+ $('xl-total-cny').textContent=hide?'人民币金额已隐藏':money(a);
+ $('xl-total').title=`汇率日期：${exchangeRateDate} · CNY/USD：${exchangeRate} · ${exchangeRateStatus}`;
+}
 function renderSummary(){
-  const a=assets(),l=liabilities(),net=netWorth(),all=a+l,ar=all?a/all:0,lr=all?l/all:0,wr=data.goals.length?done()/data.goals.length:0,hide=data.settings.hideNetWorth;
-  $('xl-total').innerHTML=hide?'<span>••••••</span>':`<span class="xl-currency">¥</span><span>${net.toLocaleString('zh-CN',{maximumFractionDigits:2})}</span>`;
-  $('xl-assets-total').textContent=hide?'••••':money(a);$('xl-liabilities-total').textContent=hide?'••••':money(l);
-  $('xl-chart-center').textContent=hide?'••••':money(net);$('xl-chart-assets').textContent=hide?'••••':money(a);$('xl-chart-liabilities').textContent=hide?'••••':money(l);
-  $('xl-privacy-text').textContent=hide?'显示金额':'隐藏金额';$('xl-asset-percent').textContent=Math.round(ar*100)+'%';$('xl-liability-percent').textContent=Math.round(lr*100)+'%';
-  $('xl-wish-percent').textContent=Math.round(wr*100)+'%';$('xl-wish-count').textContent=`${done()} / ${data.goals.length} 项`;
-  const outer=2*Math.PI*86,inner=2*Math.PI*66;arc('xl-asset-arc',ar,outer);arc('xl-liability-arc',lr,outer);$('xl-liability-arc').style.strokeDashoffset=`-${(outer*ar).toFixed(2)}`;arc('xl-wish-arc',wr,inner);
-  const mi=monthIncome(),me=monthExpense(),ms=mi-me;
-  $('xl-month-income').textContent=hide?'••••':money(mi);$('xl-month-expense').textContent=hide?'••••':money(me);$('xl-month-surplus').textContent=hide?'••••':money(ms);$('xl-month-surplus').classList.toggle('negative',ms<0);
-  $('xl-stage-select').value=String(data.settings.stage);
-  renderStage();
-  $('xl-migration-notice').classList.toggle('xl-hidden',data.liabilities.length>0);
+ const a=totalAssets(),e=expenseAll(),s=surplus(),ratio=a>0?e/a:(e>0?1:0),hide=data.settings.hideNetWorth;
+ renderAssetCard();
+ $('xl-chart-center').textContent=masked(money(s));$('xl-chart-assets').textContent=masked(money(a));$('xl-chart-expenses').textContent=masked(money(e));$('xl-chart-surplus').textContent=masked(money(s));
+ $('xl-chart-surplus').classList.toggle('negative',s<0);$('xl-privacy-text').textContent=hide?'显示金额':'隐藏金额';
+ $('xl-asset-percent').textContent='100%';$('xl-expense-percent').textContent=a>0?Math.round(ratio*100)+'%':(e>0?'—':'0%');setArc(ratio);
 }
-const stageInfo={
-  '-1':{name:'−1｜财务修复期',goal:'当前重点：还清现有债务、停止新增负债，同时建立能覆盖基本生活的现金流。',gate:'实际负债归零；连续3个月现金流为正；不再新增非必要债务。',life:'先把债务和生活压力降下来，让生活可以靠自己的收入独立运转。'},
-  '1':{name:'01｜自我供养期',goal:'收入稳定覆盖必要开支，并持续产生盈余；不再依赖家庭或借款维持生活。',gate:'月收入达到设定目标、月度盈余为正，连续稳定6个月；建立至少1个月必要开支的储备。',life:'生活由自己承担，每个月有稳定结余，能安心投入钢琴、音乐和专业能力。'},
-  '2':{name:'02｜财富积累期',goal:'持续储蓄、增加净资产，同时合理改善生活质量。',gate:'连续12个月净资产增长；有固定储蓄比例；旅行和家庭支出均在预算内，不靠新增债务。',life:'可以规划一年一次旅行、带父母放松，也能享受生活，但不打断财富积累。'},
-  '3':{name:'03｜财务安全期',goal:'建立抗风险能力，拓展收入来源，学习投资理财与资产配置。',gate:'应急储备达到6～12个月必要开支；收入来源不依赖单一渠道；建立自己理解的投资与风险规则。',life:'即使工作或某个收入渠道中断，也有时间调整，不会立刻影响基本生活；开始有能力做长期资金安排。'},
-  '4':{name:'04｜财富循环期',goal:'让事业收入、资产收益和财富积累形成可持续循环。',gate:'资产配置和风险管理成熟；非劳动收入逐步覆盖基本生活开支；资产长期增长且能够应对风险。',life:'能够自主选择工作方式和生活地点，安排旅行与陪伴家人；是否买房、购置其他资产或出国，变成主动选择。'}
-};
-function monthIndex(value){const m=/^(\d{4})-(\d{2})$/.exec(String(value||''));return m?Number(m[1])*12+Number(m[2])-1:NaN}
-function monthLabel(value){const m=/^(\d{4})-(\d{2})$/.exec(String(value||''));return m?`${m[1]}年${Number(m[2])}月`:'未设置'}
-function monthFromIndex(index){const y=Math.floor(index/12),m=index%12+1;return `${y}-${String(m).padStart(2,'0')}`}
-function phaseForMonth(month){const ix=monthIndex(month);for(const key of ['-1','1','2','3','4']){const p=data.settings.stagePlan[key]||DEFAULT_STAGE_PLAN[key],a=monthIndex(p.start),b=p.end?monthIndex(p.end):Infinity;if(ix>=a&&ix<=b)return key}return null}
-function stageDuration(key){const p=data.settings.stagePlan[key],a=monthIndex(p.start),b=p.end?monthIndex(p.end):monthIndex(currentMonth());return Number.isFinite(a)&&Number.isFinite(b)?Math.max(1,b-a+1):0}
-function renderStage(){
-  const s=String(data.settings.stage),info=stageInfo[s]||stageInfo['-1'],p=data.settings.stagePlan[s]||DEFAULT_STAGE_PLAN[s],
-    start=monthIndex(p.start),end=p.end?monthIndex(p.end):Infinity,now=monthIndex(currentMonth()),
-    duration=Number.isFinite(end)?Math.max(1,end-start+1):'长期',
-    remain=Number.isFinite(end)?Math.max(0,end-now):null,
-    debt=liabilities(),hasDebtRecords=data.liabilities.length>0,hide=data.settings.hideNetWorth;
-  $('xl-stage-name').textContent=info.name;
-  $('xl-stage-goal').textContent=info.goal;
-  $('xl-stage-gate').textContent=info.gate;
-  $('xl-stage-life').textContent=info.life;
-  $('xl-stage-income-target').textContent=money(data.settings.monthlyIncomeTarget);
-  $('xl-stage-expense-target').textContent=money(data.settings.essentialExpenseTarget);
-  $('xl-stage-period').textContent=`${p.start.replace('-','.')} — ${p.end?p.end.replace('-','.'): '长期'}`;
-  $('xl-stage-duration').textContent=duration==='长期'?'长期':`${duration}个月`;
-  $('xl-stage-remaining').textContent=remain===null?'长期阶段':remain===0?'已到计划结束月':`约 ${remain} 个月`;
-  $('xl-stage-status-text').textContent=s==='-1'?'当前进行 · 还债阶段':'当前进行 · '+info.name.replace(/^.+?｜/,'');
-  $('xl-stage-debt-focus').classList.toggle('xl-hidden',s!=='-1');
-  $('xl-stage-debt').textContent=hasDebtRecords?(hide?'••••':money(debt)):'尚未录入';
-  $('xl-stage-debt-status').textContent=hasDebtRecords?'已记录 '+data.liabilities.length+' 笔未偿还债务':'请在下方「负债」中录入真实未偿还金额';
-  $('xl-timeline-current').textContent=`当前：${info.name.replace(/^.+?｜/,'')}`;
+let fxRequest=null;
+const FX_SOURCES=[
+ {name:'Frankfurter V2',url:'https://api.frankfurter.dev/v2/rate/cny/usd',parse:j=>({rate:Number(j?.rate),date:String(j?.date||'')})},
+ {name:'Frankfurter V1 fallback',url:'https://api.frankfurter.app/latest?from=CNY&to=USD',parse:j=>({rate:Number(j?.rates?.USD),date:String(j?.date||'')})},
+ {name:'Currency API / jsDelivr',url:'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/cny.json',parse:j=>({rate:Number(j?.cny?.usd),date:String(j?.date||'')})},
+ {name:'Currency API / Cloudflare',url:'https://latest.currency-api.pages.dev/v1/currencies/cny.json',parse:j=>({rate:Number(j?.cny?.usd),date:String(j?.date||'')})},
+ {name:'ExchangeRate-API',url:'https://open.er-api.com/v6/latest/CNY',parse:j=>({rate:Number(j?.rates?.USD),date:j?.time_last_update_unix?new Date(Number(j.time_last_update_unix)*1000).toISOString().slice(0,10):String(j?.time_last_update_utc||'').slice(0,10)})}
+];
+function validFxRate(rate,date){
+ if(!Number.isFinite(rate)||rate<0.05||rate>0.30)return false;
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date))return false;
+ const day=Date.parse(date+'T00:00:00Z');
+ if(!Number.isFinite(day))return false;
+ const age=(Date.now()-day)/86400000;
+ return age>=-1&&age<=14;
 }
-function renderTimeline(){const view=data.settings.timelineView==='year'?'year':'month',year=Math.max(2026,Math.min(2045,Number(data.settings.timelineYear)||2026));$('xl-timeline-year').value=String(year);$('xl-timeline-view-label').textContent=view==='month'?'选择年份，查看每个月的阶段安排':'年度总览：查看每年所处的阶段';document.querySelectorAll('[data-xl-timeline-view]').forEach(b=>b.classList.toggle('active',b.dataset.xlTimelineView===view));const box=$('xl-timeline-content');if(view==='month'){let html='';for(let m=1;m<=12;m++){const ym=`${year}-${String(m).padStart(2,'0')}`,key=phaseForMonth(ym),info=key?stageInfo[key]:null,current=ym===currentMonth(),milestone=key&&data.settings.stagePlan[key].start===ym?'本阶段开始':key&&data.settings.stagePlan[key].end===ym?'计划收尾':'';html+=`<div class="xl-month-row ${current?'current':''}"><div class="xl-month-label">${String(m).padStart(2,'0')}月${current?' · 当前':''}</div><div class="xl-month-copy"><b>${info?info.name.replace(/^.+?｜/,''):'时间待规划'}</b><small>${milestone|| (info?info.goal:'请调整阶段日期')}</small></div><span class="xl-month-tag stage-${key==='-1'?'0':key||'0'}">${key==='-1'?'−1':key?`阶段 ${key}`:'未规划'}</span></div>`}box.innerHTML=html}else{let html='';for(let y=2026;y<=2040;y++){const segments=[];for(const key of ['-1','1','2','3','4']){const p=data.settings.stagePlan[key],a=monthIndex(p.start),b=p.end?monthIndex(p.end):Infinity,ya=y*12,yb=y*12+11,overlap=Math.max(0,Math.min(b,yb)-Math.max(a,ya)+1);if(overlap>0)segments.push({key,months:overlap})}if(!segments.length&&y>year+2&&y>2037)continue;html+=`<div class="xl-year-row"><div class="xl-year-label">${y}年</div><div><div class="xl-year-phases">${segments.map(x=>`<span class="xl-year-chip stage-${x.key==='-1'?'0':x.key}">${x.key==='-1'?'−1 修复':`阶段 ${x.key}`} · ${x.months}个月</span>`).join('')||'<span class="xl-year-chip">未规划</span>'}</div><div class="xl-year-note">${segments.map(x=>stageInfo[x.key].goal).filter((v,i,a)=>a.indexOf(v)===i).join('；')}</div></div></div>`}box.innerHTML=html}}
-function renderDateEditor(){const box=$('xl-date-editor-fields');box.innerHTML=['-1','1','2','3','4'].map(k=>{const p=data.settings.stagePlan[k];return `<div class="xl-date-edit-row" data-stage-date="${k}"><span>${stageInfo[k].name.replace(/^.+?｜/,'')}</span><input type="month" name="start" value="${safe(p.start)}" aria-label="开始月份"><input type="month" name="end" value="${safe(p.end)}" ${k==='4'?'disabled placeholder="长期"':''} aria-label="结束月份"></div>`}).join('')}
-function validateStagePlan(plan){let prevEnd=null;for(const k of ['-1','1','2','3','4']){const p=plan[k],a=monthIndex(p.start),b=p.end?monthIndex(p.end):Infinity;if(!Number.isFinite(a)||b<a)return '请检查每个阶段的开始和结束月份。';if(prevEnd!==null&&a!==prevEnd+1)return '阶段月份必须连续，不能重叠或留空。';if(k==='4'&&p.end)return '第四阶段为长期阶段，不需要结束月份。';if(k!=='4'&&!p.end)return '前四个阶段需要设置目标结束月份。';prevEnd=b}return ''}
-const names={assets:'资产',liabilities:'负债',incomes:'收入',expenses:'支出',goals:'心愿单'};
-const icons={assets:'◈',liabilities:'−',incomes:'＋',expenses:'−',goals:'✧'};
-function empty(text){return `<div class="xl-empty"><b>＋</b>${text}</div>`}
-function recordMeta(x,category){if(category==='liabilities'&&num(x.rate)>0)return `年利率 ${num(x.rate)}% · 当前剩余本金`;if(category==='incomes'||category==='expenses')return validDate(x.date)?x.date:'旧记录 · 未设置日期';return category==='assets'?'当前估值/余额':'当前记录'}
-function rows(category){const list=data[category];if(!list.length)return empty(category==='assets'?'还没有资产，点击上方添加':category==='liabilities'?'还没有负债，若有未偿还借款请如实录入':category==='incomes'?'还没有收入记录':'还没有'+names[category]+'，点击上方添加');
-  if(category==='goals')return list.map(x=>`<button class="xl-wish ${x.done?'done':''}" type="button" data-xl-edit="goals" data-xl-id="${safe(x.id)}"><i class="xl-wish-icon">${x.done?'✓':'✧'}</i><span class="xl-wish-copy"><span class="xl-wish-name">${safe(x.name)}${x.done?' · 已完成':''}</span><span class="xl-wish-desc">${safe(x.desc||'心愿目标')} · 点击编辑</span></span><span class="xl-wish-price">${num(x.target)>0?(data.settings.hideNetWorth?'••••':money(x.target)):'待定'}</span></button>`).join('');
-  return list.map(x=>`<button class="xl-record" type="button" data-xl-edit="${category}" data-xl-id="${safe(x.id)}"><span class="xl-record-left"><i class="xl-record-mark ${category==='expenses'?'expense':category==='incomes'?'income':category==='liabilities'?'liability':''}">${icons[category]}</i><span class="xl-record-copy"><span class="xl-record-name">${safe(x.name)}</span><span class="xl-record-meta">${safe(recordMeta(x,category))}</span></span></span><span class="xl-record-value ${category==='expenses'?'expense':category==='incomes'?'income':category==='liabilities'?'liability':''}">${data.settings.hideNetWorth?'••••':money(x.amount)}</span></button>`).join('')}
-function categoryTotal(category){if(category==='assets')return assets();if(category==='liabilities')return liabilities();if(category==='incomes')return monthIncome();if(category==='expenses')return monthExpense();return done()}
-function renderContent(){const title=names[tab],list=data[tab],total=tab==='goals'?`${done()} / ${list.length} 项完成`:money(categoryTotal(tab)),sub={assets:'当前持有资产的余额或估值',liabilities:'目前仍需偿还的真实债务余额',incomes:'记录每笔实际收入 · 汇总本月',expenses:'记录每笔实际支出 · 汇总本月',goals:'把想实现的生活放在这里'}[tab],label=tab==='goals'?'心愿清单':title+'项目';
-  $('xl-content').innerHTML=`<div class="xl-section-top"><div><h1 class="xl-section-title">${title}</h1><div class="xl-section-sub">${sub}</div></div><button class="xl-add" type="button" data-xl-add="${tab}">＋ 添加${tab==='goals'?'心愿':title}</button></div><section class="xl-manage"><button class="xl-fold" type="button" data-xl-fold="${tab}" aria-expanded="${expanded[tab]}"><span class="xl-fold-left"><i class="xl-fold-icon ${tab==='expenses'?'expense':tab==='incomes'?'income':tab==='liabilities'?'liability':''}">${icons[tab]}</i><span class="xl-fold-copy"><span class="xl-fold-title">${label}</span><span class="xl-fold-meta">${list.length} 项记录 · 点击项目即可修改</span></span></span><span class="xl-fold-right">${data.settings.hideNetWorth&&tab!=='goals'?'••••':total}<svg class="xl-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="xl-panel ${expanded[tab]?'':'xl-hidden'}"><div class="xl-record-list">${rows(tab)}</div></div></section>`;
-  document.querySelectorAll('[data-xl-tab]').forEach(b=>b.classList.toggle('active',b.dataset.xlTab===tab));}
-function render(){renderSummary();renderContent();renderTimeline()}
-function field(label,name,value,type='text',placeholder=''){const attrs=type==='number'?'min="0" step="0.01" inputmode="decimal"':'';return `<div class="xl-field"><label for="xl-field-${name}">${label}</label><input id="xl-field-${name}" name="${name}" type="${type}" value="${safe(value??'')}" ${attrs} placeholder="${placeholder}" ${name==='name'?'required':''}></div>`}
-function openModal(category,item=null){modal={category,item:item?JSON.parse(JSON.stringify(item)):null};const isGoal=category==='goals',isTargets=category==='targets';$('xl-modal-title').textContent=isTargets?'调整阶段指标':(item?'编辑':'添加')+names[category];$('xl-delete').classList.toggle('xl-hidden',!item||isTargets);let html='';
-  if(isTargets){html=field('目标月收入（元）','monthlyIncomeTarget',data.settings.monthlyIncomeTarget,'number','例如 4500')+field('必要月支出（元）','essentialExpenseTarget',data.settings.essentialExpenseTarget,'number','例如 3500')+field('应急储备月数目标','emergencyMonths',data.settings.emergencyMonths,'number','建议 6～12');}
-  else{html=field(isGoal?'心愿名称':names[category]+'名称','name',item?.name||'','text',isGoal?'写下想实现的心愿':'填写名称');
-    if(isGoal){html+=`<div class="xl-field"><label for="xl-field-desc">备注描述</label><textarea id="xl-field-desc" name="desc" placeholder="写下一点说明">${safe(item?.desc||'')}</textarea></div>`;html+=field('目标金额（元）','target',item?.target??'','number','填写金额');html+=`<label class="xl-check"><input type="checkbox" name="done" ${item?.done?'checked':''}> 标记为已完成</label>`;}
-    else{html+=field(category==='liabilities'?'当前剩余金额（元）':category==='assets'?'当前资产金额/估值（元）':'金额（元）','amount',item?.amount??'','number','填写金额');if(category==='incomes'||category==='expenses')html+=field('发生日期','date',item?.date||today(),'date');if(category==='liabilities')html+=field('年利率（可选，%）','rate',item?.rate??'','number','例如 3.5');}
+async function fetchJsonWithTimeout(url,timeout=5500){
+ const controller=typeof AbortController!=='undefined'?new AbortController():null;
+ const timerId=setTimeout(()=>controller?.abort(),timeout);
+ try{
+  const response=await fetch(url,{method:'GET',cache:'no-store',headers:{Accept:'application/json'},...(controller?{signal:controller.signal}:{})});
+  if(!response.ok)throw new Error('HTTP '+response.status);
+  return await response.json();
+ }finally{clearTimeout(timerId)}
+}
+function persistExchangeRate(provider){
+ exchangeRateProvider=provider;
+ try{localStorage.setItem(FX_CACHE_KEY,JSON.stringify({rate:exchangeRate,date:exchangeRateDate,updatedAt:exchangeRateUpdatedAt,provider}))}catch(e){}
+}
+function renderFxAttribution(provider){
+ const link=$('xl-fx-attribution');
+ if(link)link.hidden=provider!=='ExchangeRate-API';
+}
+async function updateExchangeRate(){
+ if(fxRequest)return fxRequest;
+ fxRequest=(async()=>{
+  let updated=false;
+  for(const source of FX_SOURCES){
+   try{
+    const json=await fetchJsonWithTimeout(source.url),parsed=source.parse(json),rate=parsed.rate,date=parsed.date;
+    if(!validFxRate(rate,date))throw new Error('汇率值或日期不合理');
+    // 不用较旧的数据覆盖本地已经保存的较新汇率。
+    if(exchangeRateDate&&date<exchangeRateDate)throw new Error('数据日期早于本地汇率缓存');
+    exchangeRate=rate;exchangeRateDate=date;exchangeRateUpdatedAt=Date.now();exchangeRateStatus='online';
+    persistExchangeRate(source.name);renderFxAttribution(source.name);updated=true;break;
+   }catch(error){console.warn('汇率源不可用：'+source.name,error)}
   }
-  $('xl-fields').innerHTML=html;$('xl-backdrop').classList.remove('xl-hidden');setTimeout(()=>$('xl-fields').querySelector('input:not([type=checkbox])')?.focus(),80)}
+  if(!updated){
+   exchangeRateStatus=exchangeRateUpdatedAt&&Date.now()-exchangeRateUpdatedAt>7*86400000?'stale-cache':'cached-or-built-in';
+  }
+  fxRequest=null;renderFxAttribution(exchangeRateProvider);renderAssetCard();
+ })();
+ return fxRequest;
+}
+
+function recordMeta(x,category){if(category==='liabilities'&&num(x.rate)>0)return `年利率 ${num(x.rate)}% · 当前剩余本金`;if(category==='incomes'||category==='expenses')return validDate(x.date)?x.date:'旧记录 · 未设置日期';return category==='assets'?'当前余额 / 估值':'当前记录'}
+function empty(text){return `<div class="xl-empty"><b>＋</b>${text}</div>`}
+function deleteIcon(){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m3 0-.8 13H6.8L6 7m4 4v5m4-5v5"/></svg>'}
+function rows(category){
+ const list=data[category];
+ if(!list.length)return empty(category==='assets'?'还没有资产，点击上方添加':category==='liabilities'?'还没有负债记录':category==='incomes'?'还没有收入记录':category==='expenses'?'还没有支出记录':'还没有心愿，点击上方添加');
+ if(category==='goals')return list.map(x=>`<div class="xl-wish-row"><button class="xl-wish ${x.done?'done':''}" type="button" data-xl-edit="goals" data-xl-id="${safe(x.id)}"><i class="xl-wish-icon">${x.done?'✓':'✧'}</i><span class="xl-wish-copy"><span class="xl-wish-name">${safe(x.name)}${x.done?' · 已完成':''}</span><span class="xl-wish-desc">${safe(x.desc||'心愿目标')}</span></span><span class="xl-wish-price">${num(x.target)>0?masked(money(x.target)):'待定'}</span></button><button class="xl-record-delete" type="button" data-xl-delete-record="goals" data-xl-id="${safe(x.id)}" aria-label="删除心愿：${safe(x.name)}">${deleteIcon()}</button></div>`).join('');
+ return list.map(x=>`<div class="xl-record-row"><button class="xl-record" type="button" data-xl-edit="${category}" data-xl-id="${safe(x.id)}"><span class="xl-record-left"><i class="xl-record-mark ${category==='expenses'?'expense':category==='incomes'?'income':category==='liabilities'?'liability':''}">${icons[category]||'−'}</i><span class="xl-record-copy"><span class="xl-record-name">${safe(x.name)}</span><span class="xl-record-meta">${safe(recordMeta(x,category))}</span></span></span><span class="xl-record-value ${category==='expenses'?'expense':category==='incomes'?'income':category==='liabilities'?'liability':''}">${masked(money(x.amount))}</span></button><button class="xl-record-delete" type="button" data-xl-delete-record="${category}" data-xl-id="${safe(x.id)}" aria-label="删除${names[category]||'记录'}：${safe(x.name)}">${deleteIcon()}</button></div>`).join('');
+}
+function categoryAmount(category){if(category==='incomes')return incomeAll();if(category==='expenses')return expenseAll();if(category==='assets')return assets();return done()}
+function renderTiles(){
+ $('xl-record-grid').innerHTML=order.map(category=>{const list=data[category],amount=category==='goals'?`${done()}/${list.length}项`:masked(money(categoryAmount(category))),isOpen=activeCategory===category;return `<button class="xl-record-tile ${category==='incomes'?'income':category==='expenses'?'expense':category==='assets'?'asset':category==='goals'?'goal':''} ${isOpen?'active':''}" type="button" data-xl-category="${category}" aria-expanded="${isOpen}"><i class="xl-tile-icon">${icons[category]}</i><span class="xl-tile-name">${names[category]}</span><span class="xl-tile-meta">${list.length}项 · ${amount}</span><span class="xl-tile-toggle">${isOpen?'⌃ 点击收起':'⌄ 点击展开'}</span></button>`}).join('');
+}
+function renderPanel(){
+ const panel=$('xl-manage');
+ if(!activeCategory){panel.hidden=true;return}
+ const category=activeCategory,list=data[category];panel.hidden=false;$('xl-manage-title').textContent=names[category];$('xl-manage-meta').textContent=`${list.length} 项记录 · ${subtitles[category]}`;$('xl-add-current').textContent='＋ 添加'+names[category];
+ let content=`<div class="xl-record-list">${rows(category)}</div>`;
+ if(category==='expenses')content+=`<section class="xl-debt-subpanel"><div class="xl-debt-subhead"><div><b>负债管理</b><small>${data.liabilities.length} 笔未偿还记录 · 单独记录，不计入盈余公式</small></div><strong>${masked(money(liabilities()))}</strong><button class="xl-add" type="button" data-xl-add="liabilities">＋ 添加债务</button></div><div style="margin-top:8px"><div class="xl-record-list">${rows('liabilities')}</div></div><div class="xl-debt-note">这里只记录当前剩余债务；盈余按总资产减去全部历史累计支出计算，不再额外扣减负债余额。</div></section>`;
+ $('xl-panel').innerHTML=content;
+}
+function render(){renderProfile();renderSummary();renderTiles();renderPanel();$('xl-stage-select').value=String(data.settings.stage);renderStage()}
+function renderStage(){const s=String(data.settings.stage),info=STAGES[s]||STAGES['-1'];$('xl-stage-name').textContent=info.name;$('xl-stage-goal-text').textContent=info.goal}
+function field(label,name,value,type='text',placeholder=''){const attrs=type==='number'?'min="0" step="0.01" inputmode="decimal"':'';return `<div class="xl-field"><label for="xl-field-${name}">${label}</label><input id="xl-field-${name}" name="${name}" type="${type}" value="${safe(value??'')}" ${attrs} placeholder="${placeholder}" ${name==='name'?'required':''}></div>`}
+function openModal(category,item=null){modal={category,item:item?JSON.parse(JSON.stringify(item)):null};const isProfile=category==='profile',isGoal=category==='goals';$('xl-modal-title').textContent=isProfile?'修改年龄与显示年月':(item?'编辑':'添加')+(category==='liabilities'?'负债':names[category]);$('xl-delete').classList.toggle('xl-hidden',!item||isProfile);let html='';
+ if(isProfile){
+  const currentYearMonth=String(data.settings.displayYearMonth||'2026-11'),selectedYear=Number(currentYearMonth.slice(0,4))||2026,selectedMonth=Number(currentYearMonth.slice(5,7))||11;
+  const yearOptions=Array.from({length:201},(_,i)=>1900+i).map(year=>`<option value="${year}" ${year===selectedYear?'selected':''}>${year}年</option>`).join('');
+  const monthOptions=Array.from({length:12},(_,i)=>i+1).map(month=>`<option value="${month}" ${month===selectedMonth?'selected':''}>${String(month).padStart(2,'0')}月</option>`).join('');
+  html=field('年龄（岁，可自行修改）','profileAge',data.settings.profileAge,'number','例如 28')+`<div class="xl-profile-date-grid"><div class="xl-field"><label for="xl-display-year">显示年份</label><select id="xl-display-year" name="displayYear">${yearOptions}</select></div><div class="xl-field"><label for="xl-display-month">显示月份</label><select id="xl-display-month" name="displayMonth">${monthOptions}</select></div></div>`+'<div class="xl-profile-field-hint">年龄、年份和月份都可以独立修改；这里只调整右上角的个人显示信息。</div>';
+ }
+ else html=field(isGoal?'心愿名称':names[category]+'名称','name',item?.name||'','text',isGoal?'写下想实现的心愿':'填写名称');
+ if(isGoal){html+=`<div class="xl-field"><label for="xl-field-desc">备注描述</label><textarea id="xl-field-desc" name="desc" placeholder="写下一点说明">${safe(item?.desc||'')}</textarea></div>`+field('目标金额（元）','target',item?.target??'','number','填写金额')+`<label class="xl-check"><input type="checkbox" name="done" ${item?.done?'checked':''}> 标记为已完成</label>`}
+ else if(!isProfile){html+=field(category==='liabilities'?'当前剩余金额（元）':category==='assets'?'当前资产金额 / 估值（元）':'金额（元）','amount',item?.amount??'','number','填写金额');if(category==='incomes'||category==='expenses')html+=field('发生日期','date',item?.date||today(),'date');if(category==='liabilities')html+=field('年利率（可选，%）','rate',item?.rate??'','number','例如 3.5')}
+ $('xl-fields').innerHTML=html;$('xl-backdrop').classList.remove('xl-hidden');setTimeout(()=>$('xl-fields').querySelector('input:not([type=checkbox])')?.focus(),80)}
+function openMotherGoal(){openModal('goals');const name=$('xl-fields').querySelector('[name="name"]'),desc=$('xl-fields').querySelector('[name="desc"]');if(name)name.value='带妈妈去长春好好玩一次';if(desc)desc.value='把陪妈妈好好玩一次变成实际安排，从时间、陪伴和预算开始准备。';toast('已为妈妈的心愿准备好记录')}
 function closeModal(){$('xl-backdrop').classList.add('xl-hidden');modal=null}
 function submit(event){event.preventDefault();if(!modal)return;const {category,item}=modal,form=$('xl-form'),fd=new FormData(form);
-  if(category==='targets'){data.settings.monthlyIncomeTarget=num(fd.get('monthlyIncomeTarget'));data.settings.essentialExpenseTarget=num(fd.get('essentialExpenseTarget'));data.settings.emergencyMonths=Math.max(1,Math.min(36,Math.round(num(fd.get('emergencyMonths'))||6)));save();closeModal();render();toast('阶段指标已更新');return}
-  const name=String(fd.get('name')||'').trim();if(!name){toast('请填写名称');return}const isGoal=category==='goals',entry={...(item||{}),id:item?.id||category+'-'+Date.now(),name};
-  if(isGoal){entry.desc=String(fd.get('desc')||'').trim();entry.target=num(fd.get('target'));entry.done=!!form.querySelector('[name="done"]')?.checked;}
-  else{entry.amount=num(fd.get('amount'));if(category==='incomes'||category==='expenses')entry.date=validDate(fd.get('date'))?String(fd.get('date')):today();if(category==='liabilities')entry.rate=num(fd.get('rate'));}
-  const index=data[category].findIndex(x=>x.id===entry.id);if(index>=0)data[category][index]=entry;else data[category].push(entry);expanded[category]=true;save();closeModal();render();toast(item?'已保存修改':'已添加')}
+ if(category==='profile'){
+  const age=Number(fd.get('profileAge')),year=Number(fd.get('displayYear')),month=Number(fd.get('displayMonth'));
+  if(!Number.isInteger(age)||age<1||age>120){toast('年龄请填写 1 至 120 之间的整数');return}
+  if(!Number.isInteger(year)||year<1900||year>2100||!Number.isInteger(month)||month<1||month>12){toast('请正确选择年份和月份');return}
+  const yearMonth=`${year}-${String(month).padStart(2,'0')}`;
+  data.settings.profileAge=age;data.settings.displayYearMonth=yearMonth;save();closeModal();renderProfile();toast('年龄与显示年月已更新');return;
+ }
+ const name=String(fd.get('name')||'').trim();if(!name){toast('请填写名称');return}const isGoal=category==='goals',entry={...(item||{}),id:item?.id||category+'-'+Date.now(),name};
+ if(isGoal){entry.desc=String(fd.get('desc')||'').trim();entry.target=num(fd.get('target'));entry.done=!!form.querySelector('[name="done"]')?.checked}else{entry.amount=num(fd.get('amount'));if(category==='incomes'||category==='expenses')entry.date=validDate(fd.get('date'))?String(fd.get('date')):today();if(category==='liabilities')entry.rate=num(fd.get('rate'))}
+ const index=data[category].findIndex(x=>x.id===entry.id);if(index>=0)data[category][index]=entry;else data[category].push(entry);if(category==='liabilities')activeCategory='expenses';else activeCategory=category;save();closeModal();render();toast(item?'已保存修改':'已添加')}
 function removeItem(){if(!modal?.item)return;const {category,item}=modal;if(!confirm(`确定删除「${item.name}」吗？`))return;data[category]=data[category].filter(x=>x.id!==item.id);save();closeModal();render();toast('已删除')}
-function exportData(){try{const payload={app:'XL Finance',version:11,exportedAt:new Date().toISOString(),data};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`XL财务备份-${today()}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('备份文件已导出')}catch(e){toast('导出失败，请重试')}}
-function importData(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const parsed=JSON.parse(String(reader.result||''));const p=parsed.data||parsed;if(!p||typeof p!=='object'||!Array.isArray(p.assets)||!Array.isArray(p.expenses))throw new Error('invalid');if(!confirm('恢复备份会覆盖当前浏览器中的 XL 数据，建议先导出现有备份。确定继续吗？'))return;data.settings={...initial.settings,...(p.settings||{})};data.settings.stagePlan={...clonePlan(),...(p.settings?.stagePlan||{})};data.assets=normalizeList(p.assets);data.liabilities=normalizeList(p.liabilities);data.incomes=normalizeList(p.incomes);data.expenses=normalizeList(p.expenses);data.goals=Array.isArray(p.goals)?p.goals:[];save();render();toast('备份恢复成功')}catch(e){toast('文件格式不正确，未能恢复')}};reader.onerror=()=>toast('读取文件失败');reader.readAsText(file)}
-document.addEventListener('click',event=>{const tabButton=event.target.closest('[data-xl-tab]');if(tabButton){tab=tabButton.dataset.xlTab;renderContent();return}const add=event.target.closest('[data-xl-add]');if(add){openModal(add.dataset.xlAdd);return}const fold=event.target.closest('[data-xl-fold]');if(fold){expanded[fold.dataset.xlFold]=!expanded[fold.dataset.xlFold];renderContent();return}const edit=event.target.closest('[data-xl-edit]');if(edit){const item=data[edit.dataset.xlEdit].find(x=>String(x.id)===edit.dataset.xlId);if(item)openModal(edit.dataset.xlEdit,item)}});
-$('xl-toggle-timeline').addEventListener('click',()=>{const body=$('xl-timeline-body');const opening=body.classList.contains('xl-hidden');body.classList.toggle('xl-hidden',!opening);$('xl-toggle-timeline').setAttribute('aria-expanded',String(opening));$('xl-toggle-timeline').textContent=opening?'收起完整时间轴　⌃':'查看完整阶段时间轴　⌄';if(opening)$('xl-timeline').scrollIntoView({behavior:'smooth',block:'nearest'})});
-$('xl-privacy').addEventListener('click',()=>{data.settings.hideNetWorth=!data.settings.hideNetWorth;save();render()});$('xl-stage-select').addEventListener('change',e=>{const value=String(e.target.value);if(!stageInfo[value])return;if(value!==String(data.settings.stage)&&!confirm(`确认将当前阶段调整为「${stageInfo[value].name}」吗？建议先确认上一阶段晋级条件已经满足。`)){e.target.value=String(data.settings.stage);return}data.settings.stage=value;save();renderStage();toast('当前财务阶段已更新')});$('xl-edit-targets').addEventListener('click',()=>openModal('targets'));
-$('xl-form').addEventListener('submit',submit);$('xl-delete').addEventListener('click',removeItem);$('xl-close').addEventListener('click',closeModal);$('xl-backdrop').addEventListener('click',e=>{if(e.target===$('xl-backdrop'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal)closeModal()});
-$('xl-export').addEventListener('click',exportData);$('xl-import-btn').addEventListener('click',()=>$('xl-import-file').click());$('xl-import-file').addEventListener('change',e=>{importData(e.target.files?.[0]);e.target.value=''});
-document.querySelectorAll('[data-xl-timeline-view]').forEach(b=>b.addEventListener('click',()=>{data.settings.timelineView=b.dataset.xlTimelineView;save();renderTimeline()}));$('xl-timeline-year').addEventListener('change',e=>{data.settings.timelineYear=Number(e.target.value)||2026;save();renderTimeline()});$('xl-toggle-date-editor').addEventListener('click',()=>{renderDateEditor();$('xl-date-editor').hidden=!$('xl-date-editor').hidden;$('xl-toggle-date-editor').textContent=$('xl-date-editor').hidden?'调整日期':'收起调整'});$('xl-cancel-date-edit').addEventListener('click',()=>{$('xl-date-editor').hidden=true;$('xl-toggle-date-editor').textContent='调整日期'});$('xl-save-date-edit').addEventListener('click',()=>{const plan={};document.querySelectorAll('[data-stage-date]').forEach(row=>{const k=row.dataset.stageDate;plan[k]={start:row.querySelector('[name="start"]').value,end:k==='4'?'':row.querySelector('[name="end"]').value}});const error=validateStagePlan(plan);if(error){toast(error);return}data.settings.stagePlan=plan;save();$('xl-date-editor').hidden=true;$('xl-toggle-date-editor').textContent='调整日期';renderStage();renderTimeline();toast('财务时间表已更新')});
-const yearSelect=$('xl-timeline-year');yearSelect.innerHTML=Array.from({length:15},(_,i)=>`<option value="${2026+i}">${2026+i}年</option>`).join('');
+
+document.addEventListener('click',event=>{
+ const remove=event.target.closest('[data-xl-delete-record]');
+ if(remove){
+  const category=remove.dataset.xlDeleteRecord,id=remove.dataset.xlId,item=data[category]?.find(x=>String(x.id)===id);
+  if(!item)return;
+  if(!confirm(`确定删除「${item.name}」吗？`))return;
+  data[category]=data[category].filter(x=>String(x.id)!==id);save();render();toast('记录已删除');return;
+ }
+ const tile=event.target.closest('[data-xl-category]');
+ if(tile){activeCategory=activeCategory===tile.dataset.xlCategory?null:tile.dataset.xlCategory;renderTiles();renderPanel();return}
+ const add=event.target.closest('[data-xl-add]');if(add){openModal(add.dataset.xlAdd);return}
+ const edit=event.target.closest('[data-xl-edit]');if(edit){const item=data[edit.dataset.xlEdit].find(x=>String(x.id)===edit.dataset.xlId);if(item)openModal(edit.dataset.xlEdit,item)}
+});
+$('xl-profile-edit').addEventListener('click',()=>openModal('profile'));$('xl-mom-goal').addEventListener('click',openMotherGoal);$('xl-add-current').addEventListener('click',()=>openModal(activeCategory));$('xl-stage-select').addEventListener('change',e=>{const value=String(e.target.value);if(!STAGES[value])return;if(value!==String(data.settings.stage)&&!confirm(`确认将当前阶段调整为「${STAGES[value].name}」吗？`)){e.target.value=String(data.settings.stage);return}data.settings.stage=value;save();renderStage();toast('当前财务阶段已更新')});
+$('xl-privacy').addEventListener('click',()=>{data.settings.hideNetWorth=!data.settings.hideNetWorth;save();render()});$('xl-form').addEventListener('submit',submit);$('xl-delete').addEventListener('click',removeItem);$('xl-close').addEventListener('click',closeModal);$('xl-backdrop').addEventListener('click',e=>{if(e.target===$('xl-backdrop'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal)closeModal()});
 render();
+renderFxAttribution(exchangeRateProvider);
+updateExchangeRate();
+setInterval(()=>updateExchangeRate(),6*60*60*1000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-exchangeRateUpdatedAt>4*60*60*1000)updateExchangeRate()});
 })();
 </script>
 </body>
